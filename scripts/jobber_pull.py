@@ -184,7 +184,7 @@ query Jobs($cursor: String) {
 
 Q_CONVERTED_QUOTES = """
 query Quotes($cursor: String) {
-  quotes(first: 25, after: $cursor,
+  quotes(first: 10, after: $cursor,
     filter: { createdAt: { after: "%s", before: "%s" }, status: converted }) {
     nodes {
       quoteNumber title createdAt sentAt transitionedAt
@@ -199,7 +199,7 @@ query Quotes($cursor: String) {
 
 Q_LOST_QUOTES = """
 query Lost($cursor: String) {
-  quotes(first: 25, after: $cursor,
+  quotes(first: 10, after: $cursor,
     filter: { createdAt: { after: "%s", before: "%s" }, status: archived }) {
     nodes {
       quoteNumber title createdAt sentAt transitionedAt
