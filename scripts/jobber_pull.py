@@ -74,7 +74,7 @@ def refresh_access_token(env):
         sys.exit(f"Token refresh failed: HTTP {e.code} - {e.read().decode()[:500]}")
     return body["access_token"]
 
-def gql(token, query, variables=None, retries=3):
+def gql(token, query, variables=None, retries=20):
     """POST a GraphQL query. Handles throttling with backoff."""
     payload = json.dumps({"query":query,"variables":variables or {}}).encode()
     for attempt in range(retries):
@@ -89,7 +89,7 @@ def gql(token, query, variables=None, retries=3):
                 body = json.loads(r.read())
                 if "errors" in body and any(e.get("extensions",{}).get("code")=="THROTTLED" for e in body["errors"]):
                     print(f"  throttled, backing off 20s...", flush=True)
-                    time.sleep(20); continue
+                    time.sleep(30); continue
                 if "errors" in body:
                     sys.exit(f"GraphQL errors: {json.dumps(body['errors'], indent=2)[:1000]}")
                 return body
@@ -109,7 +109,7 @@ def page_through(token, query, key, page_size=25, max_pages=80):
         print(f"  {key} page {page}: {len(d['nodes'])} (total {len(nodes)}) remaining={cost['throttleStatus']['currentlyAvailable']}", flush=True)
         if not d["pageInfo"]["hasNextPage"]: break
         cursor = d["pageInfo"]["endCursor"]
-        time.sleep(0.5 if cost["throttleStatus"]["currentlyAvailable"] > 2000 else 5)
+        time.sleep(2 if cost["throttleStatus"]["currentlyAvailable"] > 5000 else 15)
     return nodes
 
 # ---------------------------------------------------------------------------
