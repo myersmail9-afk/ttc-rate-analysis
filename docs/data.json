@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-05-24T10:49:47.675574+00:00",
-    "jobs_pulled": 333,
+    "generated_at": "2026-05-25T12:41:44.459060+00:00",
+    "jobs_pulled": 339,
     "quote_records_count": 204,
     "lost_quotes_count": 94,
     "predictions_count": 140,
@@ -8837,6 +8837,33 @@
       "job_status": "archived"
     },
     {
+      "job_num": 7117,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xMjc0MzA3MDM=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/127430703",
+      "client": "Ben Weiss",
+      "bidder": "Gabe Dye",
+      "bidder_raw": "Gabriel Dye",
+      "category": "Other",
+      "title": "Wood chips",
+      "expenses": 0.0,
+      "labour_cost": 3.83,
+      "hours": 0.17,
+      "revenue": 0.0,
+      "rate": 0.0,
+      "true_rate": -23.0,
+      "profit_amount": -3.83,
+      "profit_pct": 0,
+      "month": "May",
+      "month_num": 5,
+      "year": 2026,
+      "visit_count": 2,
+      "quote_number": null,
+      "quote_total": null,
+      "bid_error_dollars": null,
+      "bid_error_pct": null,
+      "job_status": "requires_invoicing"
+    },
+    {
       "job_num": 6762,
       "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xMTg4Mzk2MjQ=",
       "jobber_uri": "https://secure.getjobber.com/work_orders/118839624",
@@ -8861,6 +8888,141 @@
       "quote_total": 210.0,
       "bid_error_dollars": -120.0,
       "bid_error_pct": -0.5714,
+      "job_status": "requires_invoicing"
+    },
+    {
+      "job_num": 5815,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi85NDgxMzY5NA==",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/94813694",
+      "client": "Ashley Wells",
+      "bidder": "No Bid",
+      "bidder_raw": null,
+      "category": "Other",
+      "title": "Wood Chips - Ashley Wells",
+      "expenses": 0.0,
+      "labour_cost": 5.05,
+      "hours": 0.21,
+      "revenue": 0.0,
+      "rate": 0.0,
+      "true_rate": -24.0,
+      "profit_amount": -5.05,
+      "profit_pct": 0,
+      "month": "May",
+      "month_num": 5,
+      "year": 2026,
+      "visit_count": 1,
+      "quote_number": null,
+      "quote_total": null,
+      "bid_error_dollars": null,
+      "bid_error_pct": null,
+      "job_status": "requires_invoicing"
+    },
+    {
+      "job_num": 6200,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xMDQzOTcyNDk=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/104397249",
+      "client": "Teresa Earley",
+      "bidder": "No Bid",
+      "bidder_raw": null,
+      "category": "Other",
+      "title": "Wood Chips - Teresa Earley",
+      "expenses": 0.0,
+      "labour_cost": 6.17,
+      "hours": 0.25,
+      "revenue": 0.0,
+      "rate": 0.0,
+      "true_rate": -25.0,
+      "profit_amount": -6.17,
+      "profit_pct": 0,
+      "month": "May",
+      "month_num": 5,
+      "year": 2026,
+      "visit_count": 1,
+      "quote_number": null,
+      "quote_total": null,
+      "bid_error_dollars": null,
+      "bid_error_pct": null,
+      "job_status": "requires_invoicing"
+    },
+    {
+      "job_num": 6496,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xMTI5MzU1Njc=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/112935567",
+      "client": "Marion Murray",
+      "bidder": "No Bid",
+      "bidder_raw": null,
+      "category": "Other",
+      "title": "Wood Chips - Marion Murray",
+      "expenses": 0.0,
+      "labour_cost": 2.88,
+      "hours": 0.12,
+      "revenue": 0.0,
+      "rate": 0.0,
+      "true_rate": -25.0,
+      "profit_amount": -2.88,
+      "profit_pct": 0,
+      "month": "May",
+      "month_num": 5,
+      "year": 2026,
+      "visit_count": 0,
+      "quote_number": null,
+      "quote_total": null,
+      "bid_error_dollars": null,
+      "bid_error_pct": null,
+      "job_status": "requires_invoicing"
+    },
+    {
+      "job_num": 6646,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xMTY2NTYyNTk=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/116656259",
+      "client": "Chris Bollschweiler",
+      "bidder": "No Bid",
+      "bidder_raw": null,
+      "category": "Other",
+      "title": "Wood Chips - Chris Bollschweiler - Paradise",
+      "expenses": 0.0,
+      "labour_cost": 1.15,
+      "hours": 0.05,
+      "revenue": 0.0,
+      "rate": 0.0,
+      "true_rate": -23.0,
+      "profit_amount": -1.15,
+      "profit_pct": 0,
+      "month": "May",
+      "month_num": 5,
+      "year": 2026,
+      "visit_count": 1,
+      "quote_number": null,
+      "quote_total": null,
+      "bid_error_dollars": null,
+      "bid_error_pct": null,
+      "job_status": "requires_invoicing"
+    },
+    {
+      "job_num": 6647,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xMTY2NTcwMTQ=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/116657014",
+      "client": "Mark Weston",
+      "bidder": "No Bid",
+      "bidder_raw": null,
+      "category": "Other",
+      "title": "Wood Chips - Mark Weston",
+      "expenses": 0.0,
+      "labour_cost": 6.41,
+      "hours": 0.28,
+      "revenue": 0.0,
+      "rate": 0.0,
+      "true_rate": -23.0,
+      "profit_amount": -6.41,
+      "profit_pct": 0,
+      "month": "May",
+      "month_num": 5,
+      "year": 2026,
+      "visit_count": 3,
+      "quote_number": null,
+      "quote_total": null,
+      "bid_error_dollars": null,
+      "bid_error_pct": null,
       "job_status": "requires_invoicing"
     },
     {
@@ -14908,14 +15070,14 @@
     },
     "Gabe Dye": {
       "overall": {
-        "jobs": 1,
-        "hours": 3.48,
+        "jobs": 2,
+        "hours": 3.65,
         "revenue": 521.6,
         "expenses": 0.0,
-        "labour_cost": 76.59,
+        "labour_cost": 80.42,
         "net_revenue": 521.6,
-        "avg_rate": 149.89,
-        "true_rate": 127.88
+        "avg_rate": 142.9,
+        "true_rate": 120.87
       },
       "by_month": {
         "January": {
@@ -14927,19 +15089,29 @@
           "net_revenue": 521.6,
           "avg_rate": 149.89,
           "true_rate": 127.88
+        },
+        "May": {
+          "jobs": 1,
+          "hours": 0.17,
+          "revenue": 0.0,
+          "expenses": 0.0,
+          "labour_cost": 3.83,
+          "net_revenue": 0.0,
+          "avg_rate": 0.0,
+          "true_rate": -22.53
         }
       }
     },
     "No Bid": {
       "overall": {
-        "jobs": 70,
-        "hours": 201.32,
+        "jobs": 75,
+        "hours": 202.23,
         "revenue": 18116.4,
         "expenses": 101.25,
-        "labour_cost": 4375.04,
+        "labour_cost": 4396.7,
         "net_revenue": 18015.15,
-        "avg_rate": 89.49,
-        "true_rate": 67.75
+        "avg_rate": 89.08,
+        "true_rate": 67.34
       },
       "by_month": {
         "January": {
@@ -14983,14 +15155,14 @@
           "true_rate": 105.1
         },
         "May": {
-          "jobs": 4,
-          "hours": 11.02,
+          "jobs": 9,
+          "hours": 11.93,
           "revenue": 384.0,
           "expenses": 0.0,
-          "labour_cost": 242.69,
+          "labour_cost": 264.35,
           "net_revenue": 384.0,
-          "avg_rate": 34.85,
-          "true_rate": 12.82
+          "avg_rate": 32.19,
+          "true_rate": 10.03
         }
       }
     },
@@ -15125,14 +15297,14 @@
       "true_rate": 124.21
     },
     "May": {
-      "jobs": 56,
-      "hours": 495.7,
+      "jobs": 62,
+      "hours": 496.78,
       "revenue": 54419.82,
       "expenses": 75.0,
-      "labour_cost": 11946.83,
+      "labour_cost": 11972.32,
       "net_revenue": 54344.82,
-      "avg_rate": 109.63,
-      "true_rate": 85.53
+      "avg_rate": 109.39,
+      "true_rate": 85.29
     }
   },
   "win_loss_summary": {
@@ -16190,29 +16362,6 @@
       ]
     },
     {
-      "type": "awaiting_response",
-      "reference": "Quote #6642",
-      "quote_number": "6642",
-      "client": "erin donaldson",
-      "bidder": "Ben Ash",
-      "category": "Removals",
-      "title": "Removal Summer 2026 - Erin Donaldson - Logan (Central)",
-      "quote_total": 2320.0,
-      "predicted_error_pct": -0.0413,
-      "predicted_actual": 2224.17,
-      "expected_loss": 95.83,
-      "visits_planned": null,
-      "sent_at": "2026-05-14T17:47:34Z",
-      "created_at": "2026-05-14T17:46:27Z",
-      "confidence": "high",
-      "basis": "bidder x category x size",
-      "history_n": 9,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "scheduled_job",
       "reference": "Job #7565",
       "job_number": 7565,
@@ -16276,6 +16425,29 @@
       "confidence": "high",
       "basis": "bidder x category x size",
       "history_n": 13,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6642",
+      "quote_number": "6642",
+      "client": "erin donaldson",
+      "bidder": "Ben Ash",
+      "category": "Removals",
+      "title": "Removal Summer 2026 - Erin Donaldson - Logan (Central)",
+      "quote_total": 2180.0,
+      "predicted_error_pct": -0.0413,
+      "predicted_actual": 2089.96,
+      "expected_loss": 90.04,
+      "visits_planned": null,
+      "sent_at": "2026-05-14T17:47:34Z",
+      "created_at": "2026-05-14T17:46:27Z",
+      "confidence": "high",
+      "basis": "bidder x category x size",
+      "history_n": 9,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -17646,6 +17818,29 @@
     },
     {
       "type": "scheduled_job",
+      "reference": "Job #7599",
+      "job_number": 7599,
+      "quote_number": "6548",
+      "client": "Jared Gallegos",
+      "bidder": "Trevor Stevens",
+      "category": "Pruning",
+      "title": "Pruning-Spring/summer 2026- Jared Gallegos- Fielding",
+      "quote_total": 470.0,
+      "predicted_error_pct": 0.0,
+      "predicted_actual": 470.0,
+      "expected_loss": 0.0,
+      "visits_planned": 1,
+      "start_at": "2026-06-15T06:00:00Z",
+      "confidence": "medium",
+      "basis": "bidder x category",
+      "history_n": 4,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "scheduled_job",
       "reference": "Job #7620",
       "job_number": 7620,
       "quote_number": "6627",
@@ -17684,29 +17879,6 @@
       "start_at": "2026-06-15T06:00:00Z",
       "confidence": "high",
       "basis": "bidder x category x size",
-      "history_n": 4,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7599",
-      "job_number": 7599,
-      "quote_number": "6548",
-      "client": "Jared Gallegos",
-      "bidder": "Trevor Stevens",
-      "category": "Pruning",
-      "title": "Pruning-Spring/summer 2026- Jared Gallegos- Fielding",
-      "quote_total": 470.0,
-      "predicted_error_pct": 0.0,
-      "predicted_actual": 470.0,
-      "expected_loss": 0.0,
-      "visits_planned": 1,
-      "start_at": "2026-06-15T06:00:00Z",
-      "confidence": "medium",
-      "basis": "bidder x category",
       "history_n": 4,
       "risk": "low",
       "recommendations": [
@@ -18590,8 +18762,8 @@
   ],
   "predictions_summary": {
     "total_count": 140,
-    "total_quoted": 212361.16,
-    "total_predicted": 196190.67,
-    "total_expected_loss": 16170.49
+    "total_quoted": 212221.16,
+    "total_predicted": 196056.46,
+    "total_expected_loss": 16164.7
   }
 }
