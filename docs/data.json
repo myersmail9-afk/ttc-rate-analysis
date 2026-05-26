@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-05-25T12:41:44.459060+00:00",
+    "generated_at": "2026-05-26T17:59:44.658895+00:00",
     "jobs_pulled": 339,
     "quote_records_count": 204,
     "lost_quotes_count": 94,
-    "predictions_count": 140,
+    "predictions_count": 134,
     "bidders": [
       "Ben Ash",
       "David Thunell",
@@ -15758,31 +15758,6 @@
       ]
     },
     {
-      "type": "awaiting_response",
-      "reference": "Quote #6463",
-      "quote_number": "6463",
-      "client": "Pam Ward",
-      "bidder": "Trevor Stevens",
-      "category": "Removals",
-      "title": "Removal- Spring 2026- Pam Ward-Richmond",
-      "quote_total": 2359.0,
-      "predicted_error_pct": -0.1188,
-      "predicted_actual": 2078.84,
-      "expected_loss": 280.16,
-      "visits_planned": null,
-      "sent_at": "2026-03-13T22:24:46Z",
-      "created_at": "2026-03-12T15:18:48Z",
-      "confidence": "low",
-      "basis": "category only",
-      "history_n": 46,
-      "risk": "medium",
-      "recommendations": [
-        "Schedule buffer time, likely to run long",
-        "Removals run -12% across all bidders; build buffer into schedule",
-        "Limited history for this bidder/category - bid with caution"
-      ]
-    },
-    {
       "type": "scheduled_job",
       "reference": "Job #7557",
       "job_number": 7557,
@@ -16501,29 +16476,6 @@
     },
     {
       "type": "awaiting_response",
-      "reference": "Quote #6660",
-      "quote_number": "6660",
-      "client": "Jill Gold",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Summer 2026 - Jill Gold - Paradise",
-      "quote_total": 2820.0,
-      "predicted_error_pct": -0.0298,
-      "predicted_actual": 2735.84,
-      "expected_loss": 84.16,
-      "visits_planned": null,
-      "sent_at": "2026-05-21T23:02:56Z",
-      "created_at": "2026-05-21T23:02:27Z",
-      "confidence": "high",
-      "basis": "bidder x category x size",
-      "history_n": 10,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
       "reference": "Quote #6505",
       "quote_number": "6505",
       "client": "Lisa Gamble",
@@ -16540,29 +16492,6 @@
       "confidence": "high",
       "basis": "bidder x category x size",
       "history_n": 9,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7521",
-      "job_number": 7521,
-      "quote_number": "6551",
-      "client": "Ashley Addis",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Spring 2026 - Ashley Addis - Logan (Central)",
-      "quote_total": 2785.0,
-      "predicted_error_pct": -0.0298,
-      "predicted_actual": 2701.88,
-      "expected_loss": 83.12,
-      "visits_planned": 1,
-      "start_at": "2026-05-26T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder x category x size",
-      "history_n": 10,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -16984,29 +16913,6 @@
     },
     {
       "type": "awaiting_response",
-      "reference": "Quote #6663",
-      "quote_number": "6663",
-      "client": "Kelli King",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Summer 2026 - Kelli King - Lewiston",
-      "quote_total": 1130.0,
-      "predicted_error_pct": -0.0513,
-      "predicted_actual": 1072.03,
-      "expected_loss": 57.97,
-      "visits_planned": null,
-      "sent_at": "2026-05-22T16:33:08Z",
-      "created_at": "2026-05-22T16:30:16Z",
-      "confidence": "high",
-      "basis": "bidder x category x size",
-      "history_n": 13,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
       "reference": "Quote #6587",
       "quote_number": "6587",
       "client": "Chris Browning",
@@ -17069,6 +16975,29 @@
       "confidence": "high",
       "basis": "bidder x category x size",
       "history_n": 4,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6660",
+      "quote_number": "6660",
+      "client": "Jill Gold",
+      "bidder": "Ben Ash",
+      "category": "Pruning",
+      "title": "Pruning Summer 2026 - Jill Gold - Paradise",
+      "quote_total": 5850.0,
+      "predicted_error_pct": -0.0086,
+      "predicted_actual": 5799.7,
+      "expected_loss": 50.3,
+      "visits_planned": null,
+      "sent_at": "2026-05-21T23:02:56Z",
+      "created_at": "2026-05-21T23:02:27Z",
+      "confidence": "medium",
+      "basis": "bidder x category",
+      "history_n": 100,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -17307,30 +17236,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #6667",
-      "job_number": 6667,
-      "quote_number": "5788",
-      "client": "Troy Jeppesen",
-      "bidder": "Jed Thorpe",
-      "category": "PHC / Sprays",
-      "title": "PHC- Troy Jeppesen - Hyde Park",
-      "quote_total": 405.0,
-      "predicted_error_pct": -0.0459,
-      "predicted_actual": 386.43,
-      "expected_loss": 18.57,
-      "visits_planned": 5,
-      "start_at": "2026-03-27T06:00:00Z",
-      "confidence": "low",
-      "basis": "category only",
-      "history_n": 15,
-      "risk": "low",
-      "recommendations": [
-        "5 visits planned - confirm scope has not crept",
-        "Limited history for this bidder/category - bid with caution"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6582",
       "quote_number": "6582",
@@ -17553,29 +17458,6 @@
       "expected_loss": 11.95,
       "visits_planned": 1,
       "start_at": "2026-06-17T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder x category x size",
-      "history_n": 35,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7545",
-      "job_number": 7545,
-      "quote_number": "6563",
-      "client": "Christine Maughan",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Spring 2026 - Christine Maughan - Logan (Island)",
-      "quote_total": 550.0,
-      "predicted_error_pct": -0.0213,
-      "predicted_actual": 538.26,
-      "expected_loss": 11.74,
-      "visits_planned": 1,
-      "start_at": "2026-05-26T06:00:00Z",
       "confidence": "high",
       "basis": "bidder x category x size",
       "history_n": 35,
@@ -18090,29 +17972,6 @@
       "risk": "low",
       "recommendations": [
         "3 visits planned - confirm scope has not crept"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #6789",
-      "job_number": 6789,
-      "quote_number": "5931",
-      "client": "Cassi Palmatary",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, summer 2025 - Cassi Palmatary - Providence",
-      "quote_total": 4161.6,
-      "predicted_error_pct": 0.0,
-      "predicted_actual": 4161.6,
-      "expected_loss": 0.0,
-      "visits_planned": 1,
-      "start_at": "2026-05-26T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder x category x size",
-      "history_n": 6,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
       ]
     },
     {
@@ -18761,9 +18620,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 140,
-    "total_quoted": 212221.16,
-    "total_predicted": 196056.46,
-    "total_expected_loss": 16164.7
+    "total_count": 134,
+    "total_quoted": 203860.56,
+    "total_predicted": 188181.28,
+    "total_expected_loss": 15679.28
   }
 }
