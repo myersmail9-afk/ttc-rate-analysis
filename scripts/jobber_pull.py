@@ -74,7 +74,7 @@ def refresh_access_token(env):
         sys.exit(f"Token refresh failed: HTTP {e.code} - {e.read().decode()[:500]}")
     return body["access_token"]
 
-def gql(token, query, variables=None, retries=20):
+def gql(token, query, variables=None, retries=3):
     """POST a GraphQL query. Handles throttling with backoff."""
     payload = json.dumps({"query":query,"variables":variables or {}}).encode()
     for attempt in range(retries):
@@ -89,7 +89,7 @@ def gql(token, query, variables=None, retries=20):
                 body = json.loads(r.read())
                 if "errors" in body and any(e.get("extensions",{}).get("code")=="THROTTLED" for e in body["errors"]):
                     print(f"  throttled, backing off 20s...", flush=True)
-                    time.sleep(30); continue
+                    time.sleep(20); continue
                 if "errors" in body:
                     sys.exit(f"GraphQL errors: {json.dumps(body['errors'], indent=2)[:1000]}")
                 return body
@@ -109,7 +109,7 @@ def page_through(token, query, key, page_size=25, max_pages=80):
         print(f"  {key} page {page}: {len(d['nodes'])} (total {len(nodes)}) remaining={cost['throttleStatus']['currentlyAvailable']}", flush=True)
         if not d["pageInfo"]["hasNextPage"]: break
         cursor = d["pageInfo"]["endCursor"]
-        time.sleep(2 if cost["throttleStatus"]["currentlyAvailable"] > 5000 else 15)
+        time.sleep(0.5 if cost["throttleStatus"]["currentlyAvailable"] > 2000 else 5)
     return nodes
 
 # ---------------------------------------------------------------------------
@@ -184,13 +184,13 @@ query Jobs($cursor: String) {
 
 Q_CONVERTED_QUOTES = """
 query Quotes($cursor: String) {
-  quotes(first: 10, after: $cursor,
+  quotes(first: 25, after: $cursor,
     filter: { createdAt: { after: "%s", before: "%s" }, status: converted }) {
     nodes {
-      quoteNumber title createdAt sentAt transitionedAt
+      quoteNumber title createdAt sentAt transitionedAt jobberWebUri
       client { name } salesperson { name { full } }
       amounts { total }
-      jobs { nodes { jobNumber jobCosting { totalRevenue } completedAt } }
+      jobs { nodes { jobNumber jobberWebUri jobCosting { totalRevenue } completedAt } }
     }
     pageInfo { hasNextPage endCursor }
   }
@@ -199,10 +199,10 @@ query Quotes($cursor: String) {
 
 Q_LOST_QUOTES = """
 query Lost($cursor: String) {
-  quotes(first: 10, after: $cursor,
+  quotes(first: 25, after: $cursor,
     filter: { createdAt: { after: "%s", before: "%s" }, status: archived }) {
     nodes {
-      quoteNumber title createdAt sentAt transitionedAt
+      quoteNumber title createdAt sentAt transitionedAt jobberWebUri
       client { name } salesperson { name { full } } amounts { total }
     }
     pageInfo { hasNextPage endCursor }
@@ -228,7 +228,7 @@ Q_AWAITING_QUOTES = """
 query Aw($cursor: String) {
   quotes(first: 25, after: $cursor, filter: { status: awaiting_response }) {
     nodes {
-      quoteNumber title createdAt sentAt
+      quoteNumber title createdAt sentAt jobberWebUri
       client { name } salesperson { name { full } } amounts { total }
     }
     pageInfo { hasNextPage endCursor }
@@ -267,7 +267,7 @@ def main():
     print("\nPulling awaiting-response quotes...", flush=True)
     awaiting_quotes = page_through(token, Q_AWAITING_QUOTES, "quotes")
 
-    # ---- Build per-job records ----
+    # ---- Build per-job records (the dashboard 'jobs' array) ----
     jobs = []
     for j in completed_jobs:
         jc = j.get("jobCosting") or {}
@@ -302,6 +302,7 @@ def main():
             "profit_amount": round(jc.get("profitAmount") or 0, 2),
             "profit_pct": round(jc.get("profitPercentage") or 0, 2),
             "month": month, "month_num": mnum, "year": yr,
+            "completed_at": j.get("completedAt") or j.get("createdAt"),
             "visit_count": (j.get("visits") or {}).get("totalCount"),
             "quote_number": quote.get("quoteNumber"),
             "quote_total": round(quote_total, 2) if quote_total else None,
@@ -311,7 +312,7 @@ def main():
         })
     jobs.sort(key=lambda r: (r.get("month_num") or 99, r["bidder"], r["job_num"] or 0))
 
-    # ---- Quote records (per-quote bid accuracy) ----
+    # ---- Build quote_records (per-quote, dashboard 'quote_records') ----
     job_to_visits = {j["job_num"]: j.get("visit_count") or 0 for j in jobs}
     quote_records = []
     for q in converted_quotes:
@@ -331,6 +332,7 @@ def main():
             cat_counts[next((jj["category"] for jj in jobs if jj["job_num"]==jn), "Other")] += 1
         category = max(cat_counts, key=cat_counts.get) if cat_counts else "Other"
         sp = (q.get("salesperson") or {}).get("name",{}) or {}
+        first_job_uri = next((jj.get("jobberWebUri") for jj in qjobs if jj.get("jobberWebUri")), None)
         quote_records.append({
             "quote_number": q.get("quoteNumber"),
             "client": (q.get("client") or {}).get("name",""),
@@ -342,6 +344,8 @@ def main():
             "bid_error_pct": round((actual-total)/total, 4),
             "jobs_count": len(qjobs),
             "job_numbers": job_nums,
+            "jobber_uri": q.get("jobberWebUri"),
+            "first_job_uri": first_job_uri,
             "visit_count": sum(job_to_visits.get(jn, 0) for jn in job_nums),
             "completed_at": completed,
             "sent_at": q.get("sentAt"),
@@ -351,7 +355,7 @@ def main():
             "month": month, "month_num": mnum, "year": yr,
         })
 
-    # ---- Lost quotes ----
+    # ---- Build lost_quotes ----
     lost_records = []
     for q in lost_quotes_raw:
         sp = (q.get("salesperson") or {}).get("name",{}) or {}
@@ -362,13 +366,14 @@ def main():
             "bidder": norm_bidder(sp.get("full")),
             "category": categorize(q.get("title") or ""),
             "quote_total": round(total, 2),
+            "jobber_uri": q.get("jobberWebUri"),
             "created_at": q.get("createdAt"),
             "sent_at": q.get("sentAt"),
             "transitioned_at": q.get("transitionedAt"),
             "days_to_close": days_between(q.get("sentAt") or q.get("createdAt"), q.get("transitionedAt")),
         })
 
-    # ---- Aggregations ----
+    # ---- Aggregations: bidder_summary, month_summary ----
     def agg(rows):
         hrs = sum(r["hours"] for r in rows)
         rev = sum(r["revenue"] for r in rows)
@@ -394,7 +399,7 @@ def main():
     months_seen = sorted({r["month"] for r in jobs if r["month"]}, key=lambda m: MONTH_NUM.get(m, 99))
     month_summary = {m: agg([r for r in jobs if r["month"] == m]) for m in months_seen}
 
-    # ---- Win/loss ----
+    # ---- Win/loss aggregations ----
     won_by_bc = defaultdict(int); won_d_by_bc = defaultdict(float)
     for q in quote_records:
         k = (q["bidder"], q["category"])
@@ -432,7 +437,7 @@ def main():
             "win_rate": round(w/t, 4) if t else 0,
         }
 
-    # ---- Predictions (dollar-weighted) ----
+    # ---- Predictions ----
     bcs_sums = defaultdict(lambda: {"q":0.0,"a":0.0,"n":0})
     bc_sums  = defaultdict(lambda: {"q":0.0,"a":0.0,"n":0})
     cat_sums = defaultdict(lambda: {"q":0.0,"a":0.0,"n":0})
@@ -447,8 +452,8 @@ def main():
 
     def predict(bidder, cat, qt):
         for key, d, conf, basis in [
-            ((bidder,cat,size_bucket(qt)), bcs_sums.get((bidder,cat,size_bucket(qt))), "high", "bidder x category x size"),
-            ((bidder,cat), bc_sums.get((bidder,cat)), "medium", "bidder x category"),
+            ((bidder,cat,size_bucket(qt)), bcs_sums.get((bidder,cat,size_bucket(qt))), "high", "bidder × category × size"),
+            ((bidder,cat), bc_sums.get((bidder,cat)), "medium", "bidder × category"),
             (cat, cat_sums.get(cat), "low", "category only"),
             (bidder, bidder_sums.get(bidder), "low", "bidder only"),
         ]:
@@ -484,6 +489,7 @@ def main():
         predictions.append({
             "type":"scheduled_job","reference":f"Job #{j.get('jobNumber')}",
             "job_number":j.get("jobNumber"),"quote_number":quote.get("quoteNumber"),
+            "jobber_uri":j.get("jobberWebUri"),
             "client":(j.get("client") or {}).get("name",""),"bidder":bidder,"category":cat,
             "title":j.get("title"),"quote_total":round(qt,2),
             "predicted_error_pct":round(ratio-1,4),"predicted_actual":round(pred,2),
@@ -501,6 +507,7 @@ def main():
         predictions.append({
             "type":"awaiting_response","reference":f"Quote #{q.get('quoteNumber')}",
             "quote_number":q.get("quoteNumber"),"client":(q.get("client") or {}).get("name",""),
+            "jobber_uri":q.get("jobberWebUri"),
             "bidder":bidder,"category":cat,"title":q.get("title"),"quote_total":round(qt,2),
             "predicted_error_pct":round(ratio-1,4),"predicted_actual":round(pred,2),
             "expected_loss":round(loss,2),"visits_planned":None,"sent_at":q.get("sentAt"),
@@ -513,7 +520,7 @@ def main():
     tp = sum(p["predicted_actual"] for p in predictions)
     tl = sum(p["expected_loss"] for p in predictions)
 
-    # ---- Final output ----
+    # ---- Assemble final output ----
     output = {
         "meta": {
             "source": "Jobber GraphQL API (live)",
@@ -548,7 +555,8 @@ def main():
     print(f"\nWrote {DATA_OUT}")
     print(f"  {len(jobs)} jobs, {len(quote_records)} quote records, {len(lost_records)} lost quotes, {len(predictions)} predictions")
 
-    # Re-embed data into the dashboard HTML so the page is self-contained
+    # IMPORTANT: re-inject data into the dashboard HTML so it works offline
+    # AND so GitHub Pages serves a self-contained page.
     html_path = DOCS / "index.html"
     if html_path.exists():
         html = html_path.read_text()
