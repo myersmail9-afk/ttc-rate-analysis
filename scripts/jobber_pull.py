@@ -198,18 +198,22 @@ query Jobs($cursor: String) {
 
 Q_CONVERTED_QUOTES = """
 query Quotes($cursor: String) {
-  quotes(first: 25, after: $cursor,
+  quotes(first: 10, after: $cursor,
     filter: { createdAt: { after: "%s", before: "%s" }, status: converted }) {
     nodes {
       quoteNumber title createdAt sentAt transitionedAt jobberWebUri
       client { name } salesperson { name { full } }
       amounts { total }
-      jobs { nodes { jobNumber jobberWebUri jobCosting { totalRevenue } completedAt } }
+      jobs { nodes { jobNumber jobberWebUri completedAt } }
     }
     pageInfo { hasNextPage endCursor }
   }
 }
 """ % (DATE_AFTER, DATE_BEFORE)
+# Note: dropped `jobCosting { totalRevenue }` from the nested jobs above —
+# it pushed the query past Jobber's per-request cost ceiling. We already
+# have totalRevenue for every job in the main jobs pull (see jobs list),
+# so we look it up locally below. Also dropped page size 25 -> 10.
 
 Q_LOST_QUOTES = """
 query Lost($cursor: String) {
@@ -328,13 +332,17 @@ def main():
 
     # ---- Build quote_records (per-quote, dashboard 'quote_records') ----
     job_to_visits = {j["job_num"]: j.get("visit_count") or 0 for j in jobs}
+    # Local lookup: job_number -> revenue (avoids fetching jobCosting again
+    # inside the converted-quotes query, which was busting the per-query
+    # cost ceiling and triggering THROTTLED errors).
+    job_to_revenue = {j["job_num"]: j.get("revenue") or 0 for j in jobs}
     quote_records = []
     for q in converted_quotes:
         total = (q.get("amounts") or {}).get("total")
         if not total or total <= 0: continue
         qjobs = (q.get("jobs") or {}).get("nodes") or []
         if not qjobs: continue
-        actual = sum((j.get("jobCosting") or {}).get("totalRevenue") or 0 for j in qjobs)
+        actual = sum(job_to_revenue.get(j.get("jobNumber"), 0) for j in qjobs)
         if actual <= 0: continue
         completion = [j.get("completedAt") for j in qjobs if j.get("completedAt")]
         completed = max(completion) if completion else None
