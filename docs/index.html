@@ -120,6 +120,9 @@ th.sortable:hover{color:#2d4a3a}
 /* Ledger total row */
 .ledger-table tfoot tr.ledger-total td{background:#f0f3ee;border-top:2px solid #2d4a3a;padding:10px 6px;font-size:13px}
 .ledger-table tfoot{position:sticky;bottom:0}
+/* Print-only TOTAL summary that appears at the TOP of the section.
+   Hidden on screen; shown only when printing. */
+.ledger-print-summary{display:none;background:#f0f3ee;border:2px solid #2d4a3a;border-radius:8px;padding:10px 14px;margin:0 0 12px;font-size:12pt;color:#1a1f1a}
 /* Print styles for reports */
 @media print {
   body{padding:0;max-width:none;background:#fff;color:#000}
@@ -129,6 +132,12 @@ th.sortable:hover{color:#2d4a3a}
   /* CRITICAL: expand scroll-tables so PDF shows ALL rows, not just visible portion */
   .scroll-table{max-height:none !important;overflow:visible !important;border:none !important}
   .scroll-table thead{position:static !important}
+  /* Show print-only TOTAL summary at the top of each ledger section */
+  .ledger-print-summary{display:block !important}
+  /* Hide the bottom tfoot in print — the top summary replaces it, and
+     display:table-footer-group caused the totals to float into the
+     middle of multi-page tables. */
+  .ledger-table tfoot{display:none !important}
   /* Let big tables break across pages cleanly */
   table{font-size:9.5pt;page-break-inside:auto}
   thead{display:table-header-group} /* repeat header on each printed page */
@@ -559,6 +568,14 @@ function renderJobLedger(bidder, jobs){
         <span class="hint">${sortedJobs.length} jobs · click a column header to sort · click # to open in Jobber</span>
         <button class="btn-section-csv" data-csv-bidder="${bidder}" title="Download all rows as CSV (opens in Excel)">Download CSV</button>
         <button class="btn-section-pdf" data-print-section="${sectionId}" title="Print just this section">Export PDF</button>
+      </div>
+      <div class="ledger-print-summary" aria-hidden="true">
+        <strong>TOTAL — ${sortedJobs.length} jobs</strong>
+        &nbsp;·&nbsp; Expenses <strong>${fmt$2(totExp)}</strong>
+        &nbsp;·&nbsp; Hours <strong>${fmtHrs(totHrs)}</strong>
+        &nbsp;·&nbsp; Revenue <strong>${fmt$2(totRev)}</strong>
+        &nbsp;·&nbsp; Rate <strong>${fmt$2(totRate)}/hr</strong>
+        ${totRate >= TARGET ? ` (+${fmt$2(totRate - TARGET)}/hr vs $${TARGET} target)` : ` (${fmt$2(totRate - TARGET)}/hr vs $${TARGET} target)`}
       </div>
       <div class="scroll-table">
         <table class="ledger-table">
@@ -1420,7 +1437,7 @@ function renderAll(c){
       </tr>`;
     }
   }
-  c.innerHTML += `
+  const _winRateByCatHtml = `
     <div class="section">
       <div class="section-title">Win rate by category <span class="hint">where each bidder wins or loses bids</span></div>
       <table>
@@ -1445,7 +1462,7 @@ function renderAll(c){
       <td class="num">${r.lostMed != null ? r.lostMed.toFixed(1) : '—'} days <span style="color:#aaa">(n=${r.lostN})</span></td>
     </tr>`;
   }
-  c.innerHTML += `
+  const _timeToCloseHtml = `
     <div class="section">
       <div class="section-title">Time to close <span class="hint">how long quotes sit before customer decides</span></div>
       <table>
@@ -1498,6 +1515,10 @@ function renderAll(c){
       </table>
     </div>`;
 
+  // Lowest-priority sections move to the very bottom of the page.
+  c.innerHTML += _winRateByCatHtml;
+  c.innerHTML += _timeToCloseHtml;
+
   setTimeout(() => {
     drawAllScatter('allScatter', sorted.filter(b => b !== 'No Bid'));
   }, 0);
@@ -1523,12 +1544,19 @@ function renderBidder(c, bidder){
       <div class="metric"><div class="metric-label">Avg net $/hr</div><div class="metric-value ${gap>=0?'pos':'neg'}">${fmt$2(o.avg_rate)}<span class="metric-unit">/hr</span></div><div class="metric-sub">${gap>=0?'+':''}${fmt$2(gap)} vs target</div></div>
     </div>`;
 
-  // Excel-style ledger leads the page — matches what David already reviews.
-  c.innerHTML += renderJobLedger(bidder, jobs);
-
+  // -------------------------------------------------------------------
+  // Build all sections as strings, then append in the order Joseph wants:
+  //   1. headline metric strip (already appended above)
+  //   2. TMI card (target rate)
+  //   3. Full ledger
+  //   4. Rate by category
+  //   5. Win/loss strip
+  //   6. Rate scatter
+  //   7. Dollar impact by job size
+  // -------------------------------------------------------------------
   const wl = winLossForBidder(bidder);
   const wlCls = wl.rate >= 0.6 ? 'pos' : (wl.rate < 0.45 ? 'neg' : '');
-  c.innerHTML += `
+  const winLossHtml = `
     <div class="grid-4">
       <div class="metric"><div class="metric-label">Win rate</div><div class="metric-value ${wlCls}">${wl.total ? (wl.rate*100).toFixed(1)+'%' : '—'}</div><div class="metric-sub">${wl.won} won / ${wl.lost} lost</div></div>
       <div class="metric"><div class="metric-label">$ won (quoted)</div><div class="metric-value">${fmt$(wl.wonDollars)}</div></div>
@@ -1539,7 +1567,7 @@ function renderBidder(c, bidder){
   const _targetEarn = TARGET * o.hours;
   const _actualEarn = o.revenue - jobs.reduce((s,j)=>s+j.expenses,0);
   const _isPos = totalDollarImpact >= 0;
-  c.innerHTML += `
+  const tmiHtml = `
     <div class="tmi-card ${_isPos?'pos':'neg'}">
       <div class="tmi-title">${bidder} is ${_isPos?'AHEAD of':'BEHIND'} target by</div>
       <div class="tmi-subtitle">Across ${o.jobs} jobs in your current view</div>
@@ -1555,6 +1583,8 @@ function renderBidder(c, bidder){
         <div class="mline">• Gap per hour: <strong>${fmt$2(o.avg_rate - TARGET)}</strong> &nbsp;·&nbsp; ${fmt$2(o.avg_rate - TARGET)} × ${fmtHrs(o.hours)} hrs = <strong>${fmt$signed(totalDollarImpact)}</strong></div>
       </div>
     </div>`;
+
+  const ledgerHtml = renderJobLedger(bidder, jobs);
 
   // Category breakdown for this bidder — rate-based (matches Excel math)
   let catRows = '';
@@ -1578,7 +1608,7 @@ function renderBidder(c, bidder){
       <td class="num"><span class="rate-chip ${impact >= 0 ? 'pos' : 'neg'}">${fmt$signed(impact)}</span></td>
     </tr>`;
   }
-  c.innerHTML += `
+  const catTableHtml = `
     <div class="section" id="sect_bidder_cat_${bidder.replace(/[^a-z0-9]+/gi,'_')}">
       <div class="section-title">${bidder} — rate by category <span class="hint">did each category hit $${TARGET}/hr?</span><button class="btn-section-pdf" data-print-section="sect_bidder_cat_${bidder.replace(/[^a-z0-9]+/gi,'_')}">Export PDF</button></div>
       <table>
@@ -1587,22 +1617,27 @@ function renderBidder(c, bidder){
       </table>
     </div>`;
 
-  c.innerHTML += `
+  const rateScatterHtml = `
     <div class="section">
       <div class="section-title">${bidder} — did each job hit $${TARGET}/hr? <span class="hint">${jobs.length} jobs · dashed line is the target · click a dot to open in Jobber</span></div>
       <div class="chart-wrap tall"><canvas id="bidderRateScatter"></canvas></div>
       <p class="note">Each dot is one job. X = job revenue. Y = net $/hr realized — that's Rate from David's Excel: <code>(revenue − expenses) / hours</code>. Above the dashed target line = the bid covered $${TARGET}/hr. Below the line = the bid was too low for the hours it actually took.</p>
     </div>`;
 
-  c.innerHTML += `
+  const dollarImpactHtml = `
     <div class="section">
       <div class="section-title">Dollar impact by job size</div>
       <div class="chart-wrap"><canvas id="bucketDollar"></canvas></div>
       <p class="note">Bars below zero = bid lost margin in that size class.</p>
     </div>`;
 
-  // (Ledger now rendered at the top of the bidder view, immediately
-  // after the headline metric strip — see above.)
+  // Final order: TMI → ledger → category → win/loss → scatter → buckets
+  c.innerHTML += tmiHtml;
+  c.innerHTML += ledgerHtml;
+  c.innerHTML += catTableHtml;
+  c.innerHTML += winLossHtml;
+  c.innerHTML += rateScatterHtml;
+  c.innerHTML += dollarImpactHtml;
 
   setTimeout(()=>{
     drawAllScatter('bidderRateScatter', [bidder]);  // rate scatter scoped to one bidder
