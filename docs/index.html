@@ -1397,48 +1397,45 @@ function renderAll(c){
       <div class="chart-wrap tall"><canvas id="allScatter"></canvas></div>
     </div>`;
 
-  c.innerHTML += `
-    <div class="section">
-      <div class="section-title">Bid accuracy — quote vs target-implied price <span class="hint">at $${TARGET}/hr target · aggregated at the quote level</span></div>
-      <div class="chart-wrap tall"><canvas id="bidScatter"></canvas></div>
-      <p class="note">Each dot is one quote. X = what we quoted. Y = what we would have needed to charge to hit the $${TARGET}/hr target on the hours and expenses the job actually consumed (<code>hours × $${TARGET} + expenses</code>). Diagonal = bid landed exactly at target. <strong>Below diagonal</strong> = bid was higher than target — we captured margin. <strong>Above diagonal</strong> = bid was too low — we ate the gap. Quote-vs-invoiced doesn't move because at TTC the customer is invoiced what they were quoted; the real bid-accuracy question is whether that quote covered the actual labor + expenses at target rate.</p>
-    </div>`;
+  // (Removed duplicate "Bid accuracy — quote vs target-implied price"
+  // section — "Where the margin lives" above already shows the rate-based
+  // bid-accuracy story dot-per-job. Joseph: "everything in terms of rate".)
 
-  // Per-bidder per-category bid accuracy table
-  const qrs = visibleQuotes();
+  // Bidder × category — rate-based (matches David's Excel math)
   const byBC = {};
-  for(const q of qrs){
-    const key = `${q.bidder}|${q.category}`;
-    if(!byBC[key]) byBC[key] = {bidder: q.bidder, category: q.category, n:0, quote_total:0, actual_total:0};
-    byBC[key].n++; byBC[key].quote_total += q.quote_total; byBC[key].actual_total += q.actual_total;
+  for(const j of jobs){
+    const key = `${j.bidder}|${j.category}`;
+    if(!byBC[key]) byBC[key] = {bidder: j.bidder, category: j.category, n:0, hours:0, revenue:0, expenses:0};
+    byBC[key].n++; byBC[key].hours += j.hours||0; byBC[key].revenue += j.revenue||0; byBC[key].expenses += j.expenses||0;
   }
-  const bcRows = Object.values(byBC).sort((a,b)=> b.quote_total - a.quote_total);
+  const bcRows = Object.values(byBC).sort((a,b)=> b.revenue - a.revenue);
   let bcHtml = '';
   for(const r of bcRows){
-    const err = r.quote_total ? (r.actual_total - r.quote_total) / r.quote_total : 0;
-    const dollars = r.actual_total - r.quote_total;
+    const rate = r.hours > 0 ? (r.revenue - r.expenses) / r.hours : 0;
+    const gap = rate - TARGET;
+    const impact = (rate - TARGET) * r.hours;
     bcHtml += `<tr>
       <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[r.bidder]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${r.bidder}</strong></td>
       <td>${r.category}</td>
       <td class="num">${r.n}</td>
-      <td class="num">${fmt$(r.quote_total)}</td>
-      <td class="num">${fmt$(r.actual_total)}</td>
-      <td class="num"><span class="rate-chip ${err >= 0 ? 'pos' : 'neg'}">${fmtPct(err)}</span></td>
-      <td class="num"><span class="rate-chip ${dollars >= 0 ? 'pos' : 'neg'}">${fmt$signed(dollars)}</span></td>
+      <td class="num">${fmtHrs(r.hours)}</td>
+      <td class="num">${fmt$(r.revenue)}</td>
+      <td class="num"><strong>${fmt$2(rate)}</strong></td>
+      <td class="num"><span class="rate-chip ${gap >= 0 ? 'pos' : 'neg'}">${gap >= 0 ? '+' : ''}${fmt$2(gap)}</span></td>
+      <td class="num"><span class="rate-chip ${impact >= 0 ? 'pos' : 'neg'}">${fmt$signed(impact)}</span></td>
     </tr>`;
   }
   c.innerHTML += `
-    <div class="section">
-      <div class="section-title">Bidder × category accuracy <span class="hint">shows where each bidder's bids actually go off</span></div>
+    <div class="section" id="sect_bidder_x_cat">
+      <div class="section-title">Bidder × category — rate <span class="hint">where each bidder hits or misses $${TARGET}/hr by job type</span><button class="btn-section-pdf" data-print-section="sect_bidder_x_cat">Export PDF</button></div>
       <table>
-        <thead><tr><th>Bidder</th><th>Category</th><th class="num">Quotes</th><th class="num">Bid total</th><th class="num">Actual</th><th class="num">% off</th><th class="num">$ off</th></tr></thead>
+        <thead><tr><th>Bidder</th><th>Category</th><th class="num">Jobs</th><th class="num">Hours</th><th class="num">Revenue</th><th class="num">Rate ($/hr)</th><th class="num">vs $${TARGET}</th><th class="num">Margin impact</th></tr></thead>
         <tbody>${bcHtml}</tbody>
       </table>
     </div>`;
 
   setTimeout(() => {
     drawAllScatter('allScatter', sorted.filter(b => b !== 'No Bid'));
-    drawBidScatter('bidScatter', sorted.filter(b => b !== 'No Bid'));
   }, 0);
 }
 
@@ -1495,38 +1492,42 @@ function renderBidder(c, bidder){
       </div>
     </div>`;
 
-  // Category breakdown for this bidder
+  // Category breakdown for this bidder — rate-based (matches Excel math)
   let catRows = '';
   const byCat = {};
-  for(const q of qrs){
-    if(!byCat[q.category]) byCat[q.category] = {n:0, quote_total:0, actual_total:0};
-    byCat[q.category].n++; byCat[q.category].quote_total += q.quote_total; byCat[q.category].actual_total += q.actual_total;
+  for(const j of jobs){
+    const k = j.category || 'Other';
+    if(!byCat[k]) byCat[k] = {n:0, hours:0, revenue:0, expenses:0};
+    byCat[k].n++; byCat[k].hours += j.hours||0; byCat[k].revenue += j.revenue||0; byCat[k].expenses += j.expenses||0;
   }
-  for(const [cat, r] of Object.entries(byCat).sort((a,b)=>b[1].quote_total - a[1].quote_total)){
-    const err = r.quote_total ? (r.actual_total - r.quote_total) / r.quote_total : 0;
-    const dol = r.actual_total - r.quote_total;
+  for(const [cat, r] of Object.entries(byCat).sort((a,b)=>b[1].revenue - a[1].revenue)){
+    const rate = r.hours > 0 ? (r.revenue - r.expenses) / r.hours : 0;
+    const gap = rate - TARGET;
+    const impact = (rate - TARGET) * r.hours;
     catRows += `<tr>
       <td><strong>${cat}</strong></td>
       <td class="num">${r.n}</td>
-      <td class="num">${fmt$(r.quote_total)}</td>
-      <td class="num">${fmt$(r.actual_total)}</td>
-      <td class="num"><span class="rate-chip ${err >= 0 ? 'pos' : 'neg'}">${fmtPct(err)}</span></td>
-      <td class="num"><span class="rate-chip ${dol >= 0 ? 'pos' : 'neg'}">${fmt$signed(dol)}</span></td>
+      <td class="num">${fmtHrs(r.hours)}</td>
+      <td class="num">${fmt$(r.revenue)}</td>
+      <td class="num"><strong>${fmt$2(rate)}</strong></td>
+      <td class="num"><span class="rate-chip ${gap >= 0 ? 'pos' : 'neg'}">${gap >= 0 ? '+' : ''}${fmt$2(gap)}</span></td>
+      <td class="num"><span class="rate-chip ${impact >= 0 ? 'pos' : 'neg'}">${fmt$signed(impact)}</span></td>
     </tr>`;
   }
   c.innerHTML += `
-    <div class="section">
-      <div class="section-title">${bidder} — bid accuracy by category</div>
+    <div class="section" id="sect_bidder_cat_${bidder.replace(/[^a-z0-9]+/gi,'_')}">
+      <div class="section-title">${bidder} — rate by category <span class="hint">did each category hit $${TARGET}/hr?</span><button class="btn-section-pdf" data-print-section="sect_bidder_cat_${bidder.replace(/[^a-z0-9]+/gi,'_')}">Export PDF</button></div>
       <table>
-        <thead><tr><th>Category</th><th class="num">Quotes</th><th class="num">Bid total</th><th class="num">Actual</th><th class="num">% off</th><th class="num">$ off</th></tr></thead>
-        <tbody>${catRows || '<tr><td colspan="6" style="text-align:center;color:#888;padding:16px">No quote data for this bidder in current filter</td></tr>'}</tbody>
+        <thead><tr><th>Category</th><th class="num">Jobs</th><th class="num">Hours</th><th class="num">Revenue</th><th class="num">Rate ($/hr)</th><th class="num">vs $${TARGET}</th><th class="num">Margin impact</th></tr></thead>
+        <tbody>${catRows || '<tr><td colspan="7" style="text-align:center;color:#888;padding:16px">No jobs in this filter</td></tr>'}</tbody>
       </table>
     </div>`;
 
   c.innerHTML += `
     <div class="section">
-      <div class="section-title">${bidder}'s bid accuracy — quote vs actual <span class="hint">${qrs.length} quotes</span></div>
-      <div class="chart-wrap tall"><canvas id="bidderBidScatter"></canvas></div>
+      <div class="section-title">${bidder} — did each job hit $${TARGET}/hr? <span class="hint">${jobs.length} jobs · dashed line is the target · click a dot to open in Jobber</span></div>
+      <div class="chart-wrap tall"><canvas id="bidderRateScatter"></canvas></div>
+      <p class="note">Each dot is one job. X = job revenue. Y = net $/hr realized — that's Rate from David's Excel: <code>(revenue − expenses) / hours</code>. Above the dashed target line = the bid covered $${TARGET}/hr. Below the line = the bid was too low for the hours it actually took.</p>
     </div>`;
 
   c.innerHTML += `
@@ -1540,7 +1541,7 @@ function renderBidder(c, bidder){
   // after the headline metric strip — see above.)
 
   setTimeout(()=>{
-    drawBidderBidScatter('bidderBidScatter', bidder, qrs);
+    drawAllScatter('bidderRateScatter', [bidder]);  // rate scatter scoped to one bidder
     drawBucketDollarChart('bucketDollar', buckets);
   },0);
 }
