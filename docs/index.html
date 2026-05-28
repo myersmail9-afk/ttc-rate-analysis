@@ -448,6 +448,7 @@ function predictRateCoverage(bidder, category, quoteTotal){
 
     // Overwrite the prediction's fields with rate-based math
     p.predicted_coverage_ratio = ratio;
+    p.predicted_rate = ratio * TARGET;            // ← the bidder's expected $/hr on this bid
     p.predicted_target_implied = predicted_target_implied;
     p.predicted_margin = predicted_margin;
     p.predicted_error_pct = ratio - 1;            // > 0 = margin captured, < 0 = margin lost
@@ -918,8 +919,17 @@ function render(){
 }
 
 function renderPredictive(c){
-  const preds = (DATA.predictions || []);
-  const summary = DATA.predictions_summary || {};
+  // Filter to the selected bidder if a bidder tab is active (CURRENT != 'all').
+  let preds = (DATA.predictions || []);
+  if(CURRENT && CURRENT !== 'all') preds = preds.filter(p => p.bidder === CURRENT);
+  const filterNote = (CURRENT && CURRENT !== 'all') ? ` <span class="hint">filtered to ${CURRENT}</span>` : '';
+  // Summary is recomputed from the (possibly filtered) preds so the header
+  // metrics reflect the current bidder view.
+  const summary = {
+    total_quoted: preds.reduce((s,p) => s + (p.quote_total || 0), 0),
+    total_predicted: preds.reduce((s,p) => s + (p.predicted_target_implied || 0), 0),
+    total_expected_loss: preds.reduce((s,p) => s + (p.expected_loss || 0), 0),
+  };
   const byB = {};
   for(const p of preds){
     if(!byB[p.bidder]) byB[p.bidder] = {n:0, quoted:0, predicted:0, loss:0};
@@ -974,9 +984,9 @@ function renderPredictive(c){
 
   c.innerHTML += `
     <div class="section">
-      <div class="section-title">Quote vs target-implied cost <span class="hint">each dot is one pending bid · diagonal = bid lands exactly at $${TARGET}/hr target</span></div>
-      <div class="chart-wrap tall"><canvas id="predScatter"></canvas></div>
-      <p class="note">X = what we quoted. Y = projected cost-at-target = expected hours × $${TARGET}/hr + expenses (from this bidder's history in this category × size). Above the diagonal = bid is below target — we'll eat the gap. Below the diagonal = bid captured margin.</p>
+      <div class="section-title">Where the margin will land${filterNote} <span class="hint">each dot is one pending bid · target line at $${TARGET}/hr · click a dot to open in Jobber</span></div>
+      <div class="chart-wrap tall"><canvas id="predRateScatter"></canvas></div>
+      <p class="note">Same shape as the all-bidders <em>Where the margin lives</em> chart, but projected forward. X = quote total. Y = <strong>predicted $/hr</strong>, computed as the median historical rate from this bidder × category × size class (David's <code>Rate = (revenue − expenses) / hours</code> formula, averaged across past similar work). <strong>Dots above the dashed $${TARGET}/hr target line are projected to capture margin. Dots below are projected to under-cover at target rate.</strong> Use the bidder tabs above to drill in.</p>
     </div>`;
 
   const highRisk = preds.filter(p => p.risk === 'high');
@@ -1059,7 +1069,7 @@ function renderPredictive(c){
       </div>
     </div>`;
 
-  setTimeout(() => drawPredScatter('predScatter'), 0);
+  setTimeout(() => drawPredictiveRateScatter('predRateScatter'), 0);
 }
 
 // =====================================================================
@@ -1478,6 +1488,57 @@ function flashToast(msg){
   setTimeout(() => t.remove(), 2000);
 }
 // =====================================================================
+
+// "Where the margin will land" — forward-looking analog of drawAllScatter.
+// X = quote_total, Y = predicted $/hr, target line horizontal at $TARGET.
+function drawPredictiveRateScatter(canvasId){
+  let preds = (DATA.predictions || []).filter(p => p.predicted_rate != null && p.quote_total > 0);
+  if(CURRENT && CURRENT !== 'all') preds = preds.filter(p => p.bidder === CURRENT);
+  if(!preds.length){
+    const el = document.getElementById(canvasId);
+    if(el) el.parentElement.innerHTML = '<div style="text-align:center;padding:40px;color:#888;font-size:13px">No pending bids match the current bidder filter.</div>';
+    return;
+  }
+  const bidders = [...new Set(preds.map(p => p.bidder))];
+  const yMax = Math.max(TARGET * 1.6, Math.ceil(pct(preds.map(p => p.predicted_rate), 0.95) / 25) * 25);
+  const xMax = Math.ceil(pct(preds.map(p => p.quote_total), 0.97) / 1000) * 1000 || 1000;
+  const xDataMax = Math.max(...preds.map(p => p.quote_total), xMax);
+  const yDataMax = Math.max(...preds.map(p => p.predicted_rate), yMax);
+  const datasets = bidders.map(b => ({
+    label: b,
+    data: preds.filter(p => p.bidder === b).map(p => ({
+      x: p.quote_total, y: p.predicted_rate,
+      client: p.client, ref: p.reference, cat: p.category, risk: p.risk,
+      margin: p.predicted_margin, conf: p.confidence, n: p.history_n,
+      quoteNum: p.quote_number, jobNum: p.job_number, uri: p.jobber_uri,
+    })),
+    backgroundColor: (COLORS[b] || '#888') + 'b0', borderColor: COLORS[b] || '#888',
+    pointRadius: 5, pointHoverRadius: 8,
+  }));
+  // Target line at $TARGET/hr (horizontal)
+  const targetPts = []; for(let i=0;i<=100;i++){ targetPts.push({x:(xMax*2)*i/100, y:TARGET}); }
+  datasets.push({label: `Target $${TARGET}/hr`, data: targetPts, type:'line', borderColor:'#888780', borderDash:[6,4], borderWidth:1.5, pointRadius:0, showLine:true, fill:false, clip:false, spanGaps:true});
+  document.getElementById(canvasId).parentElement.insertAdjacentHTML('beforeend', resetBtn(canvasId));
+  const ctx = document.getElementById(canvasId);
+  charts[canvasId] = new Chart(ctx, {type:'scatter', data:{datasets}, options:{
+    responsive:true, maintainAspectRatio:false,
+    onClick: makeDotClickHandler(), onHover: dotHoverCursor(),
+    plugins:{legend:{position:'bottom', labels:{boxWidth:10, font:{size:11}}}, tooltip:{callbacks:{label: c => {
+      const d = c.raw;
+      if(d.ref){
+        const gap = d.y - TARGET;
+        const gapStr = (gap >= 0 ? '+' : '') + '$' + gap.toFixed(2) + '/hr';
+        const m = d.margin != null ? ` · margin ${d.margin >= 0 ? '+' : '−'}$${Math.abs(Math.round(d.margin)).toLocaleString()}` : '';
+        return `${d.ref} ${d.client||''} [${d.cat}]: $${Math.round(d.x).toLocaleString()} quote, projected $${d.y.toFixed(2)}/hr (${gapStr} vs target)${m} · ${d.risk} risk · conf: ${d.conf} (n=${d.n}) — click to open`;
+      }
+      return c.dataset.label;
+    }}}, zoom: makeZoomCfg(0, xDataMax*1.05, 0, yDataMax*1.05)},
+    scales:{
+      x:{type:'linear', title:{display:true,text:'Quote total ($) — size of the pending bid'}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:xMax},
+      y:{title:{display:true,text:`Predicted $/hr — bidder × category × size median historical rate`}, ticks:{callback:v=>'$'+v}, min:0, max:yMax}
+    }
+  }});
+}
 
 function drawPredScatter(canvasId){
   const preds = (DATA.predictions || []).filter(p => p.predicted_target_implied != null && p.predicted_target_implied > 0);
@@ -2048,7 +2109,9 @@ document.querySelectorAll('.page-tab').forEach(t => {
   t.addEventListener('click', () => {
     PAGE = t.dataset.page;
     document.querySelectorAll('.page-tab').forEach(x => x.classList.toggle('active', x === t));
-    document.getElementById('bidderTabs').style.display = (PAGE === 'predict' || PAGE === 'report') ? 'none' : '';
+    // Bidder tabs are visible on Rate Analysis AND Predictive (so David
+    // can drill into one person's pending pipeline); hidden on Reports.
+    document.getElementById('bidderTabs').style.display = (PAGE === 'report') ? 'none' : '';
     render();
   });
 });
