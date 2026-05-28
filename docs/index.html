@@ -112,15 +112,31 @@ a.jlink.muted:hover{color:#2d4a3a;background:#f0f3ee}
 .tmi-explain strong{color:#2d4a3a}
 .tmi-math{font-size:12px;color:#6b7268;margin-top:8px;font-variant-numeric:tabular-nums}
 .tmi-math .mline{padding:3px 0}
+/* Per-section export-PDF button */
+.btn-section-pdf{float:right;padding:4px 10px;border:1px solid rgba(0,0,0,0.12);background:#fff;font-size:11px;font-weight:500;color:#6b7268;cursor:pointer;border-radius:6px;font-family:inherit;transition:all 0.15s}
+.btn-section-pdf:hover{border-color:#2d4a3a;color:#2d4a3a;background:#f0f3ee}
+/* Sortable column headers */
+th.sortable:hover{color:#2d4a3a}
+/* Ledger total row */
+.ledger-table tfoot tr.ledger-total td{background:#f0f3ee;border-top:2px solid #2d4a3a;padding:10px 6px;font-size:13px}
+.ledger-table tfoot{position:sticky;bottom:0}
 /* Print styles for reports */
 @media print {
   body{padding:0;max-width:none;background:#fff;color:#000}
-  .page-tabs,.bidder-tabs,.filters,.daterange,.report-form,.report-actions,.target-control{display:none !important}
+  .page-tabs,.bidder-tabs,.filters,.daterange,.report-form,.report-actions,.target-control,.btn-section-pdf{display:none !important}
   .live-badge{display:none}
   .section,.tmi-card,.report-summary{break-inside:avoid;page-break-inside:avoid;box-shadow:none;border:1px solid #ddd}
   table{font-size:10pt}
   a.jlink{color:#000;border-bottom:none}
   .chart-wrap{display:none}
+}
+/* Per-section "Export PDF" hides everything except the targeted section
+   via JS-applied .print-hide class (so it works for any section ID). */
+@media print {
+  body.print-section-only header,
+  body.print-section-only nav,
+  body.print-section-only .print-hide{display:none !important}
+  body.print-section-only .print-target{display:block !important}
 }
 </style>
 </head>
@@ -295,10 +311,71 @@ function jobberQuoteLink(quoteNum, uri, fallbackUri){
 // Look up a job's jobber_uri by job number (used as fallback when quote
 // itself has no URI baked in yet, before next puller run).
 const _jobUriIndex = {};
+const _jobByNum = {};
 for(const j of (DATA.jobs || [])){
-  if(j.job_num && j.jobber_uri) _jobUriIndex[j.job_num] = j.jobber_uri;
+  if(j.job_num){
+    _jobByNum[j.job_num] = j;
+    if(j.jobber_uri) _jobUriIndex[j.job_num] = j.jobber_uri;
+  }
 }
 function jobUriFor(jobNum){ return _jobUriIndex[jobNum] || null; }
+
+// Enrich every quote_record with target-implied price + margin so the
+// bid-accuracy chart can show whether the bid covered actual hours at the
+// $TARGET/hr floor. This is the chart David's Excel math implies.
+function enrichQuotesWithTargetImplied(){
+  for(const q of (DATA.quote_records || [])){
+    let totalHours = 0, totalExpenses = 0, totalRev = 0;
+    for(const jn of (q.job_numbers || [])){
+      const j = _jobByNum[jn];
+      if(!j) continue;
+      totalHours += j.hours || 0;
+      totalExpenses += j.expenses || 0;
+      totalRev += j.revenue || 0;
+    }
+    q.total_hours = totalHours;
+    q.total_expenses = totalExpenses;
+    q.target_implied = totalHours * TARGET + totalExpenses;     // what we'd have needed to charge to hit target
+    q.margin_vs_target = q.quote_total - q.target_implied;       // positive = quote captured margin above target
+    q.margin_pct_vs_target = q.target_implied > 0 ? q.margin_vs_target / q.target_implied : 0;
+  }
+}
+enrichQuotesWithTargetImplied();
+
+// Build a Chart.js options.onClick handler that opens the clicked dot's
+// Jobber URL in a new tab. Each point's underlying data must include
+// either `jobNum` (will look up uri) or an explicit `uri`.
+function makeDotClickHandler(){
+  return function(evt, elements, chart){
+    if(!elements || !elements.length) return;
+    const el = elements[0];
+    const ds = chart.data.datasets[el.datasetIndex];
+    const pt = ds.data[el.index];
+    if(!pt) return;
+    let uri = pt.uri || null;
+    if(!uri && pt.jobNum) uri = jobUriFor(pt.jobNum);
+    if(!uri && pt.quoteNum){
+      // Find the quote_record / lost_quote / prediction that matches.
+      const qr = (DATA.quote_records || []).find(q => q.quote_number === pt.quoteNum);
+      if(qr) uri = qr.jobber_uri || qr.first_job_uri || (qr.job_numbers && qr.job_numbers[0] ? jobUriFor(qr.job_numbers[0]) : null);
+      if(!uri){
+        const lq = (DATA.lost_quotes || []).find(q => q.quote_number === pt.quoteNum);
+        if(lq) uri = lq.jobber_uri || null;
+      }
+      if(!uri){
+        const pr = (DATA.predictions || []).find(p => p.quote_number === pt.quoteNum);
+        if(pr) uri = pr.jobber_uri || (pr.job_number ? jobUriFor(pr.job_number) : null);
+      }
+    }
+    if(uri){ window.open(uri, '_blank', 'noopener'); }
+  };
+}
+function dotHoverCursor(){
+  return function(evt, elements, chart){
+    const c = chart && chart.canvas;
+    if(c) c.style.cursor = (elements && elements.length) ? 'pointer' : 'default';
+  };
+}
 function winLossForBidder(bidder){
   const won = visibleQuotes().filter(q => q.bidder === bidder).length;
   const lost = visibleLostQuotes().filter(q => q.bidder === bidder).length;
@@ -423,10 +500,152 @@ function buildTabs(){
   };
 }
 
+// ---------------------------------------------------------------------
+// Per-bidder job ledger (Excel-parity)
+// ---------------------------------------------------------------------
+// Each bidder's table has sortable columns. Click a header to cycle:
+//   1st click: descending
+//   2nd click: ascending
+//   3rd click: default (revenue desc)
+// State is held per-bidder so each tab remembers its own sort.
+const LEDGER_SORT = {}; // { [bidder]: { key, dir } } — dir: 'desc' | 'asc' | null
+
+function renderJobLedger(bidder, jobs){
+  const state = LEDGER_SORT[bidder] || { key: 'revenue', dir: 'desc' };
+  const sortedJobs = sortLedger(jobs, state);
+  const sectionId = 'sect_ledger_' + bidder.replace(/[^a-z0-9]+/gi, '_');
+
+  // Totals — matches Excel's SUM row
+  const totHrs = jobs.reduce((s,j) => s + (j.hours || 0), 0);
+  const totRev = jobs.reduce((s,j) => s + (j.revenue || 0), 0);
+  const totExp = jobs.reduce((s,j) => s + (j.expenses || 0), 0);
+  const totRate = totHrs > 0 ? (totRev - totExp) / totHrs : 0;
+
+  // Sort indicator
+  const sortIcon = key => {
+    if(state.key !== key || !state.dir) return '<span style="opacity:.25">↕</span>';
+    return state.dir === 'desc' ? '<span>▼</span>' : '<span>▲</span>';
+  };
+  const th = (key, label, numeric) => `<th class="${numeric?'num ':''}sortable" data-sortkey="${key}" data-bidder="${bidder}" style="cursor:pointer;user-select:none">${label} ${sortIcon(key)}</th>`;
+
+  let rows = '';
+  for(const j of sortedJobs){
+    const r = j.rate;
+    const cls = r >= TARGET ? 'pos' : 'neg';
+    rows += `<tr>
+      <td>${jobberJobLink(j.job_num, j.jobber_uri)}</td>
+      <td>${j.client || ''}</td>
+      <td>${j.category || ''}</td>
+      <td>${j.month || ''}</td>
+      <td class="num">${fmt$2(j.expenses || 0)}</td>
+      <td class="num">${fmtHrs(j.hours)}</td>
+      <td class="num">${fmt$2(j.revenue)}</td>
+      <td class="num"><span class="rate-chip ${cls}">${fmt$2(r)}</span></td>
+    </tr>`;
+  }
+
+  return `
+    <div class="section" id="${sectionId}">
+      <div class="section-title">
+        ${bidder}'s jobs — full ledger
+        <span class="hint">${sortedJobs.length} jobs · click a column header to sort · click # to open in Jobber</span>
+        <button class="btn-section-pdf" data-print-section="${sectionId}" title="Print just this section">Export PDF</button>
+      </div>
+      <div class="scroll-table">
+        <table class="ledger-table">
+          <thead><tr>
+            ${th('job_num', 'Job #', false)}
+            ${th('client', 'Client', false)}
+            ${th('category', 'Category', false)}
+            ${th('month_num', 'Month', false)}
+            ${th('expenses', 'Expenses', true)}
+            ${th('hours', 'Hours', true)}
+            ${th('revenue', 'Revenue', true)}
+            ${th('rate', '$/hr', true)}
+          </tr></thead>
+          <tbody>${rows}</tbody>
+          <tfoot>
+            <tr class="ledger-total">
+              <td colspan="4"><strong>TOTAL — ${sortedJobs.length} jobs</strong></td>
+              <td class="num"><strong>${fmt$2(totExp)}</strong></td>
+              <td class="num"><strong>${fmtHrs(totHrs)}</strong></td>
+              <td class="num"><strong>${fmt$2(totRev)}</strong></td>
+              <td class="num"><strong><span class="rate-chip ${totRate >= TARGET ? 'pos' : 'neg'}">${fmt$2(totRate)}</span></strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>`;
+}
+
+function sortLedger(jobs, state){
+  if(!state.dir) return [...jobs].sort((a,b) => (b.revenue||0) - (a.revenue||0));
+  const k = state.key;
+  const sign = state.dir === 'desc' ? -1 : 1;
+  return [...jobs].sort((a, b) => {
+    const av = a[k], bv = b[k];
+    if(av == null && bv == null) return 0;
+    if(av == null) return 1;
+    if(bv == null) return -1;
+    if(typeof av === 'number' && typeof bv === 'number') return sign * (av - bv);
+    return sign * String(av).localeCompare(String(bv));
+  });
+}
+
+// Delegated click handler for sortable headers — installed once at boot.
+function wireLedgerSorting(){
+  document.addEventListener('click', (e) => {
+    const th = e.target.closest('th.sortable[data-sortkey]');
+    if(!th) return;
+    const bidder = th.dataset.bidder;
+    const key = th.dataset.sortkey;
+    const cur = LEDGER_SORT[bidder] || { key: 'revenue', dir: 'desc' };
+    let dir;
+    if(cur.key !== key) dir = 'desc';
+    else if(cur.dir === 'desc') dir = 'asc';
+    else if(cur.dir === 'asc') dir = null;       // back to default
+    else dir = 'desc';
+    LEDGER_SORT[bidder] = { key, dir };
+    render();
+  });
+}
+
+// Per-section "Export PDF" — uses browser print with a one-shot CSS that
+// hides everything except the target section.
+function wireSectionPrint(){
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-print-section]');
+    if(!btn) return;
+    printSection(btn.dataset.printSection);
+  });
+}
+function printSection(sectionId){
+  const target = document.getElementById(sectionId);
+  if(!target){ window.print(); return; }
+  // Tag the targeted section and everything else for the print CSS.
+  const all = document.querySelectorAll('main .section, main .tmi-card, main .report-summary, main .grid-4');
+  all.forEach(el => el.classList.add('print-hide'));
+  target.classList.remove('print-hide');
+  target.classList.add('print-target');
+  document.body.classList.add('print-section-only');
+  // Give the browser a beat to apply CSS, then print, then clean up.
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      window.print();
+      setTimeout(() => {
+        document.body.classList.remove('print-section-only');
+        all.forEach(el => el.classList.remove('print-hide'));
+        target.classList.remove('print-target');
+      }, 500);
+    }, 50);
+  });
+}
+// ---------------------------------------------------------------------
+
 function aggregateJobs(rows){
-  const hrs = rows.reduce((a,r)=>a+r.hours,0);
-  const rev = rows.reduce((a,r)=>a+r.revenue,0);
-  const exp = rows.reduce((a,r)=>a+r.expenses,0);
+  const hrs = rows.reduce((a,r)=>a+(r.hours||0),0);
+  const rev = rows.reduce((a,r)=>a+(r.revenue||0),0);
+  const exp = rows.reduce((a,r)=>a+(r.expenses||0),0);
   return {jobs: rows.length, hours: hrs, revenue: rev, expenses: exp, avg_rate: hrs > 0 ? (rev - exp) / hrs : 0};
 }
 
@@ -989,7 +1208,7 @@ function drawPredScatter(canvasId){
   const bidders = [...new Set(preds.map(p => p.bidder))];
   const datasets = bidders.map(b => ({
     label: b,
-    data: preds.filter(p => p.bidder === b).map(p => ({x: p.quote_total, y: p.predicted_actual, client: p.client, ref: p.reference, cat: p.category, risk: p.risk})),
+    data: preds.filter(p => p.bidder === b).map(p => ({x: p.quote_total, y: p.predicted_actual, client: p.client, ref: p.reference, cat: p.category, risk: p.risk, quoteNum: p.quote_number, jobNum: p.job_number, uri: p.jobber_uri})),
     backgroundColor: (COLORS[b] || '#888') + 'b0', borderColor: COLORS[b] || '#888',
     pointRadius: 5, pointHoverRadius: 8,
   }));
@@ -998,9 +1217,10 @@ function drawPredScatter(canvasId){
   const ctx = document.getElementById(canvasId);
   charts[canvasId] = new Chart(ctx, {type:'scatter', data:{datasets}, options:{
     responsive:true, maintainAspectRatio:false,
+    onClick: makeDotClickHandler(), onHover: dotHoverCursor(),
     plugins:{legend:{position:'bottom', labels:{boxWidth:10, font:{size:11}}}, tooltip:{callbacks:{label: c => {
       const d = c.raw;
-      if(d.ref) return d.ref + ' ' + (d.client||'') + ' [' + d.cat + ']: quote $' + Math.round(d.x).toLocaleString() + ', predicted $' + Math.round(d.y).toLocaleString() + ' (' + d.risk + ' risk)';
+      if(d.ref) return d.ref + ' ' + (d.client||'') + ' [' + d.cat + ']: quote $' + Math.round(d.x).toLocaleString() + ', predicted $' + Math.round(d.y).toLocaleString() + ' (' + d.risk + ' risk) — click to open';
       return c.dataset.label;
     }}}, zoom: makeZoomCfg(0, dataMax*1.1, 0, dataMax*1.1)},
     scales:{x:{type:'linear', title:{display:true,text:'Quote total ($)'}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:axisMax}, y:{title:{display:true,text:'Predicted actual ($)'}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:axisMax}}
@@ -1045,30 +1265,46 @@ function renderAll(c){
       </div>
     </div>`;
 
-  // Bidder comparison table
+  // Bidder comparison table (matches Excel's per-bidder SUM rows — adds Expenses column)
   const sorted = visibleBidders();
   let rows = '';
+  let totJobs = 0, totHrs = 0, totRev = 0, totExp = 0;
   for(const b of sorted){
     const bj = jobs.filter(j => j.bidder === b);
     if(!bj.length) continue;
     const a = aggregateJobs(bj);
+    totJobs += a.jobs; totHrs += a.hours; totRev += a.revenue; totExp += a.expenses;
     const g = a.avg_rate - TARGET;
     const cls = g >= 0 ? 'pos' : 'neg';
     rows += `<tr>
       <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[b]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${b}</strong></td>
       <td class="num">${a.jobs}</td>
+      <td class="num">${fmt$2(a.expenses)}</td>
       <td class="num">${fmtHrs(a.hours)}</td>
       <td class="num">${fmt$(a.revenue)}</td>
       <td class="num"><strong>${fmt$2(a.avg_rate)}</strong></td>
       <td class="num"><span class="rate-chip ${cls}">${g>=0?'+':''}${fmt$2(g)}</span></td>
     </tr>`;
   }
+  const totRate = totHrs > 0 ? (totRev - totExp) / totHrs : 0;
+  const totGap = totRate - TARGET;
   c.innerHTML += `
-    <div class="section">
-      <div class="section-title">Bidder comparison <span class="hint">click a bidder tab above to drill in</span></div>
+    <div class="section" id="sect_bidder_comparison">
+      <div class="section-title">Bidder comparison <span class="hint">matches David's Excel SUM rows · click a bidder tab above to drill in</span><button class="btn-section-pdf" data-print-section="sect_bidder_comparison">Export PDF</button></div>
       <table>
-        <thead><tr><th>Bidder</th><th class="num">Jobs</th><th class="num">Hours</th><th class="num">Revenue</th><th class="num">Avg $/hr</th><th class="num">vs target</th></tr></thead>
+        <thead><tr><th>Bidder</th><th class="num">Jobs</th><th class="num">Expenses</th><th class="num">Hours</th><th class="num">Revenue</th><th class="num">Avg $/hr</th><th class="num">vs target</th></tr></thead>
         <tbody>${rows}</tbody>
+        <tfoot>
+          <tr class="ledger-total">
+            <td><strong>TOTAL</strong></td>
+            <td class="num"><strong>${totJobs}</strong></td>
+            <td class="num"><strong>${fmt$2(totExp)}</strong></td>
+            <td class="num"><strong>${fmtHrs(totHrs)}</strong></td>
+            <td class="num"><strong>${fmt$(totRev)}</strong></td>
+            <td class="num"><strong>${fmt$2(totRate)}</strong></td>
+            <td class="num"><strong><span class="rate-chip ${totGap >= 0 ? 'pos' : 'neg'}">${totGap >= 0 ? '+' : ''}${fmt$2(totGap)}</span></strong></td>
+          </tr>
+        </tfoot>
       </table>
     </div>`;
 
@@ -1163,9 +1399,9 @@ function renderAll(c){
 
   c.innerHTML += `
     <div class="section">
-      <div class="section-title">Bid accuracy — quote vs actual <span class="hint">aggregated at the quote level, so multi-job quotes count once</span></div>
+      <div class="section-title">Bid accuracy — quote vs target-implied price <span class="hint">at $${TARGET}/hr target · aggregated at the quote level</span></div>
       <div class="chart-wrap tall"><canvas id="bidScatter"></canvas></div>
-      <p class="note">Each dot is one quote. X = quote total. Y = actual invoiced (summed across all jobs from that quote). Diagonal = perfect bid. Below = bid won margin. Above = bid was too low.</p>
+      <p class="note">Each dot is one quote. X = what we quoted. Y = what we would have needed to charge to hit the $${TARGET}/hr target on the hours and expenses the job actually consumed (<code>hours × $${TARGET} + expenses</code>). Diagonal = bid landed exactly at target. <strong>Below diagonal</strong> = bid was higher than target — we captured margin. <strong>Above diagonal</strong> = bid was too low — we ate the gap. Quote-vs-invoiced doesn't move because at TTC the customer is invoiced what they were quoted; the real bid-accuracy question is whether that quote covered the actual labor + expenses at target rate.</p>
     </div>`;
 
   // Per-bidder per-category bid accuracy table
@@ -1225,6 +1461,9 @@ function renderBidder(c, bidder){
       <div class="metric"><div class="metric-label">Revenue</div><div class="metric-value">${fmt$(o.revenue)}</div></div>
       <div class="metric"><div class="metric-label">Avg net $/hr</div><div class="metric-value ${gap>=0?'pos':'neg'}">${fmt$2(o.avg_rate)}<span class="metric-unit">/hr</span></div><div class="metric-sub">${gap>=0?'+':''}${fmt$2(gap)} vs target</div></div>
     </div>`;
+
+  // Excel-style ledger leads the page — matches what David already reviews.
+  c.innerHTML += renderJobLedger(bidder, jobs);
 
   const wl = winLossForBidder(bidder);
   const wlCls = wl.rate >= 0.6 ? 'pos' : (wl.rate < 0.45 ? 'neg' : '');
@@ -1292,55 +1531,27 @@ function renderBidder(c, bidder){
 
   c.innerHTML += `
     <div class="section">
-      <div class="section-title">Visits vs bid error <span class="hint">does adding visits track with bid misses?</span></div>
-      <div class="chart-wrap"><canvas id="visitsScatter"></canvas></div>
-      <p class="note">X = total visits across all jobs from the quote. Y = bid error %. Below zero = bid was too low (margin lost). If misses cluster at the right side, multi-visit jobs are the problem. If they cluster on the left at 1–2 visits, the bid was just wrong from the start.</p>
-    </div>`;
-
-  c.innerHTML += `
-    <div class="section">
       <div class="section-title">Dollar impact by job size</div>
       <div class="chart-wrap"><canvas id="bucketDollar"></canvas></div>
       <p class="note">Bars below zero = bid lost margin in that size class.</p>
     </div>`;
 
-  // ALL jobs table with category column (scrollable)
-  const sortedJobs = [...jobs].sort((a,b)=>b.revenue-a.revenue);
-  let rows='';
-  for(const j of sortedJobs){
-    const r = j.rate;
-    const cls = r >= TARGET ? 'pos' : 'neg';
-    const qLink = j.quote_number ? `<br><span style="font-size:11px;color:#888">${jobberQuoteLink(j.quote_number, null, j.jobber_uri)}</span>` : '';
-    rows += `<tr>
-      <td>${jobberJobLink(j.job_num, j.jobber_uri)}${qLink}</td>
-      <td>${j.client}</td>
-      <td>${j.category}</td>
-      <td>${j.month || '—'}</td>
-      <td class="num">${fmtHrs(j.hours)}</td>
-      <td class="num">${fmt$(j.revenue)}</td>
-      <td class="num"><span class="rate-chip ${cls}">${fmt$2(r)}</span></td>
-    </tr>`;
-  }
-  c.innerHTML += `
-    <div class="section">
-      <div class="section-title">${bidder}'s jobs <span class="hint">all ${sortedJobs.length} jobs, sorted by revenue · click # to open in Jobber · scroll within the table</span></div>
-      <div class="scroll-table">
-        <table>
-          <thead><tr><th>Job #</th><th>Client</th><th>Category</th><th>Month</th><th class="num">Hours</th><th class="num">Actual</th><th class="num">$/hr</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>
-    </div>`;
+  // (Ledger now rendered at the top of the bidder view, immediately
+  // after the headline metric strip — see above.)
 
   setTimeout(()=>{
     drawBidderBidScatter('bidderBidScatter', bidder, qrs);
-    drawVisitsScatter('visitsScatter', qrs);
     drawBucketDollarChart('bucketDollar', buckets);
   },0);
 }
 
 function diagonalLine(maxVal){
-  return {label: 'Perfect bid (quote = actual)', data: [{x:0,y:0},{x:maxVal,y:maxVal}], type:'line', borderColor:'#888780', borderDash:[6,4], borderWidth:1.5, pointRadius:0, showLine:true, fill:false};
+  // Use many points along y=x so the line stays accurate at any zoom level.
+  // Two-endpoint lines get clipped wrong by Chart.js zoom plugin when both
+  // endpoints fall outside the visible viewport.
+  const pts = []; const N = 200;
+  for(let i = 0; i <= N; i++){ const v = (maxVal * i) / N; pts.push({x: v, y: v}); }
+  return {label: 'Perfect bid (quote = actual)', data: pts, type:'line', borderColor:'#888780', borderDash:[6,4], borderWidth:1.5, pointRadius:0, showLine:true, fill:false, clip:false, spanGaps:true};
 }
 
 function drawAllScatter(canvasId, bidders){
@@ -1353,15 +1564,17 @@ function drawAllScatter(canvasId, bidders){
     data: points.filter(j => j.bidder === b).map(j => ({x: j.revenue, y: j.rate, client: j.client, jobNum: j.job_num, cat: j.category})),
     backgroundColor: (COLORS[b] || '#888') + 'b0', borderColor: COLORS[b] || '#888', pointRadius: 4, pointHoverRadius: 7,
   }));
-  datasets.push({label: `Target $${TARGET}/hr`, data: [{x:0,y:TARGET},{x:xMax*2,y:TARGET}], type:'line', borderColor:'#888780', borderDash:[6,4], borderWidth:1.5, pointRadius:0, showLine:true, fill:false});
+  const targetPts = []; for(let i=0;i<=100;i++){ targetPts.push({x:(xMax*2)*i/100, y:TARGET}); }
+  datasets.push({label: `Target $${TARGET}/hr`, data: targetPts, type:'line', borderColor:'#888780', borderDash:[6,4], borderWidth:1.5, pointRadius:0, showLine:true, fill:false, clip:false, spanGaps:true});
   const xDataMax = Math.max(...points.map(p => p.revenue), xMax);
   const yDataMax = Math.max(...points.map(p => p.rate), yMax);
   document.getElementById(canvasId).parentElement.insertAdjacentHTML('beforeend', resetBtn(canvasId));
   const ctx = document.getElementById(canvasId);
   charts[canvasId] = new Chart(ctx, {type:'scatter', data:{datasets}, options:{
     responsive:true, maintainAspectRatio:false,
+    onClick: makeDotClickHandler(), onHover: dotHoverCursor(),
     plugins:{legend:{position:'bottom', labels:{boxWidth:10, font:{size:11}}}, tooltip:{callbacks:{label: c => {
-      const d = c.raw; if(d.jobNum) return `#${d.jobNum} ${d.client||''} [${d.cat}]: $${Math.round(d.x).toLocaleString()} rev, $${d.y.toFixed(2)}/hr`;
+      const d = c.raw; if(d.jobNum) return `#${d.jobNum} ${d.client||''} [${d.cat}]: $${Math.round(d.x).toLocaleString()} rev, $${d.y.toFixed(2)}/hr — click to open in Jobber`;
       return c.dataset.label;
     }}}, zoom: makeZoomCfg(0, xDataMax*1.05, 0, yDataMax*1.05)},
     scales:{x:{type:'linear', title:{display:true,text:'Job revenue ($)'}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:xMax}, y:{title:{display:true,text:'Net $/hr realized'}, ticks:{callback:v=>'$'+v}, min:0, max:yMax}}
@@ -1369,17 +1582,17 @@ function drawAllScatter(canvasId, bidders){
 }
 
 function drawBidScatter(canvasId, bidders){
-  const data = visibleQuotes().filter(q => bidders.includes(q.bidder));
+  const data = visibleQuotes().filter(q => bidders.includes(q.bidder) && q.target_implied != null && q.target_implied > 0);
   if(!data.length){
     document.getElementById(canvasId).parentElement.innerHTML = '<div style="text-align:center;padding:40px;color:#888;font-size:13px">No quote data for the current filter selection.</div>';
     return;
   }
-  const allVals = data.flatMap(q => [q.quote_total, q.actual_total]);
+  const allVals = data.flatMap(q => [q.quote_total, q.target_implied]);
   const axisMax = Math.ceil(pct(allVals, 0.95) / 500) * 500;
   const dataMax = Math.max(...allVals);
   const datasets = bidders.map(b => ({
     label: b,
-    data: data.filter(q => q.bidder === b).map(q => ({x: q.quote_total, y: q.actual_total, client: q.client, quoteNum: q.quote_number, cat: q.category, errPct: q.bid_error_pct, jc: q.jobs_count})),
+    data: data.filter(q => q.bidder === b).map(q => ({x: q.quote_total, y: q.target_implied, client: q.client, quoteNum: q.quote_number, cat: q.category, hours: q.total_hours, expenses: q.total_expenses, margin: q.margin_vs_target, jc: q.jobs_count})),
     backgroundColor: (COLORS[b] || '#888') + 'b0', borderColor: COLORS[b] || '#888', pointRadius: 4, pointHoverRadius: 7,
   }));
   datasets.push(diagonalLine(dataMax * 1.1));
@@ -1387,15 +1600,17 @@ function drawBidScatter(canvasId, bidders){
   const ctx = document.getElementById(canvasId);
   charts[canvasId] = new Chart(ctx, {type:'scatter', data:{datasets}, options:{
     responsive:true, maintainAspectRatio:false,
+    onClick: makeDotClickHandler(), onHover: dotHoverCursor(),
     plugins:{legend:{position:'bottom', labels:{boxWidth:10, font:{size:11}}}, tooltip:{callbacks:{label: c => {
       const d = c.raw; if(d.quoteNum){
-        const err = d.errPct != null ? ` (${(d.errPct*100).toFixed(1)}%)` : '';
+        const m = d.margin != null ? ` · margin ${d.margin >= 0 ? '+' : '−'}$${Math.abs(Math.round(d.margin)).toLocaleString()}` : '';
         const jc = d.jc > 1 ? `, ${d.jc} jobs` : '';
-        return `Q#${d.quoteNum} ${d.client||''} [${d.cat}]: bid $${Math.round(d.x).toLocaleString()}, actual $${Math.round(d.y).toLocaleString()}${err}${jc}`;
+        const hrs = d.hours != null ? ` · ${d.hours.toFixed(1)} hrs` : '';
+        return `Q#${d.quoteNum} ${d.client||''} [${d.cat}]: bid $${Math.round(d.x).toLocaleString()}, target-implied $${Math.round(d.y).toLocaleString()}${m}${hrs}${jc} — click to open in Jobber`;
       }
       return c.dataset.label;
     }}}, zoom: makeZoomCfg(0, dataMax*1.1, 0, dataMax*1.1)},
-    scales:{x:{type:'linear', title:{display:true,text:'Quote total ($)'}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:axisMax}, y:{title:{display:true,text:'Actual invoiced ($)'}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:axisMax}}
+    scales:{x:{type:'linear', title:{display:true,text:'Quote total ($) — what we charged'}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:axisMax}, y:{title:{display:true,text:`Target-implied price ($) — hours × $${TARGET} + expenses`}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:axisMax}}
   }});
 }
 
@@ -1414,11 +1629,12 @@ function drawBidderBidScatter(canvasId, bidder, qrs){
     backgroundColor: (COLORS[bidder] || '#888') + 'b0', borderColor: COLORS[bidder] || '#888', pointRadius: 5, pointHoverRadius: 8,
   }, diagonalLine(dataMax * 1.1)]}, options:{
     responsive:true, maintainAspectRatio:false,
+    onClick: makeDotClickHandler(), onHover: dotHoverCursor(),
     plugins:{legend:{position:'bottom', labels:{boxWidth:10, font:{size:11}}}, tooltip:{callbacks:{label: c => {
       const d = c.raw; if(d.quoteNum){
         const err = d.errPct != null ? ` (${(d.errPct*100).toFixed(1)}%)` : '';
         const jc = d.jc > 1 ? `, ${d.jc} jobs` : '';
-        return `Q#${d.quoteNum} ${d.client||''} [${d.cat}]: bid $${Math.round(d.x).toLocaleString()}, actual $${Math.round(d.y).toLocaleString()}${err}${jc}`;
+        return `Q#${d.quoteNum} ${d.client||''} [${d.cat}]: bid $${Math.round(d.x).toLocaleString()}, actual $${Math.round(d.y).toLocaleString()}${err}${jc} — click to open in Jobber`;
       }
       return c.dataset.label;
     }}}, zoom: makeZoomCfg(0, dataMax*1.1, 0, dataMax*1.1)},
@@ -1447,6 +1663,8 @@ document.getElementById('targetRate').addEventListener('input', e=>{
 
 buildCategoryFilters();
 buildDateRangeBar();
+wireLedgerSorting();
+wireSectionPrint();
 setMeta();
 buildTabs();
 document.querySelectorAll('.page-tab').forEach(t => {
