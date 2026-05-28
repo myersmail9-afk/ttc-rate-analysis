@@ -38,9 +38,9 @@ JOBBER_TOKEN_URL  = "https://api.getjobber.com/api/oauth/token"
 API_VERSION       = "2025-04-16"
 
 # Date window. Update annually or compute relative.
-DATE_AFTER  = "2025-09-01T00:00:00Z"
-DATE_BEFORE = "2026-12-31T23:59:59Z"
-COMPLETED_AFTER = "2026-01-01T00:00:00Z"
+DATE_AFTER  = "2018-01-01T00:00:00Z"
+DATE_BEFORE = "2030-12-31T23:59:59Z"
+COMPLETED_AFTER = "2018-01-01T00:00:00Z"
 
 # ---------------------------------------------------------------------------
 def load_env():
@@ -97,7 +97,7 @@ def gql(token, query, variables=None, retries=3):
             print(f"  HTTP {e.code}, retrying...", flush=True); time.sleep(10)
     sys.exit("Max retries exceeded")
 
-def page_through(token, query, key, page_size=25, max_pages=80):
+def page_through(token, query, key, page_size=25, max_pages=400):
     """Generic pagination helper for connection-style GraphQL queries."""
     nodes = []
     cursor = None
@@ -325,7 +325,7 @@ def main():
         completion = [j.get("completedAt") for j in qjobs if j.get("completedAt")]
         completed = max(completion) if completion else None
         month, mnum, yr = to_month(completed)
-        if mnum is None or yr != 2026: continue
+        if mnum is None: continue  # was: also dropped non-2026; now keep all-time
         job_nums = [j.get("jobNumber") for j in qjobs]
         cat_counts = defaultdict(int)
         for jn in job_nums:
