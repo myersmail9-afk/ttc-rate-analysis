@@ -74,9 +74,12 @@ def refresh_access_token(env):
         sys.exit(f"Token refresh failed: HTTP {e.code} - {e.read().decode()[:500]}")
     return body["access_token"]
 
-def gql(token, query, variables=None, retries=3):
-    """POST a GraphQL query. Handles throttling with backoff."""
+def gql(token, query, variables=None, retries=30):
+    """POST a GraphQL query. Handles throttling with exponential backoff.
+    All-time pulls hit Jobber's rate-limit ceiling, so we wait it out
+    rather than bailing — the API recovers on its own in 30-60 seconds."""
     payload = json.dumps({"query":query,"variables":variables or {}}).encode()
+    backoff = 15
     for attempt in range(retries):
         req = urllib.request.Request(JOBBER_GRAPHQL, data=payload,
             headers={
@@ -88,14 +91,18 @@ def gql(token, query, variables=None, retries=3):
             with urllib.request.urlopen(req, timeout=60) as r:
                 body = json.loads(r.read())
                 if "errors" in body and any(e.get("extensions",{}).get("code")=="THROTTLED" for e in body["errors"]):
-                    print(f"  throttled, backing off 20s...", flush=True)
-                    time.sleep(20); continue
+                    print(f"  throttled, backing off {backoff}s (attempt {attempt+1}/{retries})...", flush=True)
+                    time.sleep(backoff)
+                    backoff = min(backoff + 15, 90)  # ramp 15 -> 30 -> 45 -> ... -> 90s cap
+                    continue
                 if "errors" in body:
                     sys.exit(f"GraphQL errors: {json.dumps(body['errors'], indent=2)[:1000]}")
                 return body
         except urllib.error.HTTPError as e:
-            print(f"  HTTP {e.code}, retrying...", flush=True); time.sleep(10)
-    sys.exit("Max retries exceeded")
+            print(f"  HTTP {e.code}, retrying in {backoff}s...", flush=True)
+            time.sleep(backoff)
+            backoff = min(backoff + 15, 90)
+    sys.exit("Max retries exceeded after exponential backoff")
 
 def page_through(token, query, key, page_size=25, max_pages=400):
     """Generic pagination helper for connection-style GraphQL queries."""
@@ -109,7 +116,14 @@ def page_through(token, query, key, page_size=25, max_pages=400):
         print(f"  {key} page {page}: {len(d['nodes'])} (total {len(nodes)}) remaining={cost['throttleStatus']['currentlyAvailable']}", flush=True)
         if not d["pageInfo"]["hasNextPage"]: break
         cursor = d["pageInfo"]["endCursor"]
-        time.sleep(0.5 if cost["throttleStatus"]["currentlyAvailable"] > 2000 else 5)
+        # Sleep proportional to bucket drain so we don't hit 0 mid-stream
+        # on big all-time pulls. Bucket sizes typically 10k tokens; tune
+        # the pause from 0.3s (full) up to 12s (near-empty).
+        rem = cost["throttleStatus"]["currentlyAvailable"]
+        if   rem > 5000: time.sleep(0.3)
+        elif rem > 2000: time.sleep(1.5)
+        elif rem > 500:  time.sleep(6)
+        else:            time.sleep(12)
     return nodes
 
 # ---------------------------------------------------------------------------
