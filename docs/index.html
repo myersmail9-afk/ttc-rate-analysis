@@ -599,18 +599,24 @@ function buildTabs(){
   const tabs = document.getElementById('bidderTabs');
   tabs.innerHTML = '';
   const bidders = visibleBidders();
-  const sorted = [...bidders].sort((a,b)=>{
-    const ja = visibleJobs().filter(j => j.bidder === a).reduce((s,j)=>s+j.revenue, 0);
-    const jb = visibleJobs().filter(j => j.bidder === b).reduce((s,j)=>s+j.revenue, 0);
-    return jb - ja;
-  });
+  // On Predictive, counts/sort use the pending-bid list. Everywhere else
+  // they use completed-job revenue.
+  const isPredict = (PAGE === 'predict');
+  const countFor = (b) => isPredict
+    ? (DATA.predictions || []).filter(p => p.bidder === b).length
+    : visibleJobs().filter(j => j.bidder === b).length;
+  const sortVal = (b) => isPredict
+    ? countFor(b)
+    : visibleJobs().filter(j => j.bidder === b).reduce((s,j)=>s+j.revenue, 0);
+  const sorted = [...bidders].sort((a,b) => sortVal(b) - sortVal(a));
+  const totalCount = isPredict ? (DATA.predictions || []).length : visibleJobs().length;
   const all = document.createElement('button');
   all.className = 'bidder-tab ' + (CURRENT === 'all' ? 'active' : '');
   all.dataset.bidder = 'all';
-  all.innerHTML = `All bidders <span class="count">${visibleJobs().length}</span>`;
+  all.innerHTML = `All bidders <span class="count">${totalCount}</span>`;
   tabs.appendChild(all);
   for(const b of sorted){
-    const cnt = visibleJobs().filter(j => j.bidder === b).length;
+    const cnt = countFor(b);
     const btn = document.createElement('button');
     btn.className = 'bidder-tab ' + (CURRENT === b ? 'active' : '');
     btn.dataset.bidder = b;
@@ -2105,13 +2111,25 @@ wireSectionPrint();
 wireLedgerCsvDownload();
 setMeta();
 buildTabs();
+function updateChromeForPage(){
+  // Bidder tabs visible on Rate + Predictive; hidden on Reports.
+  document.getElementById('bidderTabs').style.display = (PAGE === 'report') ? 'none' : '';
+  // Category filter + date range only apply to Rate Analysis — they have
+  // no effect on Predictive or Reports, and showing them makes filters
+  // look broken (everything goes to zero when the user toggles them).
+  const cat = document.getElementById('categoryFilters');
+  const dr  = document.getElementById('dateRange');
+  const hideFilters = (PAGE === 'predict' || PAGE === 'report');
+  if(cat) cat.style.display = hideFilters ? 'none' : '';
+  if(dr)  dr.style.display  = hideFilters ? 'none' : '';
+}
+
 document.querySelectorAll('.page-tab').forEach(t => {
   t.addEventListener('click', () => {
     PAGE = t.dataset.page;
     document.querySelectorAll('.page-tab').forEach(x => x.classList.toggle('active', x === t));
-    // Bidder tabs are visible on Rate Analysis AND Predictive (so David
-    // can drill into one person's pending pipeline); hidden on Reports.
-    document.getElementById('bidderTabs').style.display = (PAGE === 'report') ? 'none' : '';
+    updateChromeForPage();
+    buildTabs(); // refresh bidder-tab counts (predict uses pending counts)
     render();
   });
 });
