@@ -359,6 +359,115 @@ function enrichQuotesWithTargetImplied(){
 }
 enrichQuotesWithTargetImplied();
 
+// ---------------------------------------------------------------------
+// Rate-based predictive analysis
+// ---------------------------------------------------------------------
+// David's question: "did this bidder hit target rate?" The historical
+// signal is the rate-coverage ratio per job:
+//   ratio = revenue / (hours × $TARGET + expenses)
+// > 1.0 = bid above target → captured margin
+// < 1.0 = bid below target → margin lost
+// We take the median ratio per bidder × category × size class as the
+// prior, then apply it to each pending bid to predict whether that bid
+// will cover its job's hours+expenses at the $TARGET/hr floor.
+// ---------------------------------------------------------------------
+function sizeBucketName(amt){
+  if(amt < 250) return '<250';
+  if(amt < 500) return '250-500';
+  if(amt < 1000) return '500-1k';
+  if(amt < 2000) return '1k-2k';
+  if(amt < 5000) return '2k-5k';
+  return '5k+';
+}
+function medianOf(arr){
+  if(!arr || !arr.length) return null;
+  const s = [...arr].sort((a,b)=>a-b);
+  const n = s.length;
+  return n % 2 ? s[(n-1)/2] : (s[n/2-1] + s[n/2]) / 2;
+}
+
+const RATE_PRIOR_BUCKETS = (function(){
+  const buckets = {};
+  for(const j of (DATA.jobs || [])){
+    if(!j.hours || j.hours <= 0) continue;
+    if(!j.revenue || j.revenue <= 0) continue;
+    const target_implied = j.hours * TARGET + (j.expenses || 0);
+    if(target_implied <= 0) continue;
+    const ratio = j.revenue / target_implied;
+    const size = sizeBucketName(j.revenue);
+    const keys = [
+      `${j.bidder}|${j.category}|${size}`,
+      `${j.bidder}|${j.category}`,
+      `${j.category}`,
+      `${j.bidder}`,
+    ];
+    for(const k of keys){
+      if(!buckets[k]) buckets[k] = [];
+      buckets[k].push(ratio);
+    }
+  }
+  return buckets;
+})();
+
+function predictRateCoverage(bidder, category, quoteTotal){
+  const size = sizeBucketName(quoteTotal);
+  const tiers = [
+    {k: `${bidder}|${category}|${size}`, conf: 'high',   basis: 'bidder × category × size'},
+    {k: `${bidder}|${category}`,         conf: 'medium', basis: 'bidder × category'},
+    {k: category,                        conf: 'low',    basis: 'category only'},
+    {k: bidder,                          conf: 'low',    basis: 'bidder only'},
+  ];
+  for(const {k, conf, basis} of tiers){
+    const arr = RATE_PRIOR_BUCKETS[k];
+    if(arr && arr.length >= 3){
+      return { ratio: medianOf(arr), confidence: conf, basis, history_n: arr.length };
+    }
+  }
+  return { ratio: 1.0, confidence: 'no data', basis: 'no prior', history_n: 0 };
+}
+
+(function recomputePredictionsRateBased(){
+  for(const p of (DATA.predictions || [])){
+    if(!p.quote_total || p.quote_total <= 0) continue;
+    const { ratio, confidence, basis, history_n } = predictRateCoverage(p.bidder, p.category, p.quote_total);
+    const predicted_target_implied = ratio > 0 ? p.quote_total / ratio : p.quote_total;
+    const predicted_margin = p.quote_total - predicted_target_implied;
+    // Risk based on predicted margin shortfall (negative = under-bid)
+    let risk = 'low';
+    if(predicted_margin < -1000) risk = 'high';
+    else if(predicted_margin < 0) risk = 'medium';
+    // Recommendations
+    const recs = [];
+    if(predicted_margin < -1500) recs.push('Re-quote with David before sending crew');
+    else if(predicted_margin < -500) recs.push('Build buffer hours into the schedule — likely to run wide at target rate');
+    else if(predicted_margin < 0) recs.push('Watch hours carefully — bid is close to break-even at target rate');
+    if(p.category === 'Crane work' && predicted_margin < 0) recs.push('Crane jobs historically under-cover target — sanity-check with David');
+    if(p.category === 'Removals' && predicted_margin < 0) recs.push('Removals trend -12% across all bidders — add buffer');
+    if(confidence === 'low' || confidence === 'no data') recs.push('Limited history for this bidder/category — bid with caution');
+    if(!recs.length) recs.push('On track to cover target rate based on history');
+
+    // Overwrite the prediction's fields with rate-based math
+    p.predicted_coverage_ratio = ratio;
+    p.predicted_target_implied = predicted_target_implied;
+    p.predicted_margin = predicted_margin;
+    p.predicted_error_pct = ratio - 1;            // > 0 = margin captured, < 0 = margin lost
+    p.predicted_actual = predicted_target_implied; // legacy field name, now semantically: target-implied cost
+    p.expected_loss = -predicted_margin;           // positive = margin we'll lose
+    p.confidence = confidence;
+    p.basis = basis;
+    p.history_n = history_n;
+    p.risk = risk;
+    p.recommendations = recs;
+  }
+  if(DATA.predictions_summary){
+    DATA.predictions_summary.total_quoted          = DATA.predictions.reduce((s,p) => s + (p.quote_total || 0), 0);
+    DATA.predictions_summary.total_predicted       = DATA.predictions.reduce((s,p) => s + (p.predicted_target_implied || 0), 0);
+    DATA.predictions_summary.total_expected_loss   = DATA.predictions.reduce((s,p) => s + (p.expected_loss || 0), 0);
+  }
+  // Re-sort predictions worst-margin first
+  (DATA.predictions || []).sort((a, b) => (a.predicted_margin || 0) - (b.predicted_margin || 0));
+})();
+
 // Build a Chart.js options.onClick handler that opens the clicked dot's
 // Jobber URL in a new tab. Each point's underlying data must include
 // either `jobNum` (will look up uri) or an explicit `uri`.
@@ -618,10 +727,12 @@ function sortLedger(jobs, state){
   });
 }
 
-// Delegated click handler for sortable headers — installed once at boot.
+// Delegated click handler for the per-bidder LEDGER (the big job ledger).
+// Scoped via data-bidder attribute so it doesn't clash with the generic
+// table-sort handler below.
 function wireLedgerSorting(){
   document.addEventListener('click', (e) => {
-    const th = e.target.closest('th.sortable[data-sortkey]');
+    const th = e.target.closest('th.sortable[data-sortkey][data-bidder]');
     if(!th) return;
     const bidder = th.dataset.bidder;
     const key = th.dataset.sortkey;
@@ -632,6 +743,61 @@ function wireLedgerSorting(){
     else if(cur.dir === 'asc') dir = null;       // back to default
     else dir = 'desc';
     LEDGER_SORT[bidder] = { key, dir };
+    render();
+  });
+}
+
+// ---------------------------------------------------------------------
+// Generic sortable-table helpers — used for every comparison/aggregate
+// table on the dashboard (Bidder comparison, Win rate by category,
+// Bidder × category rate, Time to close, per-bidder rate by category…).
+// Each table gets a unique tableKey; clicking a header cycles
+//   desc → asc → default (clear).
+// ---------------------------------------------------------------------
+const TABLE_SORT = {};
+
+function getTableSortState(tableKey, defaultKey){
+  return TABLE_SORT[tableKey] || { key: defaultKey, dir: 'desc' };
+}
+function cycleTableSort(tableKey, sortKey, defaultKey){
+  const cur = getTableSortState(tableKey, defaultKey);
+  let dir;
+  if(cur.key !== sortKey) dir = 'desc';
+  else if(cur.dir === 'desc') dir = 'asc';
+  else if(cur.dir === 'asc')  dir = null;
+  else dir = 'desc';
+  TABLE_SORT[tableKey] = { key: sortKey, dir };
+}
+function applyTableSort(rows, tableKey, defaultKey, defaultRevenueKey){
+  // If no sort state set, use the table's default sort (desc on defaultKey).
+  const state = TABLE_SORT[tableKey] || { key: defaultKey || defaultRevenueKey, dir: 'desc' };
+  if(!state.dir || !state.key) return rows;
+  const sign = state.dir === 'desc' ? -1 : 1;
+  return [...rows].sort((a, b) => {
+    const av = a[state.key], bv = b[state.key];
+    if(av == null && bv == null) return 0;
+    if(av == null) return 1;
+    if(bv == null) return -1;
+    if(typeof av === 'number' && typeof bv === 'number') return sign * (av - bv);
+    return sign * String(av).localeCompare(String(bv));
+  });
+}
+function sortIcon(tableKey, sortKey, defaultKey){
+  const state = TABLE_SORT[tableKey] || { key: defaultKey, dir: 'desc' };
+  if(state.key !== sortKey || !state.dir) return '<span style="opacity:.25">↕</span>';
+  return state.dir === 'desc' ? '<span>▼</span>' : '<span>▲</span>';
+}
+function sortableHeader(tableKey, sortKey, label, numeric, defaultKey){
+  return `<th class="${numeric?'num ':''}sortable" data-sortkey="${sortKey}" data-tablekey="${tableKey}" style="cursor:pointer;user-select:none">${label} ${sortIcon(tableKey, sortKey, defaultKey)}</th>`;
+}
+
+// Generic delegated handler for any sortable table that has
+// `data-tablekey` on the header (used by every aggregate table).
+function wireGenericTableSort(){
+  document.addEventListener('click', (e) => {
+    const th = e.target.closest('th.sortable[data-tablekey][data-sortkey]');
+    if(!th) return;
+    cycleTableSort(th.dataset.tablekey, th.dataset.sortkey);
     render();
   });
 }
@@ -758,46 +924,59 @@ function renderPredictive(c){
   for(const p of preds){
     if(!byB[p.bidder]) byB[p.bidder] = {n:0, quoted:0, predicted:0, loss:0};
     byB[p.bidder].n++; byB[p.bidder].quoted += p.quote_total;
-    byB[p.bidder].predicted += p.predicted_actual; byB[p.bidder].loss += p.expected_loss;
+    byB[p.bidder].predicted += p.predicted_target_implied || 0; byB[p.bidder].loss += p.expected_loss || 0;
   }
   c.innerHTML += `
     <div class="grid-4">
       <div class="metric"><div class="metric-label">Pending pipeline</div><div class="metric-value">${fmt$(summary.total_quoted)}</div><div class="metric-sub">${preds.length} open items</div></div>
-      <div class="metric"><div class="metric-label">Predicted actual</div><div class="metric-value">${fmt$(summary.total_predicted)}</div><div class="metric-sub">from bidder × category history</div></div>
-      <div class="metric"><div class="metric-label">Expected leak</div><div class="metric-value ${summary.total_expected_loss > 0 ? 'neg' : 'pos'}">${fmt$signed(-summary.total_expected_loss)}</div><div class="metric-sub">quoted minus predicted</div></div>
+      <div class="metric"><div class="metric-label">Predicted cost at target</div><div class="metric-value">${fmt$(summary.total_predicted)}</div><div class="metric-sub">hours × $${TARGET} + expenses, projected from history</div></div>
+      <div class="metric"><div class="metric-label">Expected margin gap</div><div class="metric-value ${summary.total_expected_loss > 0 ? 'neg' : 'pos'}">${fmt$signed(-summary.total_expected_loss)}</div><div class="metric-sub">positive = margin captured · negative = margin lost</div></div>
       <div class="metric"><div class="metric-label">High-risk items</div><div class="metric-value neg">${preds.filter(p => p.risk === 'high').length}</div><div class="metric-sub">+ ${preds.filter(p => p.risk === 'medium').length} medium</div></div>
     </div>`;
 
   c.innerHTML += `
     <div class="section">
       <div class="section-title">How this works</div>
-      <p style="font-size:13px;color:#444;line-height:1.6">For every job already scheduled and every quote still awaiting customer response, we look up the bidder's <strong>historical median bid-error % for that category and size class</strong> and apply it to the current quote. The "predicted actual" is what we'd expect the job to invoice based on how this bidder has performed on similar work before. The "expected leak" is the dollar gap between quote and predicted actual — positive means the bid is likely to be tighter than the actual cost (margin lost before the work even happens).</p>
+      <p style="font-size:13px;color:#444;line-height:1.6">For every job already scheduled and every quote still awaiting customer response, we look up the bidder's <strong>historical median rate-coverage ratio for that category and size class</strong> — that is, on similar past jobs, how much did <code>quote $</code> exceed (or fall short of) <code>(hours × $${TARGET}) + expenses</code>? We apply that ratio to the current quote to project the <strong>target-implied cost</strong> — what the job would need to be charged at to hit the $${TARGET}/hr target on the hours and expenses it's expected to consume. The <strong>expected margin gap</strong> is what's left after subtracting that from the quote. <strong>Positive = margin captured above target rate. Negative = bid is too low to cover target rate.</strong> This matches David's Excel <code>Rate = (Revenue − Expenses) / Hours</code> math, projected forward.</p>
     </div>`;
 
+  // Pipeline by bidder — sortable
+  const pipeData = [];
+  for(const [b, d] of Object.entries(byB)){
+    pipeData.push({ bidder: b, pending: d.n, quoted: d.quoted, predicted_cost: d.predicted, margin_gap: -d.loss });
+  }
+  const pipeSorted = applyTableSort(pipeData, 'pred_pipeline_by_bidder', 'margin_gap');
   let bRows = '';
-  for(const [b, d] of Object.entries(byB).sort((a,b)=>b[1].loss - a[1].loss)){
-    const cls = d.loss > 0 ? 'neg' : (d.loss < 0 ? 'pos' : '');
+  for(const r of pipeSorted){
+    const cls = r.margin_gap >= 0 ? 'pos' : 'neg';
     bRows += `<tr>
-      <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[b]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${b}</strong></td>
-      <td class="num">${d.n}</td>
-      <td class="num">${fmt$(d.quoted)}</td>
-      <td class="num">${fmt$(d.predicted)}</td>
-      <td class="num"><span class="rate-chip ${cls}">${fmt$signed(-d.loss)}</span></td>
+      <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[r.bidder]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${r.bidder}</strong></td>
+      <td class="num">${r.pending}</td>
+      <td class="num">${fmt$(r.quoted)}</td>
+      <td class="num">${fmt$(r.predicted_cost)}</td>
+      <td class="num"><span class="rate-chip ${cls}">${fmt$signed(r.margin_gap)}</span></td>
     </tr>`;
   }
   c.innerHTML += `
     <div class="section">
-      <div class="section-title">Pipeline by bidder</div>
+      <div class="section-title">Pipeline by bidder <span class="hint">click any header to sort · margin gap = quote − target-implied cost</span></div>
       <table>
-        <thead><tr><th>Bidder</th><th class="num">Pending</th><th class="num">Quoted</th><th class="num">Predicted</th><th class="num">Δ vs quote</th></tr></thead>
+        <thead><tr>
+          ${sortableHeader('pred_pipeline_by_bidder', 'bidder', 'Bidder', false, 'margin_gap')}
+          ${sortableHeader('pred_pipeline_by_bidder', 'pending', 'Pending', true, 'margin_gap')}
+          ${sortableHeader('pred_pipeline_by_bidder', 'quoted', 'Quoted', true, 'margin_gap')}
+          ${sortableHeader('pred_pipeline_by_bidder', 'predicted_cost', 'Predicted cost', true, 'margin_gap')}
+          ${sortableHeader('pred_pipeline_by_bidder', 'margin_gap', 'Margin gap', true, 'margin_gap')}
+        </tr></thead>
         <tbody>${bRows}</tbody>
       </table>
     </div>`;
 
   c.innerHTML += `
     <div class="section">
-      <div class="section-title">Quoted vs predicted actual <span class="hint">each dot is one pending bid · diagonal = on-target</span></div>
+      <div class="section-title">Quote vs target-implied cost <span class="hint">each dot is one pending bid · diagonal = bid lands exactly at $${TARGET}/hr target</span></div>
       <div class="chart-wrap tall"><canvas id="predScatter"></canvas></div>
+      <p class="note">X = what we quoted. Y = projected cost-at-target = expected hours × $${TARGET}/hr + expenses (from this bidder's history in this category × size). Above the diagonal = bid is below target — we'll eat the gap. Below the diagonal = bid captured margin.</p>
     </div>`;
 
   const highRisk = preds.filter(p => p.risk === 'high');
@@ -818,7 +997,7 @@ function renderPredictive(c){
             <span style="color:#6b7268;margin-left:8px">${p.client} · ${p.bidder} · ${p.category}</span>
           </div>
           <div style="font-size:12px;color:#6b7268;text-align:right">
-            quote <strong style="color:#1a1f1a">${fmt$(p.quote_total)}</strong> · predicted <strong style="color:#1a1f1a">${fmt$(p.predicted_actual)}</strong> · leak <strong style="color:${p.expected_loss > 0 ? '#9c3a1a' : '#1d6e4f'}">${fmt$signed(-p.expected_loss)}</strong>
+            quote <strong style="color:#1a1f1a">${fmt$(p.quote_total)}</strong> · projected cost <strong style="color:#1a1f1a">${fmt$(p.predicted_target_implied || 0)}</strong> · margin <strong style="color:${(p.predicted_margin || 0) >= 0 ? '#1d6e4f' : '#9c3a1a'}">${fmt$signed(p.predicted_margin || 0)}</strong>
             <div style="font-size:10px;color:#aaa;margin-top:2px">confidence: ${p.confidence} (n=${p.history_n})</div>
           </div>
         </div>
@@ -831,9 +1010,18 @@ function renderPredictive(c){
       ${actionHtml || '<p style="color:#888;font-size:13px">No high or medium risk pending bids in the current pipeline — everything looks on track based on history.</p>'}
     </div>`;
 
+  // All pending bids table — sortable, rate-based fields
+  const RISK_RANK = { high: 3, medium: 2, low: 1 };
+  const predRows = preds.map(p => ({
+    ...p,
+    risk_rank: RISK_RANK[p.risk] || 0,
+    margin_gap: p.predicted_margin != null ? p.predicted_margin : -p.expected_loss,
+    coverage_pct: (p.predicted_error_pct || 0) * 100,
+  }));
+  const predSorted = applyTableSort(predRows, 'pred_all_bids', 'margin_gap');
   let allRows = '';
-  for(const p of preds){
-    const lossClass = p.expected_loss > 0 ? 'neg' : (p.expected_loss < 0 ? 'pos' : '');
+  for(const p of predSorted){
+    const cls = p.margin_gap >= 0 ? 'pos' : 'neg';
     const refHref = p.jobber_uri || (p.job_number ? jobUriFor(p.job_number) : null);
     const refCell = refHref ? `<a class="jlink" href="${refHref}" target="_blank" rel="noopener">${p.reference}</a>` : p.reference;
     allRows += `<tr>
@@ -843,18 +1031,29 @@ function renderPredictive(c){
       <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${COLORS[p.bidder]||'#888'};margin-right:4px"></span>${p.bidder}</td>
       <td>${p.category}</td>
       <td class="num">${fmt$(p.quote_total)}</td>
-      <td class="num">${fmt$(p.predicted_actual)}</td>
-      <td class="num"><span class="rate-chip ${lossClass}">${fmt$signed(-p.expected_loss)}</span></td>
-      <td class="num">${(p.predicted_error_pct*100).toFixed(1)}%</td>
+      <td class="num">${fmt$(p.predicted_target_implied || 0)}</td>
+      <td class="num"><span class="rate-chip ${cls}">${fmt$signed(p.margin_gap)}</span></td>
+      <td class="num">${p.coverage_pct >= 0 ? '+' : ''}${p.coverage_pct.toFixed(1)}%</td>
       <td style="font-size:11px;color:#888">${p.confidence}</td>
     </tr>`;
   }
   c.innerHTML += `
     <div class="section">
-      <div class="section-title">All pending bids <span class="hint">${preds.length} items · sorted worst predicted leak first</span></div>
+      <div class="section-title">All pending bids <span class="hint">click any header to sort · ${preds.length} items</span></div>
       <div class="scroll-table">
         <table>
-          <thead><tr><th>Risk</th><th>Ref</th><th>Client</th><th>Bidder</th><th>Category</th><th class="num">Quoted</th><th class="num">Predicted</th><th class="num">Δ</th><th class="num">% off</th><th>Conf</th></tr></thead>
+          <thead><tr>
+            ${sortableHeader('pred_all_bids', 'risk_rank', 'Risk', false, 'margin_gap')}
+            ${sortableHeader('pred_all_bids', 'reference', 'Ref', false, 'margin_gap')}
+            ${sortableHeader('pred_all_bids', 'client', 'Client', false, 'margin_gap')}
+            ${sortableHeader('pred_all_bids', 'bidder', 'Bidder', false, 'margin_gap')}
+            ${sortableHeader('pred_all_bids', 'category', 'Category', false, 'margin_gap')}
+            ${sortableHeader('pred_all_bids', 'quote_total', 'Quoted', true, 'margin_gap')}
+            ${sortableHeader('pred_all_bids', 'predicted_target_implied', 'Pred. cost', true, 'margin_gap')}
+            ${sortableHeader('pred_all_bids', 'margin_gap', 'Margin gap', true, 'margin_gap')}
+            ${sortableHeader('pred_all_bids', 'coverage_pct', 'Coverage %', true, 'margin_gap')}
+            ${sortableHeader('pred_all_bids', 'confidence', 'Conf', false, 'margin_gap')}
+          </tr></thead>
           <tbody>${allRows}</tbody>
         </table>
       </div>
@@ -1281,15 +1480,20 @@ function flashToast(msg){
 // =====================================================================
 
 function drawPredScatter(canvasId){
-  const preds = (DATA.predictions || []);
+  const preds = (DATA.predictions || []).filter(p => p.predicted_target_implied != null && p.predicted_target_implied > 0);
   if(!preds.length) return;
-  const allVals = preds.flatMap(p => [p.quote_total, p.predicted_actual]);
+  const allVals = preds.flatMap(p => [p.quote_total, p.predicted_target_implied]);
   const dataMax = Math.max(...allVals);
   const axisMax = Math.ceil(pct(allVals, 0.95) / 500) * 500;
   const bidders = [...new Set(preds.map(p => p.bidder))];
   const datasets = bidders.map(b => ({
     label: b,
-    data: preds.filter(p => p.bidder === b).map(p => ({x: p.quote_total, y: p.predicted_actual, client: p.client, ref: p.reference, cat: p.category, risk: p.risk, quoteNum: p.quote_number, jobNum: p.job_number, uri: p.jobber_uri})),
+    data: preds.filter(p => p.bidder === b).map(p => ({
+      x: p.quote_total, y: p.predicted_target_implied,
+      client: p.client, ref: p.reference, cat: p.category, risk: p.risk,
+      margin: p.predicted_margin,
+      quoteNum: p.quote_number, jobNum: p.job_number, uri: p.jobber_uri
+    })),
     backgroundColor: (COLORS[b] || '#888') + 'b0', borderColor: COLORS[b] || '#888',
     pointRadius: 5, pointHoverRadius: 8,
   }));
@@ -1301,10 +1505,13 @@ function drawPredScatter(canvasId){
     onClick: makeDotClickHandler(), onHover: dotHoverCursor(),
     plugins:{legend:{position:'bottom', labels:{boxWidth:10, font:{size:11}}}, tooltip:{callbacks:{label: c => {
       const d = c.raw;
-      if(d.ref) return d.ref + ' ' + (d.client||'') + ' [' + d.cat + ']: quote $' + Math.round(d.x).toLocaleString() + ', predicted $' + Math.round(d.y).toLocaleString() + ' (' + d.risk + ' risk) — click to open';
+      if(d.ref){
+        const m = d.margin != null ? ` · margin ${d.margin >= 0 ? '+' : '−'}$${Math.abs(Math.round(d.margin)).toLocaleString()}` : '';
+        return d.ref + ' ' + (d.client||'') + ' [' + d.cat + ']: quote $' + Math.round(d.x).toLocaleString() + ', target-implied cost $' + Math.round(d.y).toLocaleString() + m + ' (' + d.risk + ' risk) — click to open';
+      }
       return c.dataset.label;
     }}}, zoom: makeZoomCfg(0, dataMax*1.1, 0, dataMax*1.1)},
-    scales:{x:{type:'linear', title:{display:true,text:'Quote total ($)'}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:axisMax}, y:{title:{display:true,text:'Predicted actual ($)'}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:axisMax}}
+    scales:{x:{type:'linear', title:{display:true,text:'Quote total ($)'}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:axisMax}, y:{title:{display:true,text:`Target-implied cost ($) — hours × $${TARGET} + expenses`}, ticks:{callback:v=>'$'+v.toLocaleString()}, min:0, max:axisMax}}
   }});
 }
 
@@ -1346,34 +1553,49 @@ function renderAll(c){
       </div>
     </div>`;
 
-  // Bidder comparison table (matches Excel's per-bidder SUM rows — adds Expenses column)
+  // Bidder comparison table (matches Excel's per-bidder SUM rows — sortable columns)
   const sorted = visibleBidders();
-  let rows = '';
+  const bcData = [];
   let totJobs = 0, totHrs = 0, totRev = 0, totExp = 0;
   for(const b of sorted){
     const bj = jobs.filter(j => j.bidder === b);
     if(!bj.length) continue;
     const a = aggregateJobs(bj);
     totJobs += a.jobs; totHrs += a.hours; totRev += a.revenue; totExp += a.expenses;
-    const g = a.avg_rate - TARGET;
-    const cls = g >= 0 ? 'pos' : 'neg';
+    bcData.push({
+      bidder: b, jobs: a.jobs, expenses: a.expenses, hours: a.hours,
+      revenue: a.revenue, rate: a.avg_rate, vs_target: a.avg_rate - TARGET,
+    });
+  }
+  const bcSorted = applyTableSort(bcData, 'bidder_comparison', 'revenue');
+  let rows = '';
+  for(const r of bcSorted){
+    const cls = r.vs_target >= 0 ? 'pos' : 'neg';
     rows += `<tr>
-      <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[b]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${b}</strong></td>
-      <td class="num">${a.jobs}</td>
-      <td class="num">${fmt$2(a.expenses)}</td>
-      <td class="num">${fmtHrs(a.hours)}</td>
-      <td class="num">${fmt$(a.revenue)}</td>
-      <td class="num"><strong>${fmt$2(a.avg_rate)}</strong></td>
-      <td class="num"><span class="rate-chip ${cls}">${g>=0?'+':''}${fmt$2(g)}</span></td>
+      <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[r.bidder]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${r.bidder}</strong></td>
+      <td class="num">${r.jobs}</td>
+      <td class="num">${fmt$2(r.expenses)}</td>
+      <td class="num">${fmtHrs(r.hours)}</td>
+      <td class="num">${fmt$(r.revenue)}</td>
+      <td class="num"><strong>${fmt$2(r.rate)}</strong></td>
+      <td class="num"><span class="rate-chip ${cls}">${r.vs_target >= 0 ? '+' : ''}${fmt$2(r.vs_target)}</span></td>
     </tr>`;
   }
   const totRate = totHrs > 0 ? (totRev - totExp) / totHrs : 0;
   const totGap = totRate - TARGET;
   c.innerHTML += `
     <div class="section" id="sect_bidder_comparison">
-      <div class="section-title">Bidder comparison <span class="hint">matches David's Excel SUM rows · click a bidder tab above to drill in</span><button class="btn-section-pdf" data-print-section="sect_bidder_comparison">Export PDF</button></div>
+      <div class="section-title">Bidder comparison <span class="hint">click any column header to sort · matches David's Excel SUM rows</span><button class="btn-section-pdf" data-print-section="sect_bidder_comparison">Export PDF</button></div>
       <table>
-        <thead><tr><th>Bidder</th><th class="num">Jobs</th><th class="num">Expenses</th><th class="num">Hours</th><th class="num">Revenue</th><th class="num">Avg $/hr</th><th class="num">vs target</th></tr></thead>
+        <thead><tr>
+          ${sortableHeader('bidder_comparison', 'bidder', 'Bidder', false, 'revenue')}
+          ${sortableHeader('bidder_comparison', 'jobs', 'Jobs', true, 'revenue')}
+          ${sortableHeader('bidder_comparison', 'expenses', 'Expenses', true, 'revenue')}
+          ${sortableHeader('bidder_comparison', 'hours', 'Hours', true, 'revenue')}
+          ${sortableHeader('bidder_comparison', 'revenue', 'Revenue', true, 'revenue')}
+          ${sortableHeader('bidder_comparison', 'rate', 'Avg $/hr', true, 'revenue')}
+          ${sortableHeader('bidder_comparison', 'vs_target', 'vs target', true, 'revenue')}
+        </tr></thead>
         <tbody>${rows}</tbody>
         <tfoot>
           <tr class="ledger-total">
@@ -1389,84 +1611,115 @@ function renderAll(c){
       </table>
     </div>`;
 
-  // Win/loss section
-  let wlRows = '';
+  // Win/loss section — sortable
+  const wlData = [];
   for(const b of sorted){
     const wl = winLossForBidder(b);
     if(wl.total < 1) continue;
-    const cls = wl.rate >= 0.6 ? 'pos' : (wl.rate < 0.45 ? 'neg' : '');
+    wlData.push({ bidder: b, won: wl.won, lost: wl.lost, total: wl.total, win_rate: wl.rate, won_dollars: wl.wonDollars, lost_dollars: wl.lostDollars });
+  }
+  const wlSorted = applyTableSort(wlData, 'win_loss', 'won_dollars');
+  let wlRows = '';
+  for(const r of wlSorted){
+    const cls = r.win_rate >= 0.6 ? 'pos' : (r.win_rate < 0.45 ? 'neg' : '');
     wlRows += `<tr>
-      <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[b]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${b}</strong></td>
-      <td class="num">${wl.won}</td>
-      <td class="num">${wl.lost}</td>
-      <td class="num">${wl.total}</td>
-      <td class="num"><strong><span class="rate-chip ${cls}">${(wl.rate*100).toFixed(1)}%</span></strong></td>
-      <td class="num">${fmt$(wl.wonDollars)}</td>
-      <td class="num">${fmt$(wl.lostDollars)}</td>
+      <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[r.bidder]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${r.bidder}</strong></td>
+      <td class="num">${r.won}</td>
+      <td class="num">${r.lost}</td>
+      <td class="num">${r.total}</td>
+      <td class="num"><strong><span class="rate-chip ${cls}">${(r.win_rate*100).toFixed(1)}%</span></strong></td>
+      <td class="num">${fmt$(r.won_dollars)}</td>
+      <td class="num">${fmt$(r.lost_dollars)}</td>
     </tr>`;
   }
   c.innerHTML += `
     <div class="section">
-      <div class="section-title">Win / loss rate <span class="hint">won = quote converted to job · lost = quote archived without conversion</span></div>
+      <div class="section-title">Win / loss rate <span class="hint">click any column header to sort · won = quote converted · lost = quote archived</span></div>
       <table>
-        <thead><tr><th>Bidder</th><th class="num">Won</th><th class="num">Lost</th><th class="num">Total</th><th class="num">Win rate</th><th class="num">$ won</th><th class="num">$ lost</th></tr></thead>
+        <thead><tr>
+          ${sortableHeader('win_loss', 'bidder', 'Bidder', false, 'won_dollars')}
+          ${sortableHeader('win_loss', 'won', 'Won', true, 'won_dollars')}
+          ${sortableHeader('win_loss', 'lost', 'Lost', true, 'won_dollars')}
+          ${sortableHeader('win_loss', 'total', 'Total', true, 'won_dollars')}
+          ${sortableHeader('win_loss', 'win_rate', 'Win rate', true, 'won_dollars')}
+          ${sortableHeader('win_loss', 'won_dollars', '$ won', true, 'won_dollars')}
+          ${sortableHeader('win_loss', 'lost_dollars', '$ lost', true, 'won_dollars')}
+        </tr></thead>
         <tbody>${wlRows}</tbody>
       </table>
-      <p class="note">High win rate + low accuracy = pricing low to win. Low win rate + high accuracy = pricing right but losing bids. Sweet spot is mid-high win rate AND near-zero accuracy gap.</p>
+      <p class="note">High win rate + low rate = pricing low to win. Low win rate + good rate = pricing right but losing bids. Sweet spot is mid-high win rate AND $/hr at-or-above target.</p>
     </div>`;
 
-  // Win rate by bidder × category
+  // Win rate by bidder × category — sortable
   const wlbc = DATA.win_loss_by_category || {};
-  let wlcRows = '';
   const visibleBidderList = sorted;
+  const wlcData = [];
   for(const b of visibleBidderList){
     const cats = wlbc[b] || {};
-    for(const c of Object.keys(cats).sort((a,b2)=>cats[b2].total - cats[a].total)){
-      if(!ACTIVE_CATS.has(c)) continue;
-      const d = cats[c];
+    for(const cat of Object.keys(cats)){
+      if(!ACTIVE_CATS.has(cat)) continue;
+      const d = cats[cat];
       if(d.total < 1) continue;
-      const cls = d.win_rate >= 0.7 ? 'pos' : (d.win_rate < 0.45 ? 'neg' : '');
-      wlcRows += `<tr>
-        <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[b]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${b}</strong></td>
-        <td>${c}</td>
-        <td class="num">${d.won}</td>
-        <td class="num">${d.lost}</td>
-        <td class="num"><span class="rate-chip ${cls}">${(d.win_rate*100).toFixed(0)}%</span></td>
-        <td class="num">${fmt$(d.won_dollars)}</td>
-        <td class="num">${fmt$(d.lost_dollars)}</td>
-      </tr>`;
+      wlcData.push({ bidder: b, category: cat, won: d.won, lost: d.lost, total: d.total, win_rate: d.win_rate, won_dollars: d.won_dollars, lost_dollars: d.lost_dollars });
     }
+  }
+  const wlcSorted = applyTableSort(wlcData, 'win_rate_by_cat', 'lost_dollars');
+  let wlcRows = '';
+  for(const r of wlcSorted){
+    const cls = r.win_rate >= 0.7 ? 'pos' : (r.win_rate < 0.45 ? 'neg' : '');
+    wlcRows += `<tr>
+      <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[r.bidder]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${r.bidder}</strong></td>
+      <td>${r.category}</td>
+      <td class="num">${r.won}</td>
+      <td class="num">${r.lost}</td>
+      <td class="num"><span class="rate-chip ${cls}">${(r.win_rate*100).toFixed(0)}%</span></td>
+      <td class="num">${fmt$(r.won_dollars)}</td>
+      <td class="num">${fmt$(r.lost_dollars)}</td>
+    </tr>`;
   }
   const _winRateByCatHtml = `
     <div class="section">
-      <div class="section-title">Win rate by category <span class="hint">where each bidder wins or loses bids</span></div>
+      <div class="section-title">Win rate by category <span class="hint">click any header to sort · where each bidder wins or loses bids</span></div>
       <table>
-        <thead><tr><th>Bidder</th><th>Category</th><th class="num">Won</th><th class="num">Lost</th><th class="num">Win rate</th><th class="num">$ won</th><th class="num">$ left on table</th></tr></thead>
+        <thead><tr>
+          ${sortableHeader('win_rate_by_cat', 'bidder', 'Bidder', false, 'lost_dollars')}
+          ${sortableHeader('win_rate_by_cat', 'category', 'Category', false, 'lost_dollars')}
+          ${sortableHeader('win_rate_by_cat', 'won', 'Won', true, 'lost_dollars')}
+          ${sortableHeader('win_rate_by_cat', 'lost', 'Lost', true, 'lost_dollars')}
+          ${sortableHeader('win_rate_by_cat', 'win_rate', 'Win rate', true, 'lost_dollars')}
+          ${sortableHeader('win_rate_by_cat', 'won_dollars', '$ won', true, 'lost_dollars')}
+          ${sortableHeader('win_rate_by_cat', 'lost_dollars', '$ left on table', true, 'lost_dollars')}
+        </tr></thead>
         <tbody>${wlcRows}</tbody>
       </table>
       <p class="note">Where the real story lives. Same bidder can win 80% of pruning bids but only 27% of removal bids — different categories want different pricing strategy.</p>
     </div>`;
 
-  // Time-to-close insight
+  // Time-to-close insight — sortable
   function median(xs){ if(!xs.length) return null; const s=[...xs].sort((a,b)=>a-b); const n=s.length; return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2; }
-  const ttcRows = visibleBidderList.map(b => {
+  const ttcData = visibleBidderList.map(b => {
     const won = (DATA.quote_records||[]).filter(q => q.bidder===b && q.days_to_close!=null && ACTIVE_CATS.has(q.category)).map(q => q.days_to_close);
     const lost = (DATA.lost_quotes||[]).filter(q => q.bidder===b && q.days_to_close!=null && ACTIVE_CATS.has(q.category)).map(q => q.days_to_close);
-    return {bidder: b, wonMed: median(won), wonN: won.length, lostMed: median(lost), lostN: lost.length};
-  }).filter(r => r.wonN + r.lostN > 0);
+    return {bidder: b, won_med: median(won), won_n: won.length, lost_med: median(lost), lost_n: lost.length};
+  }).filter(r => r.won_n + r.lost_n > 0);
+  const ttcSorted = applyTableSort(ttcData, 'time_to_close', 'won_med');
   let ttcHtml = '';
-  for(const r of ttcRows){
+  for(const r of ttcSorted){
     ttcHtml += `<tr>
       <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[r.bidder]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${r.bidder}</strong></td>
-      <td class="num">${r.wonMed != null ? r.wonMed.toFixed(1) : '—'} days <span style="color:#aaa">(n=${r.wonN})</span></td>
-      <td class="num">${r.lostMed != null ? r.lostMed.toFixed(1) : '—'} days <span style="color:#aaa">(n=${r.lostN})</span></td>
+      <td class="num">${r.won_med != null ? r.won_med.toFixed(1) : '—'} days <span style="color:#aaa">(n=${r.won_n})</span></td>
+      <td class="num">${r.lost_med != null ? r.lost_med.toFixed(1) : '—'} days <span style="color:#aaa">(n=${r.lost_n})</span></td>
     </tr>`;
   }
   const _timeToCloseHtml = `
     <div class="section">
-      <div class="section-title">Time to close <span class="hint">how long quotes sit before customer decides</span></div>
+      <div class="section-title">Time to close <span class="hint">click any header to sort · how long quotes sit before customer decides</span></div>
       <table>
-        <thead><tr><th>Bidder</th><th class="num">Won (median days)</th><th class="num">Lost (median days)</th></tr></thead>
+        <thead><tr>
+          ${sortableHeader('time_to_close', 'bidder', 'Bidder', false, 'won_med')}
+          ${sortableHeader('time_to_close', 'won_med', 'Won (median days)', true, 'won_med')}
+          ${sortableHeader('time_to_close', 'lost_med', 'Lost (median days)', true, 'won_med')}
+        </tr></thead>
         <tbody>${ttcHtml}</tbody>
       </table>
       <p class="note">Across all bidders: won quotes close in ~4–6 days. "Lost" quotes typically sit for 3+ months before getting archived. So in this business, customers respond fast or not at all — fast no isn't the pattern, ghosting is.</p>
@@ -1482,35 +1735,46 @@ function renderAll(c){
   // section — "Where the margin lives" above already shows the rate-based
   // bid-accuracy story dot-per-job. Joseph: "everything in terms of rate".)
 
-  // Bidder × category — rate-based (matches David's Excel math)
+  // Bidder × category — rate-based (matches David's Excel math), sortable
   const byBC = {};
   for(const j of jobs){
     const key = `${j.bidder}|${j.category}`;
-    if(!byBC[key]) byBC[key] = {bidder: j.bidder, category: j.category, n:0, hours:0, revenue:0, expenses:0};
-    byBC[key].n++; byBC[key].hours += j.hours||0; byBC[key].revenue += j.revenue||0; byBC[key].expenses += j.expenses||0;
+    if(!byBC[key]) byBC[key] = {bidder: j.bidder, category: j.category, jobs:0, hours:0, revenue:0, expenses:0};
+    byBC[key].jobs++; byBC[key].hours += j.hours||0; byBC[key].revenue += j.revenue||0; byBC[key].expenses += j.expenses||0;
   }
-  const bcRows = Object.values(byBC).sort((a,b)=> b.revenue - a.revenue);
-  let bcHtml = '';
-  for(const r of bcRows){
+  // Compute derived fields per row
+  const bxcRows = Object.values(byBC).map(r => {
     const rate = r.hours > 0 ? (r.revenue - r.expenses) / r.hours : 0;
-    const gap = rate - TARGET;
-    const impact = (rate - TARGET) * r.hours;
+    return { ...r, rate, vs_target: rate - TARGET, margin_impact: (rate - TARGET) * r.hours };
+  });
+  const bxcSorted = applyTableSort(bxcRows, 'bidder_x_cat', 'revenue');
+  let bcHtml = '';
+  for(const r of bxcSorted){
     bcHtml += `<tr>
       <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${COLORS[r.bidder]||'#888'};margin-right:6px;vertical-align:middle"></span><strong>${r.bidder}</strong></td>
       <td>${r.category}</td>
-      <td class="num">${r.n}</td>
+      <td class="num">${r.jobs}</td>
       <td class="num">${fmtHrs(r.hours)}</td>
       <td class="num">${fmt$(r.revenue)}</td>
-      <td class="num"><strong>${fmt$2(rate)}</strong></td>
-      <td class="num"><span class="rate-chip ${gap >= 0 ? 'pos' : 'neg'}">${gap >= 0 ? '+' : ''}${fmt$2(gap)}</span></td>
-      <td class="num"><span class="rate-chip ${impact >= 0 ? 'pos' : 'neg'}">${fmt$signed(impact)}</span></td>
+      <td class="num"><strong>${fmt$2(r.rate)}</strong></td>
+      <td class="num"><span class="rate-chip ${r.vs_target >= 0 ? 'pos' : 'neg'}">${r.vs_target >= 0 ? '+' : ''}${fmt$2(r.vs_target)}</span></td>
+      <td class="num"><span class="rate-chip ${r.margin_impact >= 0 ? 'pos' : 'neg'}">${fmt$signed(r.margin_impact)}</span></td>
     </tr>`;
   }
   c.innerHTML += `
     <div class="section" id="sect_bidder_x_cat">
-      <div class="section-title">Bidder × category — rate <span class="hint">where each bidder hits or misses $${TARGET}/hr by job type</span><button class="btn-section-pdf" data-print-section="sect_bidder_x_cat">Export PDF</button></div>
+      <div class="section-title">Bidder × category — rate <span class="hint">click any header to sort · where each bidder hits or misses $${TARGET}/hr by job type</span><button class="btn-section-pdf" data-print-section="sect_bidder_x_cat">Export PDF</button></div>
       <table>
-        <thead><tr><th>Bidder</th><th>Category</th><th class="num">Jobs</th><th class="num">Hours</th><th class="num">Revenue</th><th class="num">Rate ($/hr)</th><th class="num">vs $${TARGET}</th><th class="num">Margin impact</th></tr></thead>
+        <thead><tr>
+          ${sortableHeader('bidder_x_cat', 'bidder', 'Bidder', false, 'revenue')}
+          ${sortableHeader('bidder_x_cat', 'category', 'Category', false, 'revenue')}
+          ${sortableHeader('bidder_x_cat', 'jobs', 'Jobs', true, 'revenue')}
+          ${sortableHeader('bidder_x_cat', 'hours', 'Hours', true, 'revenue')}
+          ${sortableHeader('bidder_x_cat', 'revenue', 'Revenue', true, 'revenue')}
+          ${sortableHeader('bidder_x_cat', 'rate', 'Rate ($/hr)', true, 'revenue')}
+          ${sortableHeader('bidder_x_cat', 'vs_target', `vs $${TARGET}`, true, 'revenue')}
+          ${sortableHeader('bidder_x_cat', 'margin_impact', 'Margin impact', true, 'revenue')}
+        </tr></thead>
         <tbody>${bcHtml}</tbody>
       </table>
     </div>`;
@@ -1586,33 +1850,44 @@ function renderBidder(c, bidder){
 
   const ledgerHtml = renderJobLedger(bidder, jobs);
 
-  // Category breakdown for this bidder — rate-based (matches Excel math)
-  let catRows = '';
+  // Category breakdown for this bidder — rate-based (matches Excel math), sortable
   const byCat = {};
   for(const j of jobs){
     const k = j.category || 'Other';
-    if(!byCat[k]) byCat[k] = {n:0, hours:0, revenue:0, expenses:0};
-    byCat[k].n++; byCat[k].hours += j.hours||0; byCat[k].revenue += j.revenue||0; byCat[k].expenses += j.expenses||0;
+    if(!byCat[k]) byCat[k] = {category: k, jobs:0, hours:0, revenue:0, expenses:0};
+    byCat[k].jobs++; byCat[k].hours += j.hours||0; byCat[k].revenue += j.revenue||0; byCat[k].expenses += j.expenses||0;
   }
-  for(const [cat, r] of Object.entries(byCat).sort((a,b)=>b[1].revenue - a[1].revenue)){
+  const bidderCatRows = Object.values(byCat).map(r => {
     const rate = r.hours > 0 ? (r.revenue - r.expenses) / r.hours : 0;
-    const gap = rate - TARGET;
-    const impact = (rate - TARGET) * r.hours;
+    return { ...r, rate, vs_target: rate - TARGET, margin_impact: (rate - TARGET) * r.hours };
+  });
+  const bidderCatKey = 'bidder_cat_' + bidder.replace(/[^a-z0-9]+/gi,'_');
+  const bidderCatSorted = applyTableSort(bidderCatRows, bidderCatKey, 'revenue');
+  let catRows = '';
+  for(const r of bidderCatSorted){
     catRows += `<tr>
-      <td><strong>${cat}</strong></td>
-      <td class="num">${r.n}</td>
+      <td><strong>${r.category}</strong></td>
+      <td class="num">${r.jobs}</td>
       <td class="num">${fmtHrs(r.hours)}</td>
       <td class="num">${fmt$(r.revenue)}</td>
-      <td class="num"><strong>${fmt$2(rate)}</strong></td>
-      <td class="num"><span class="rate-chip ${gap >= 0 ? 'pos' : 'neg'}">${gap >= 0 ? '+' : ''}${fmt$2(gap)}</span></td>
-      <td class="num"><span class="rate-chip ${impact >= 0 ? 'pos' : 'neg'}">${fmt$signed(impact)}</span></td>
+      <td class="num"><strong>${fmt$2(r.rate)}</strong></td>
+      <td class="num"><span class="rate-chip ${r.vs_target >= 0 ? 'pos' : 'neg'}">${r.vs_target >= 0 ? '+' : ''}${fmt$2(r.vs_target)}</span></td>
+      <td class="num"><span class="rate-chip ${r.margin_impact >= 0 ? 'pos' : 'neg'}">${fmt$signed(r.margin_impact)}</span></td>
     </tr>`;
   }
   const catTableHtml = `
     <div class="section" id="sect_bidder_cat_${bidder.replace(/[^a-z0-9]+/gi,'_')}">
-      <div class="section-title">${bidder} — rate by category <span class="hint">did each category hit $${TARGET}/hr?</span><button class="btn-section-pdf" data-print-section="sect_bidder_cat_${bidder.replace(/[^a-z0-9]+/gi,'_')}">Export PDF</button></div>
+      <div class="section-title">${bidder} — rate by category <span class="hint">click any header to sort · did each category hit $${TARGET}/hr?</span><button class="btn-section-pdf" data-print-section="sect_bidder_cat_${bidder.replace(/[^a-z0-9]+/gi,'_')}">Export PDF</button></div>
       <table>
-        <thead><tr><th>Category</th><th class="num">Jobs</th><th class="num">Hours</th><th class="num">Revenue</th><th class="num">Rate ($/hr)</th><th class="num">vs $${TARGET}</th><th class="num">Margin impact</th></tr></thead>
+        <thead><tr>
+          ${sortableHeader(bidderCatKey, 'category', 'Category', false, 'revenue')}
+          ${sortableHeader(bidderCatKey, 'jobs', 'Jobs', true, 'revenue')}
+          ${sortableHeader(bidderCatKey, 'hours', 'Hours', true, 'revenue')}
+          ${sortableHeader(bidderCatKey, 'revenue', 'Revenue', true, 'revenue')}
+          ${sortableHeader(bidderCatKey, 'rate', 'Rate ($/hr)', true, 'revenue')}
+          ${sortableHeader(bidderCatKey, 'vs_target', `vs $${TARGET}`, true, 'revenue')}
+          ${sortableHeader(bidderCatKey, 'margin_impact', 'Margin impact', true, 'revenue')}
+        </tr></thead>
         <tbody>${catRows || '<tr><td colspan="7" style="text-align:center;color:#888;padding:16px">No jobs in this filter</td></tr>'}</tbody>
       </table>
     </div>`;
@@ -1764,6 +2039,7 @@ document.getElementById('targetRate').addEventListener('input', e=>{
 buildCategoryFilters();
 buildDateRangeBar();
 wireLedgerSorting();
+wireGenericTableSort();
 wireSectionPrint();
 wireLedgerCsvDownload();
 setMeta();
