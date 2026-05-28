@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-05-28T03:14:51.775125+00:00",
+    "generated_at": "2026-05-28T12:47:58.761895+00:00",
     "jobs_pulled": 2797,
     "quote_records_count": 1818,
     "lost_quotes_count": 1759,
-    "predictions_count": 143,
+    "predictions_count": 140,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -146483,57 +146483,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7509",
-      "job_number": 7509,
-      "quote_number": "6541",
-      "jobber_uri": null,
-      "client": "Benjamin Sabino",
-      "bidder": "Ben Ash",
-      "category": "Removals",
-      "title": "Removal/Pruning 2026 - Benjamin Sabino - Logan (Cliffside)",
-      "quote_total": 6885.0,
-      "predicted_error_pct": -0.3673,
-      "predicted_actual": 4355.98,
-      "expected_loss": 2529.02,
-      "visits_planned": 3,
-      "start_at": "2026-05-21T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 4,
-      "risk": "high",
-      "recommendations": [
-        "Re-quote with David before sending crew",
-        "Removals run -12% across all bidders; build buffer into schedule",
-        "3 visits planned - confirm scope has not crept"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7292",
-      "job_number": 7292,
-      "quote_number": "6406",
-      "jobber_uri": null,
-      "client": "Distinctive Landscapes",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, winter/spring 2026 - Hyde Park Stake Center",
-      "quote_total": 9810.0,
-      "predicted_error_pct": -0.2012,
-      "predicted_actual": 7835.82,
-      "expected_loss": 1974.18,
-      "visits_planned": 8,
-      "start_at": "2026-04-10T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 38,
-      "risk": "high",
-      "recommendations": [
-        "Re-quote with David before sending crew",
-        "8 visits planned - confirm scope has not crept"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7615",
       "job_number": 7615,
       "quote_number": "6619",
@@ -146798,31 +146747,6 @@
       "visits_planned": null,
       "sent_at": "2026-05-15T15:29:46Z",
       "created_at": "2026-05-15T15:29:24Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 23,
-      "risk": "medium",
-      "recommendations": [
-        "Schedule buffer time, likely to run long",
-        "Removals run -12% across all bidders; build buffer into schedule"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7490",
-      "job_number": 7490,
-      "quote_number": "6515",
-      "jobber_uri": null,
-      "client": "Roxanne Freestone",
-      "bidder": "Ben Ash",
-      "category": "Removals",
-      "title": "Removals Spring 2026 - Roxanne Freestone - Amalga",
-      "quote_total": 2751.0,
-      "predicted_error_pct": -0.1084,
-      "predicted_actual": 2452.83,
-      "expected_loss": 298.17,
-      "visits_planned": 2,
-      "start_at": "2026-05-06T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 23,
@@ -149888,9 +149812,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 143,
-    "total_quoted": 223184.06,
-    "total_predicted": 201224.22,
-    "total_expected_loss": 21959.84
+    "total_count": 140,
+    "total_quoted": 203738.06,
+    "total_predicted": 186579.59,
+    "total_expected_loss": 17158.47
   }
 }
