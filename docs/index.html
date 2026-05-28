@@ -40,6 +40,11 @@ h1{font-size:22px;font-weight:600;color:#2d4a3a}
 .bidder-tab.active{background:#2d4a3a;color:#fff}
 .bidder-tab .count{font-size:11px;opacity:0.7;margin-left:4px}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.grid-8{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-bottom:20px}
+@media (max-width:1280px){.grid-8{grid-template-columns:repeat(4,1fr);gap:12px}}
+.grid-8 .metric{padding:11px 12px}
+.grid-8 .metric-value{font-size:20px}
+.grid-8 .metric-label{font-size:10px}
 .metric{background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:10px;padding:14px 16px}
 .metric-label{font-size:11px;color:#6b7268;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:6px}
 .metric-value{font-size:24px;font-weight:600;color:#1a1f1a}
@@ -1867,12 +1872,19 @@ function renderBidder(c, bidder){
   const totalDollarImpact = buckets.reduce((a,b) => a + (b.dollarImpact || 0), 0);
   const qrs = visibleQuotes().filter(q => q.bidder === bidder);
 
+  // Combined 8-card header: throughput stats + win/loss stats side by side.
+  const _wl = winLossForBidder(bidder);
+  const _wlCls = _wl.rate >= 0.6 ? 'pos' : (_wl.rate < 0.45 ? 'neg' : '');
   c.innerHTML += `
-    <div class="grid-4">
+    <div class="grid-8">
       <div class="metric"><div class="metric-label">Jobs</div><div class="metric-value">${o.jobs}</div></div>
-      <div class="metric"><div class="metric-label">Hours tracked</div><div class="metric-value">${fmtHrs(o.hours)}</div></div>
+      <div class="metric"><div class="metric-label">Hours</div><div class="metric-value">${fmtHrs(o.hours)}</div></div>
       <div class="metric"><div class="metric-label">Revenue</div><div class="metric-value">${fmt$(o.revenue)}</div></div>
       <div class="metric"><div class="metric-label">Avg net $/hr</div><div class="metric-value ${gap>=0?'pos':'neg'}">${fmt$2(o.avg_rate)}<span class="metric-unit">/hr</span></div><div class="metric-sub">${gap>=0?'+':''}${fmt$2(gap)} vs target</div></div>
+      <div class="metric"><div class="metric-label">Win rate</div><div class="metric-value ${_wlCls}">${_wl.total ? (_wl.rate*100).toFixed(1)+'%' : '—'}</div><div class="metric-sub">${_wl.won} won / ${_wl.lost} lost</div></div>
+      <div class="metric"><div class="metric-label">$ won</div><div class="metric-value">${fmt$(_wl.wonDollars)}</div><div class="metric-sub">quoted value won</div></div>
+      <div class="metric"><div class="metric-label">$ lost</div><div class="metric-value neg">${fmt$(_wl.lostDollars)}</div><div class="metric-sub">left on the table</div></div>
+      <div class="metric"><div class="metric-label">Quotes pulled</div><div class="metric-value">${_wl.total}</div><div class="metric-sub">since Sep 2025</div></div>
     </div>`;
 
   // -------------------------------------------------------------------
@@ -1973,11 +1985,11 @@ function renderBidder(c, bidder){
       <p class="note">Bars below zero = bid lost margin in that size class.</p>
     </div>`;
 
-  // Final order: TMI → ledger → category → win/loss → scatter → buckets
+  // Final order: TMI → ledger → category → scatter → buckets
+  // (Win/loss now lives in the combined 8-card header at the top.)
   c.innerHTML += tmiHtml;
   c.innerHTML += ledgerHtml;
   c.innerHTML += catTableHtml;
-  c.innerHTML += winLossHtml;
   c.innerHTML += rateScatterHtml;
   c.innerHTML += dollarImpactHtml;
 
