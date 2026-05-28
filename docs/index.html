@@ -670,9 +670,10 @@ function renderJobLedger(bidder, jobs){
   for(const j of sortedJobs){
     const r = j.rate;
     const cls = r >= TARGET ? 'pos' : 'neg';
+    const clientCell = (j.client && j.jobber_uri) ? `<a class="jlink muted" href="${j.jobber_uri}" target="_blank" rel="noopener">${j.client}</a>` : (j.client || '');
     rows += `<tr>
       <td>${jobberJobLink(j.job_num, j.jobber_uri)}</td>
-      <td>${j.client || ''}</td>
+      <td>${clientCell}</td>
       <td>${j.category || ''}</td>
       <td>${j.month || ''}</td>
       <td class="num">${fmt$2(j.expenses || 0)}</td>
@@ -993,12 +994,9 @@ function renderPredictive(c){
       </table>
     </div>`;
 
-  c.innerHTML += `
-    <div class="section">
-      <div class="section-title">Where the margin will land${filterNote} <span class="hint">each dot is one pending bid · target line at $${TARGET}/hr · click a dot to open in Jobber</span></div>
-      <div class="chart-wrap tall"><canvas id="predRateScatter"></canvas></div>
-      <p class="note">Same shape as the all-bidders <em>Where the margin lives</em> chart, but projected forward. X = quote total. Y = <strong>predicted $/hr</strong>, computed as the median historical rate from this bidder × category × size class (David's <code>Rate = (revenue − expenses) / hours</code> formula, averaged across past similar work). <strong>Dots above the dashed $${TARGET}/hr target line are projected to capture margin. Dots below are projected to under-cover at target rate.</strong> Use the bidder tabs above to drill in.</p>
-    </div>`;
+  // (Predictive scatter "Where the margin will land" removed per Joseph —
+  // visual was hard to read; action items + sortable all-bids table carry
+  // the signal. Reinstate when we have a better visualization idea.)
 
   const highRisk = preds.filter(p => p.risk === 'high');
   const medRisk = preds.filter(p => p.risk === 'medium');
@@ -1009,13 +1007,16 @@ function renderPredictive(c){
     const refHtml = refHref
       ? `<a class="jlink" href="${refHref}" target="_blank" rel="noopener"><strong>${p.reference}</strong></a>`
       : `<strong>${p.reference}</strong>`;
+    const clientHtml = (refHref && p.client)
+      ? `<a class="jlink muted" href="${refHref}" target="_blank" rel="noopener">${p.client}</a>`
+      : (p.client || '');
     actionHtml += `
       <div style="border-left:3px solid ${p.risk==='high'?'#9c3a1a':'#9c6b1a'};padding:10px 14px;margin-bottom:10px;background:#fafbfa;border-radius:0 8px 8px 0">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap">
           <div>
             <span class="risk-pill risk-${p.risk}">${p.risk} risk</span>
             <span style="margin-left:8px">${refHtml}</span>
-            <span style="color:#6b7268;margin-left:8px">${p.client} · ${p.bidder} · ${p.category}</span>
+            <span style="color:#6b7268;margin-left:8px">${clientHtml} · ${p.bidder} · ${p.category}</span>
           </div>
           <div style="font-size:12px;color:#6b7268;text-align:right">
             quote <strong style="color:#1a1f1a">${fmt$(p.quote_total)}</strong> · projected cost <strong style="color:#1a1f1a">${fmt$(p.predicted_target_implied || 0)}</strong> · margin <strong style="color:${(p.predicted_margin || 0) >= 0 ? '#1d6e4f' : '#9c3a1a'}">${fmt$signed(p.predicted_margin || 0)}</strong>
@@ -1045,10 +1046,11 @@ function renderPredictive(c){
     const cls = p.margin_gap >= 0 ? 'pos' : 'neg';
     const refHref = p.jobber_uri || (p.job_number ? jobUriFor(p.job_number) : null);
     const refCell = refHref ? `<a class="jlink" href="${refHref}" target="_blank" rel="noopener">${p.reference}</a>` : p.reference;
+    const clientCell = (refHref && p.client) ? `<a class="jlink muted" href="${refHref}" target="_blank" rel="noopener">${p.client}</a>` : (p.client || '');
     allRows += `<tr>
       <td><span class="risk-pill risk-${p.risk}">${p.risk}</span></td>
       <td>${refCell}</td>
-      <td>${p.client}</td>
+      <td>${clientCell}</td>
       <td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${COLORS[p.bidder]||'#888'};margin-right:4px"></span>${p.bidder}</td>
       <td>${p.category}</td>
       <td class="num">${fmt$(p.quote_total)}</td>
@@ -1080,7 +1082,7 @@ function renderPredictive(c){
       </div>
     </div>`;
 
-  setTimeout(() => drawPredictiveRateScatter('predRateScatter'), 0);
+  // (No charts on Predictive right now.)
 }
 
 // =====================================================================
@@ -1314,9 +1316,10 @@ function renderReport(c){
   for(const j of sortedJobs.slice(0, 200)){
     const r = j.rate;
     const cls = r >= TARGET ? 'pos' : 'neg';
+    const clientCell = (j.client && j.jobber_uri) ? `<a class="jlink muted" href="${j.jobber_uri}" target="_blank" rel="noopener">${j.client}</a>` : (j.client || '');
     lineRows += `<tr>
       <td>${jobberJobLink(j.job_num, j.jobber_uri)}</td>
-      <td>${j.client}</td>
+      <td>${clientCell}</td>
       <td>${j.bidder}</td>
       <td>${j.category}</td>
       <td>${j.month || '—'} ${j.year || ''}</td>
