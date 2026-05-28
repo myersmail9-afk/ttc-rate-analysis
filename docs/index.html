@@ -112,9 +112,9 @@ a.jlink.muted:hover{color:#2d4a3a;background:#f0f3ee}
 .tmi-explain strong{color:#2d4a3a}
 .tmi-math{font-size:12px;color:#6b7268;margin-top:8px;font-variant-numeric:tabular-nums}
 .tmi-math .mline{padding:3px 0}
-/* Per-section export-PDF button */
-.btn-section-pdf{float:right;padding:4px 10px;border:1px solid rgba(0,0,0,0.12);background:#fff;font-size:11px;font-weight:500;color:#6b7268;cursor:pointer;border-radius:6px;font-family:inherit;transition:all 0.15s}
-.btn-section-pdf:hover{border-color:#2d4a3a;color:#2d4a3a;background:#f0f3ee}
+/* Per-section export buttons */
+.btn-section-pdf, .btn-section-csv{float:right;margin-left:6px;padding:4px 10px;border:1px solid rgba(0,0,0,0.12);background:#fff;font-size:11px;font-weight:500;color:#6b7268;cursor:pointer;border-radius:6px;font-family:inherit;transition:all 0.15s}
+.btn-section-pdf:hover, .btn-section-csv:hover{border-color:#2d4a3a;color:#2d4a3a;background:#f0f3ee}
 /* Sortable column headers */
 th.sortable:hover{color:#2d4a3a}
 /* Ledger total row */
@@ -123,10 +123,18 @@ th.sortable:hover{color:#2d4a3a}
 /* Print styles for reports */
 @media print {
   body{padding:0;max-width:none;background:#fff;color:#000}
-  .page-tabs,.bidder-tabs,.filters,.daterange,.report-form,.report-actions,.target-control,.btn-section-pdf{display:none !important}
+  .page-tabs,.bidder-tabs,.filters,.daterange,.report-form,.report-actions,.target-control,.btn-section-pdf,.btn-section-csv{display:none !important}
   .live-badge{display:none}
-  .section,.tmi-card,.report-summary{break-inside:avoid;page-break-inside:avoid;box-shadow:none;border:1px solid #ddd}
-  table{font-size:10pt}
+  .section,.tmi-card,.report-summary{break-inside:avoid-region;page-break-inside:auto;box-shadow:none;border:1px solid #ddd}
+  /* CRITICAL: expand scroll-tables so PDF shows ALL rows, not just visible portion */
+  .scroll-table{max-height:none !important;overflow:visible !important;border:none !important}
+  .scroll-table thead{position:static !important}
+  /* Let big tables break across pages cleanly */
+  table{font-size:9.5pt;page-break-inside:auto}
+  thead{display:table-header-group} /* repeat header on each printed page */
+  tfoot{display:table-footer-group} /* repeat totals on each printed page */
+  tr{page-break-inside:avoid}
+  td,th{padding:4px 5px !important}
   a.jlink{color:#000;border-bottom:none}
   .chart-wrap{display:none}
 }
@@ -549,6 +557,7 @@ function renderJobLedger(bidder, jobs){
       <div class="section-title">
         ${bidder}'s jobs — full ledger
         <span class="hint">${sortedJobs.length} jobs · click a column header to sort · click # to open in Jobber</span>
+        <button class="btn-section-csv" data-csv-bidder="${bidder}" title="Download all rows as CSV (opens in Excel)">Download CSV</button>
         <button class="btn-section-pdf" data-print-section="${sectionId}" title="Print just this section">Export PDF</button>
       </div>
       <div class="scroll-table">
@@ -618,6 +627,61 @@ function wireSectionPrint(){
     if(!btn) return;
     printSection(btn.dataset.printSection);
   });
+}
+// Per-section "Download CSV" — exports the FULL ledger as a CSV that
+// opens directly in Excel. Includes a summary block at the bottom.
+function wireLedgerCsvDownload(){
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-csv-bidder]');
+    if(!btn) return;
+    downloadBidderLedgerCsv(btn.dataset.csvBidder);
+  });
+}
+function downloadBidderLedgerCsv(bidder){
+  const jobs = visibleJobs().filter(j => j.bidder === bidder);
+  if(!jobs.length){ alert(`No visible jobs for ${bidder} in the current filter.`); return; }
+  const state = LEDGER_SORT[bidder] || { key:'revenue', dir:'desc' };
+  const sorted = sortLedger(jobs, state);
+
+  const header = ['Job #','Jobber URL','Client','Category','Month','Year','Expenses','Hours','Revenue','Net $/hr','Quote #','Quote total','Bid error %'];
+  const rows = sorted.map(j => [
+    j.job_num, j.jobber_uri || '', j.client || '', j.category || '',
+    j.month || '', j.year || '',
+    (j.expenses != null ? j.expenses.toFixed(2) : ''),
+    (j.hours != null ? j.hours.toFixed(2) : ''),
+    (j.revenue != null ? j.revenue.toFixed(2) : ''),
+    (j.rate != null ? j.rate.toFixed(2) : ''),
+    j.quote_number || '',
+    j.quote_total != null ? j.quote_total.toFixed(2) : '',
+    j.bid_error_pct != null ? (j.bid_error_pct*100).toFixed(2)+'%' : '',
+  ]);
+
+  const totHrs = sorted.reduce((s,j) => s + (j.hours||0), 0);
+  const totRev = sorted.reduce((s,j) => s + (j.revenue||0), 0);
+  const totExp = sorted.reduce((s,j) => s + (j.expenses||0), 0);
+  const avgRate = totHrs > 0 ? (totRev - totExp) / totHrs : 0;
+  const r2 = n => Math.round(n*100)/100;
+  rows.push([]);
+  rows.push(['SUMMARY — ' + bidder]);
+  rows.push(['Filter', currentDateLabel()]);
+  rows.push(['Total jobs', sorted.length]);
+  rows.push(['Total expenses', r2(totExp)]);
+  rows.push(['Total hours', r2(totHrs)]);
+  rows.push(['Total revenue', r2(totRev)]);
+  rows.push(['Net revenue', r2(totRev - totExp)]);
+  rows.push(['Average net $/hr (Rate)', r2(avgRate)]);
+  rows.push(['Target rate', TARGET]);
+  rows.push(['Gap per hour vs target', r2(avgRate - TARGET)]);
+  rows.push(['Total margin impact vs target', r2((avgRate - TARGET) * totHrs)]);
+
+  const csv = [header, ...rows].map(r => r.map(csvCell).join(',')).join('\n');
+  const safeName = bidder.replace(/[^a-z0-9-]+/gi,'_');
+  const filename = `ttc-ledger_${safeName}_${currentDateLabel().replace(/[^a-z0-9-]+/gi,'_')}_${isoToday()}.csv`;
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+  setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
 }
 function printSection(sectionId){
   const target = document.getElementById(sectionId);
@@ -1666,6 +1730,7 @@ buildCategoryFilters();
 buildDateRangeBar();
 wireLedgerSorting();
 wireSectionPrint();
+wireLedgerCsvDownload();
 setMeta();
 buildTabs();
 document.querySelectorAll('.page-tab').forEach(t => {
