@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-06-06T11:07:45.122257+00:00",
+    "generated_at": "2026-06-07T11:22:37.817608+00:00",
     "jobs_pulled": 2829,
     "quote_records_count": 1840,
     "lost_quotes_count": 1763,
-    "predictions_count": 145,
+    "predictions_count": 144,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -150006,30 +150006,6 @@
       ]
     },
     {
-      "type": "awaiting_response",
-      "reference": "Quote #6695",
-      "quote_number": "6695",
-      "client": "Gary Nowak",
-      "jobber_uri": "https://secure.getjobber.com/quotes/60446444",
-      "bidder": "Trevor Stevens",
-      "category": "Pruning",
-      "title": "Pruning-Summer 2026- Gary Newark- Lewiston",
-      "quote_total": 865.0,
-      "predicted_error_pct": -0.0084,
-      "predicted_actual": 857.75,
-      "expected_loss": 7.25,
-      "visits_planned": null,
-      "sent_at": "2026-06-05T21:42:42Z",
-      "created_at": "2026-06-05T21:41:37Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 17,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "scheduled_job",
       "reference": "Job #7466",
       "job_number": 7466,
@@ -151423,9 +151399,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 145,
-    "total_quoted": 226670.26,
-    "total_predicted": 209632.35,
-    "total_expected_loss": 17037.91
+    "total_count": 144,
+    "total_quoted": 225805.26,
+    "total_predicted": 208774.6,
+    "total_expected_loss": 17030.66
   }
 }
