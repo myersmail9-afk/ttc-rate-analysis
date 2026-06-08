@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-06-07T11:22:37.817608+00:00",
+    "generated_at": "2026-06-08T13:24:36.584933+00:00",
     "jobs_pulled": 2829,
     "quote_records_count": 1840,
     "lost_quotes_count": 1763,
-    "predictions_count": 144,
+    "predictions_count": 140,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -148734,30 +148734,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7572",
-      "job_number": 7572,
-      "quote_number": "6604",
-      "jobber_uri": null,
-      "client": "Daniel Ladner",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Spring/Summer 2026 - Daniel Ladner - Millville",
-      "quote_total": 1670.0,
-      "predicted_error_pct": -0.0649,
-      "predicted_actual": 1561.54,
-      "expected_loss": 108.46,
-      "visits_planned": 1,
-      "start_at": "2026-06-08T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 50,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6665",
       "quote_number": "6665",
@@ -148803,30 +148779,6 @@
       "risk": "low",
       "recommendations": [
         "Removals run -12% across all bidders; build buffer into schedule"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7570",
-      "job_number": 7570,
-      "quote_number": "6601",
-      "jobber_uri": null,
-      "client": "John Kartsone",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Spring/Summer 2026 - John Kartsone - Logan (Cliffside)",
-      "quote_total": 1580.0,
-      "predicted_error_pct": -0.0649,
-      "predicted_actual": 1477.39,
-      "expected_loss": 102.61,
-      "visits_planned": 1,
-      "start_at": "2026-06-08T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 50,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
       ]
     },
     {
@@ -149733,30 +149685,6 @@
       "visits_planned": null,
       "sent_at": "2026-05-21T15:35:29Z",
       "created_at": "2026-05-21T14:57:43Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 41,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7581",
-      "job_number": 7581,
-      "quote_number": "6620",
-      "jobber_uri": null,
-      "client": "Mark and Leah Wright",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Summer 2026 - Mark and Leah Wright - Hyrum",
-      "quote_total": 360.0,
-      "predicted_error_pct": -0.0579,
-      "predicted_actual": 339.15,
-      "expected_loss": 20.85,
-      "visits_planned": 1,
-      "start_at": "2026-06-08T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 41,
@@ -151039,30 +150967,6 @@
     },
     {
       "type": "awaiting_response",
-      "reference": "Quote #6689",
-      "quote_number": "6689",
-      "client": "Kelsey Graham",
-      "jobber_uri": "https://secure.getjobber.com/quotes/60273133",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removal, spring/summer 2026 - Kelsey Graham - Smithfield",
-      "quote_total": 375.0,
-      "predicted_error_pct": 0.0989,
-      "predicted_actual": 412.08,
-      "expected_loss": -37.08,
-      "visits_planned": null,
-      "sent_at": "2026-06-04T22:23:11Z",
-      "created_at": "2026-06-03T17:28:43Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 13,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
       "reference": "Quote #6688",
       "quote_number": "6688",
       "client": "John and Barbara Abbott",
@@ -151399,9 +151303,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 144,
-    "total_quoted": 225805.26,
-    "total_predicted": 208774.6,
-    "total_expected_loss": 17030.66
+    "total_count": 140,
+    "total_quoted": 221820.26,
+    "total_predicted": 204984.44,
+    "total_expected_loss": 16835.82
   }
 }
