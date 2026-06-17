@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-06-16T14:33:17.170149+00:00",
-    "jobs_pulled": 2853,
-    "quote_records_count": 1858,
+    "generated_at": "2026-06-17T13:06:37.236833+00:00",
+    "jobs_pulled": 2855,
+    "quote_records_count": 1860,
     "lost_quotes_count": 1768,
-    "predictions_count": 113,
+    "predictions_count": 110,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -33532,6 +33532,34 @@
       "job_status": "archived"
     },
     {
+      "job_num": 7603,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDQ5ODc3MzU=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/144987735",
+      "client": "Rachel Son",
+      "bidder": "Ben Ash",
+      "bidder_raw": "Benjamin Ash (BASH)",
+      "category": "Removals",
+      "title": "Removals Summer 2026 - Rachel Son - Nibley",
+      "expenses": 0.0,
+      "labour_cost": 127.35,
+      "hours": 5.46,
+      "revenue": 446.0,
+      "rate": 81.64,
+      "true_rate": 58.33,
+      "profit_amount": 318.65,
+      "profit_pct": 71.45,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026,
+      "completed_at": "2026-06-16T15:09:56Z",
+      "visit_count": 1,
+      "quote_number": "6621",
+      "quote_total": 390.0,
+      "bid_error_dollars": 56.0,
+      "bid_error_pct": 0.1436,
+      "job_status": "archived"
+    },
+    {
       "job_num": 7614,
       "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDUzODc0NTE=",
       "jobber_uri": "https://secure.getjobber.com/work_orders/145387451",
@@ -35266,6 +35294,34 @@
       "bid_error_dollars": -700.0,
       "bid_error_pct": -0.7883,
       "job_status": "archived"
+    },
+    {
+      "job_num": 7621,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDU1OTY1NzI=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/145596572",
+      "client": "Marie Gnehm",
+      "bidder": "David Thunell",
+      "bidder_raw": "David Thunell",
+      "category": "Pruning",
+      "title": "Pruning, spring 2026 - Marie Gnehm - River Heights ",
+      "expenses": 0.0,
+      "labour_cost": 228.48,
+      "hours": 9.78,
+      "revenue": 1146.3,
+      "rate": 117.23,
+      "true_rate": 93.87,
+      "profit_amount": 917.82,
+      "profit_pct": 80.07,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026,
+      "completed_at": "2026-06-16T18:07:59Z",
+      "visit_count": 1,
+      "quote_number": "6624",
+      "quote_total": 1962.3,
+      "bid_error_dollars": -816.0,
+      "bid_error_pct": -0.4158,
+      "job_status": "requires_invoicing"
     },
     {
       "job_num": 6161,
@@ -86681,6 +86737,31 @@
       "year": 2026
     },
     {
+      "quote_number": "6624",
+      "client": "Marie Gnehm",
+      "bidder": "David Thunell",
+      "category": "Pruning",
+      "quote_total": 1962.3,
+      "actual_total": 1146.3,
+      "bid_error_dollars": -816.0,
+      "bid_error_pct": -0.4158,
+      "jobs_count": 1,
+      "job_numbers": [
+        7621
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/58767827",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/145596572",
+      "visit_count": 1,
+      "completed_at": "2026-06-16T18:07:59Z",
+      "sent_at": "2026-05-08T18:33:03Z",
+      "created_at": "2026-05-06T13:57:55Z",
+      "transitioned_at": "2026-05-21T21:46:54Z",
+      "days_to_close": 13.1,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026
+    },
+    {
       "quote_number": "5868",
       "client": "Mic Sampson",
       "bidder": "Ben Ash",
@@ -86778,6 +86859,31 @@
       "created_at": "2026-05-06T15:26:09Z",
       "transitioned_at": "2026-05-15T20:22:54Z",
       "days_to_close": 0.7,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026
+    },
+    {
+      "quote_number": "6621",
+      "client": "Rachel Son",
+      "bidder": "Ben Ash",
+      "category": "Removals",
+      "quote_total": 390.0,
+      "actual_total": 446.0,
+      "bid_error_dollars": 56.0,
+      "bid_error_pct": 0.1436,
+      "jobs_count": 1,
+      "job_numbers": [
+        7603
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/58719900",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/144987735",
+      "visit_count": 1,
+      "completed_at": "2026-06-16T15:09:56Z",
+      "sent_at": "2026-05-05T18:36:38Z",
+      "created_at": "2026-05-05T18:31:54Z",
+      "transitioned_at": "2026-05-15T20:20:00Z",
+      "days_to_close": 10.1,
       "month": "June",
       "month_num": 6,
       "year": 2026
@@ -147931,14 +148037,14 @@
   "bidder_summary": {
     "Ben Ash": {
       "overall": {
-        "jobs": 414,
-        "hours": 3916.23,
-        "revenue": 437908.94,
+        "jobs": 415,
+        "hours": 3921.69,
+        "revenue": 438354.94,
         "expenses": 7280.38,
-        "labour_cost": 89316.94,
-        "net_revenue": 430628.56,
-        "avg_rate": 109.96,
-        "true_rate": 87.15
+        "labour_cost": 89444.29,
+        "net_revenue": 431074.56,
+        "avg_rate": 109.92,
+        "true_rate": 87.11
       },
       "by_month": {
         "January": {
@@ -147992,14 +148098,14 @@
           "true_rate": 82.74
         },
         "June": {
-          "jobs": 42,
-          "hours": 475.54,
-          "revenue": 47436.75,
+          "jobs": 43,
+          "hours": 481.0,
+          "revenue": 47882.75,
           "expenses": 1816.76,
-          "labour_cost": 10900.27,
-          "net_revenue": 45619.99,
-          "avg_rate": 95.93,
-          "true_rate": 73.01
+          "labour_cost": 11027.62,
+          "net_revenue": 46065.99,
+          "avg_rate": 95.77,
+          "true_rate": 72.84
         },
         "July": {
           "jobs": 32,
@@ -148065,12 +148171,12 @@
     },
     "David Thunell": {
       "overall": {
-        "jobs": 480,
-        "hours": 7193.8,
-        "revenue": 880156.98,
+        "jobs": 481,
+        "hours": 7203.58,
+        "revenue": 881303.28,
         "expenses": 31020.35,
-        "labour_cost": 161489.73,
-        "net_revenue": 849136.63,
+        "labour_cost": 161718.21,
+        "net_revenue": 850282.93,
         "avg_rate": 118.04,
         "true_rate": 95.59
       },
@@ -148126,14 +148232,14 @@
           "true_rate": 99.08
         },
         "June": {
-          "jobs": 59,
-          "hours": 695.28,
-          "revenue": 68935.85,
+          "jobs": 60,
+          "hours": 705.06,
+          "revenue": 70082.15,
           "expenses": 0.0,
-          "labour_cost": 15272.57,
-          "net_revenue": 68935.85,
-          "avg_rate": 99.15,
-          "true_rate": 77.18
+          "labour_cost": 15501.05,
+          "net_revenue": 70082.15,
+          "avg_rate": 99.4,
+          "true_rate": 77.41
         },
         "July": {
           "jobs": 33,
@@ -148710,13 +148816,13 @@
       "true_rate": 93.56
     },
     "June": {
-      "jobs": 361,
-      "hours": 2877.04,
-      "revenue": 289740.11,
+      "jobs": 363,
+      "hours": 2892.28,
+      "revenue": 291332.41,
       "expenses": 2157.67,
-      "labour_cost": 53907.13,
-      "net_revenue": 287582.44,
-      "avg_rate": 99.96,
+      "labour_cost": 54262.96,
+      "net_revenue": 289174.74,
+      "avg_rate": 99.98,
       "true_rate": 81.22
     },
     "July": {
@@ -148782,18 +148888,18 @@
   },
   "win_loss_summary": {
     "Ben Ash": {
-      "won": 385,
+      "won": 386,
       "lost": 141,
-      "won_dollars": 473616.82,
+      "won_dollars": 474006.82,
       "lost_dollars": 264845.29,
-      "win_rate": 0.7319
+      "win_rate": 0.7324
     },
     "David Thunell": {
-      "won": 368,
+      "won": 369,
       "lost": 98,
-      "won_dollars": 937742.36,
+      "won_dollars": 939704.66,
       "lost_dollars": 257424.02,
-      "win_rate": 0.7897
+      "win_rate": 0.7901
     },
     "Gabe Dye": {
       "won": 1,
@@ -148867,11 +148973,11 @@
         "lost_dollars": 64069.0
       },
       "Removals": {
-        "won": 101,
+        "won": 102,
         "lost": 61,
-        "total": 162,
-        "win_rate": 0.6235,
-        "won_dollars": 177581.0,
+        "total": 163,
+        "win_rate": 0.6258,
+        "won_dollars": 177971.0,
         "lost_dollars": 136005.25
       },
       "Stump grinding": {
@@ -148917,11 +149023,11 @@
         "lost_dollars": 0
       },
       "Pruning": {
-        "won": 220,
+        "won": 221,
         "lost": 36,
-        "total": 256,
-        "win_rate": 0.8594,
-        "won_dollars": 630508.98,
+        "total": 257,
+        "win_rate": 0.8599,
+        "won_dollars": 632471.28,
         "lost_dollars": 70576.55
       },
       "Removals": {
@@ -149897,30 +150003,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7609",
-      "job_number": 7609,
-      "quote_number": "6561",
-      "jobber_uri": null,
-      "client": "Caroline Craven",
-      "bidder": "Ben Ash",
-      "category": "Removals",
-      "title": "Pruning/Removals Spring 2026 - Caroline Craven - Providence",
-      "quote_total": 1692.99,
-      "predicted_error_pct": -0.0599,
-      "predicted_actual": 1591.52,
-      "expected_loss": 101.47,
-      "visits_planned": 1,
-      "start_at": "2026-06-17T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
-      "risk": "low",
-      "recommendations": [
-        "Removals run -12% across all bidders; build buffer into schedule"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6508",
       "quote_number": "6508",
@@ -150032,30 +150114,6 @@
       "visits_planned": null,
       "sent_at": "2026-04-24T00:13:50Z",
       "created_at": "2026-04-15T05:23:56Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7605",
-      "job_number": 7605,
-      "quote_number": "6635",
-      "jobber_uri": null,
-      "client": "Charles Mccollum",
-      "bidder": "Ben Ash",
-      "category": "Removals",
-      "title": "Removal Summer 2026 - Charles Mccollum - Logan (Cliffside)",
-      "quote_total": 1280.0,
-      "predicted_error_pct": -0.0599,
-      "predicted_actual": 1203.28,
-      "expected_loss": 76.72,
-      "visits_planned": 1,
-      "start_at": "2026-06-17T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 28,
@@ -150258,6 +150316,30 @@
     },
     {
       "type": "scheduled_job",
+      "reference": "Job #7595",
+      "job_number": 7595,
+      "quote_number": "6610",
+      "jobber_uri": null,
+      "client": "River Heights City",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Removal, spring 2026 - River Heights City",
+      "quote_total": 3489.8,
+      "predicted_error_pct": -0.015,
+      "predicted_actual": 3437.42,
+      "expected_loss": 52.38,
+      "visits_planned": 2,
+      "start_at": "2026-06-16T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 25,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "scheduled_job",
       "reference": "Job #7469",
       "job_number": 7469,
       "quote_number": "6073",
@@ -150278,6 +150360,30 @@
       "risk": "low",
       "recommendations": [
         "6 visits planned - confirm scope has not crept"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7591",
+      "job_number": 7591,
+      "quote_number": null,
+      "jobber_uri": null,
+      "client": "Germaine Roberts",
+      "bidder": "Trevor Stevens",
+      "category": "Other",
+      "title": "Fruit tree spraying, 2025 - Germaine Roberts - Brigham City",
+      "quote_total": 200.0,
+      "predicted_error_pct": -0.2505,
+      "predicted_actual": 149.91,
+      "expected_loss": 50.09,
+      "visits_planned": 3,
+      "start_at": "2026-05-01T06:00:00Z",
+      "confidence": "medium",
+      "basis": "bidder \u00d7 category",
+      "history_n": 3,
+      "risk": "low",
+      "recommendations": [
+        "3 visits planned - confirm scope has not crept"
       ]
     },
     {
@@ -150347,30 +150453,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 25,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7522",
-      "job_number": 7522,
-      "quote_number": "6545",
-      "jobber_uri": null,
-      "client": "Joyce Caliendo",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Spring 2026 - Joyce Caliendo - Providence",
-      "quote_total": 930.0,
-      "predicted_error_pct": -0.0328,
-      "predicted_actual": 899.48,
-      "expected_loss": 30.52,
-      "visits_planned": 1,
-      "start_at": "2026-06-17T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 74,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -150810,30 +150892,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7466",
-      "job_number": 7466,
-      "quote_number": "6129",
-      "jobber_uri": null,
-      "client": "Joyce Caliendo",
-      "bidder": "Ben Ash",
-      "category": "Other",
-      "title": "Fruit Tree Spraying 2026 - Joyce Caliendo - Providence",
-      "quote_total": 459.0,
-      "predicted_error_pct": 0.0,
-      "predicted_actual": 459.0,
-      "expected_loss": 0.0,
-      "visits_planned": 4,
-      "start_at": "2026-04-03T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 3,
-      "risk": "low",
-      "recommendations": [
-        "4 visits planned - confirm scope has not crept"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7439",
       "job_number": 7439,
       "quote_number": null,
@@ -150851,6 +150909,30 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 4,
+      "risk": "low",
+      "recommendations": [
+        "4 visits planned - confirm scope has not crept"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7466",
+      "job_number": 7466,
+      "quote_number": "6129",
+      "jobber_uri": null,
+      "client": "Joyce Caliendo",
+      "bidder": "Ben Ash",
+      "category": "Other",
+      "title": "Fruit Tree Spraying 2026 - Joyce Caliendo - Providence",
+      "quote_total": 459.0,
+      "predicted_error_pct": 0.0,
+      "predicted_actual": 459.0,
+      "expected_loss": 0.0,
+      "visits_planned": 4,
+      "start_at": "2026-04-03T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 3,
       "risk": "low",
       "recommendations": [
         "4 visits planned - confirm scope has not crept"
@@ -150954,30 +151036,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7440",
-      "job_number": 7440,
-      "quote_number": null,
-      "jobber_uri": null,
-      "client": "Shelley Lindauer",
-      "bidder": "David Thunell",
-      "category": "Other",
-      "title": "Fruit tree spraying, 2026 - Shelley Lindauer - Logan (Lundstrom)",
-      "quote_total": 45.0,
-      "predicted_error_pct": 0.0959,
-      "predicted_actual": 49.31,
-      "expected_loss": -4.31,
-      "visits_planned": 4,
-      "start_at": "2026-04-01T06:00:00Z",
-      "confidence": "medium",
-      "basis": "bidder \u00d7 category",
-      "history_n": 8,
-      "risk": "low",
-      "recommendations": [
-        "4 visits planned - confirm scope has not crept"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7472",
       "job_number": 7472,
       "quote_number": null,
@@ -151002,14 +151060,38 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7429",
-      "job_number": 7429,
+      "reference": "Job #7440",
+      "job_number": 7440,
       "quote_number": null,
       "jobber_uri": null,
-      "client": "Delores Cortes",
+      "client": "Shelley Lindauer",
       "bidder": "David Thunell",
       "category": "Other",
-      "title": "Fruit spraying, 2026 - Delores Cortes - Nibley",
+      "title": "Fruit tree spraying, 2026 - Shelley Lindauer - Logan (Lundstrom)",
+      "quote_total": 45.0,
+      "predicted_error_pct": 0.0959,
+      "predicted_actual": 49.31,
+      "expected_loss": -4.31,
+      "visits_planned": 4,
+      "start_at": "2026-04-01T06:00:00Z",
+      "confidence": "medium",
+      "basis": "bidder \u00d7 category",
+      "history_n": 8,
+      "risk": "low",
+      "recommendations": [
+        "4 visits planned - confirm scope has not crept"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7437",
+      "job_number": 7437,
+      "quote_number": null,
+      "jobber_uri": null,
+      "client": "Marilynne Glatfelter",
+      "bidder": "David Thunell",
+      "category": "Other",
+      "title": "Fruit spraying, 2026 - Marilynne Glatfelter - Logan",
       "quote_total": 50.0,
       "predicted_error_pct": 0.0959,
       "predicted_actual": 54.79,
@@ -151050,14 +151132,14 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7437",
-      "job_number": 7437,
+      "reference": "Job #7441",
+      "job_number": 7441,
       "quote_number": null,
       "jobber_uri": null,
-      "client": "Marilynne Glatfelter",
+      "client": "Wendy Smith",
       "bidder": "David Thunell",
       "category": "Other",
-      "title": "Fruit spraying, 2026 - Marilynne Glatfelter - Logan",
+      "title": "Fruit tree spraying, 2025 - Wendy Smith - Hyde Park",
       "quote_total": 50.0,
       "predicted_error_pct": 0.0959,
       "predicted_actual": 54.79,
@@ -151074,14 +151156,14 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7441",
-      "job_number": 7441,
+      "reference": "Job #7429",
+      "job_number": 7429,
       "quote_number": null,
       "jobber_uri": null,
-      "client": "Wendy Smith",
+      "client": "Delores Cortes",
       "bidder": "David Thunell",
       "category": "Other",
-      "title": "Fruit tree spraying, 2025 - Wendy Smith - Hyde Park",
+      "title": "Fruit spraying, 2026 - Delores Cortes - Nibley",
       "quote_total": 50.0,
       "predicted_error_pct": 0.0959,
       "predicted_actual": 54.79,
@@ -151194,14 +151276,14 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7446",
-      "job_number": 7446,
+      "reference": "Job #7447",
+      "job_number": 7447,
       "quote_number": null,
       "jobber_uri": null,
-      "client": "Alan Ringer",
+      "client": "Emily Davis",
       "bidder": "David Thunell",
       "category": "Other",
-      "title": "Fruit tree spraying, 2026 - Alan Ringer - River Heights",
+      "title": "Fruit spraying, 2026 - Emily Davis - Logan (west)",
       "quote_total": 67.5,
       "predicted_error_pct": 0.0959,
       "predicted_actual": 73.97,
@@ -151242,14 +151324,14 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7447",
-      "job_number": 7447,
+      "reference": "Job #7446",
+      "job_number": 7446,
       "quote_number": null,
       "jobber_uri": null,
-      "client": "Emily Davis",
+      "client": "Alan Ringer",
       "bidder": "David Thunell",
       "category": "Other",
-      "title": "Fruit spraying, 2026 - Emily Davis - Logan (west)",
+      "title": "Fruit tree spraying, 2026 - Alan Ringer - River Heights",
       "quote_total": 67.5,
       "predicted_error_pct": 0.0959,
       "predicted_actual": 73.97,
@@ -151554,54 +151636,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7620",
-      "job_number": 7620,
-      "quote_number": "6627",
-      "jobber_uri": null,
-      "client": "Joffs, Eric",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, spring 2026 - Eric Joffs - North Logan",
-      "quote_total": 485.0,
-      "predicted_error_pct": 0.0641,
-      "predicted_actual": 516.1,
-      "expected_loss": -31.1,
-      "visits_planned": 1,
-      "start_at": "2026-06-17T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 43,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7606",
-      "job_number": 7606,
-      "quote_number": "6637",
-      "jobber_uri": null,
-      "client": "Carolyn Farrell",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, spring/summer 2026 - Carolyn Farrell - Logan (Lundstrom)",
-      "quote_total": 220.0,
-      "predicted_error_pct": 0.1631,
-      "predicted_actual": 255.87,
-      "expected_loss": -35.87,
-      "visits_planned": 1,
-      "start_at": "2026-06-17T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 21,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7650",
       "job_number": 7650,
       "quote_number": "6669",
@@ -151634,15 +151668,15 @@
       "category": "Removals",
       "title": "Removal Summer 2026 - Jim Rogers - River Heights",
       "quote_total": 312.0,
-      "predicted_error_pct": 0.1325,
-      "predicted_actual": 353.34,
-      "expected_loss": -41.34,
+      "predicted_error_pct": 0.134,
+      "predicted_actual": 353.8,
+      "expected_loss": -41.8,
       "visits_planned": null,
       "sent_at": "2026-05-15T19:26:38Z",
       "created_at": "2026-05-15T19:26:01Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 7,
+      "history_n": 8,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -151754,15 +151788,15 @@
       "category": "Removals",
       "title": "Removal/Pruning Spring 2026 - Julia Arave - North Logan (East Bench)",
       "quote_total": 470.0,
-      "predicted_error_pct": 0.1325,
-      "predicted_actual": 532.27,
-      "expected_loss": -62.27,
+      "predicted_error_pct": 0.134,
+      "predicted_actual": 532.97,
+      "expected_loss": -62.97,
       "visits_planned": null,
       "sent_at": "2026-04-30T22:55:42Z",
       "created_at": "2026-04-20T18:59:39Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 7,
+      "history_n": 8,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -151842,9 +151876,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 113,
-    "total_quoted": 210296.74,
-    "total_predicted": 194436.25,
-    "total_expected_loss": 15860.49
+    "total_count": 110,
+    "total_quoted": 209378.55,
+    "total_predicted": 193558.49,
+    "total_expected_loss": 15820.06
   }
 }
