@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-06-20T11:32:44.257347+00:00",
+    "generated_at": "2026-06-21T11:58:38.808956+00:00",
     "jobs_pulled": 2871,
     "quote_records_count": 1870,
     "lost_quotes_count": 1769,
-    "predictions_count": 137,
+    "predictions_count": 134,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -152274,30 +152274,6 @@
       ]
     },
     {
-      "type": "awaiting_response",
-      "reference": "Quote #6711",
-      "quote_number": "6711",
-      "client": "Joyce Ringer",
-      "jobber_uri": "https://secure.getjobber.com/quotes/60686501",
-      "bidder": "No Bid",
-      "category": "Pruning",
-      "title": "Clearance pruning, summer 2026 - Joyce Ringer - Logan",
-      "quote_total": 485.0,
-      "predicted_error_pct": 0.0084,
-      "predicted_actual": 489.09,
-      "expected_loss": -4.09,
-      "visits_planned": null,
-      "sent_at": "2026-06-13T16:43:20Z",
-      "created_at": "2026-06-10T19:49:31Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 94,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "scheduled_job",
       "reference": "Job #7472",
       "job_number": 7472,
@@ -152803,30 +152779,6 @@
     },
     {
       "type": "awaiting_response",
-      "reference": "Quote #6741",
-      "quote_number": "6741",
-      "client": "Donna Gordon",
-      "jobber_uri": "https://secure.getjobber.com/quotes/61114388",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Shrub & tree pruning and removals, summer 2026 - Donna Gordon - Logan",
-      "quote_total": 530.0,
-      "predicted_error_pct": 0.0424,
-      "predicted_actual": 552.48,
-      "expected_loss": -22.48,
-      "visits_planned": null,
-      "sent_at": "2026-06-19T23:27:47Z",
-      "created_at": "2026-06-18T18:25:47Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 15,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
       "reference": "Quote #6735",
       "quote_number": "6735",
       "client": "Brent Stucki",
@@ -153067,30 +153019,6 @@
     },
     {
       "type": "awaiting_response",
-      "reference": "Quote #6740",
-      "quote_number": "6740",
-      "client": "Lori Hoffman",
-      "jobber_uri": "https://secure.getjobber.com/quotes/61114286",
-      "bidder": "David Thunell",
-      "category": "PHC / Sprays",
-      "title": "Pruning, fungal spray, willow removal and stump grinding, summer 2026 - Lori Hoffman - Smithfield",
-      "quote_total": 245.0,
-      "predicted_error_pct": 0.2288,
-      "predicted_actual": 301.05,
-      "expected_loss": -56.05,
-      "visits_planned": null,
-      "sent_at": "2026-06-19T23:07:18Z",
-      "created_at": "2026-06-18T18:24:34Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 5,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
       "reference": "Quote #6667",
       "quote_number": "6667",
       "client": "Gerry Heartly",
@@ -153235,9 +153163,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 137,
-    "total_quoted": 252131.4,
-    "total_predicted": 235187.43,
-    "total_expected_loss": 16943.97
+    "total_count": 134,
+    "total_quoted": 250871.4,
+    "total_predicted": 233844.81,
+    "total_expected_loss": 17026.59
   }
 }
