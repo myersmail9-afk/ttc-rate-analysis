@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-06-21T11:58:38.808956+00:00",
+    "generated_at": "2026-06-22T15:02:15.228562+00:00",
     "jobs_pulled": 2871,
     "quote_records_count": 1870,
     "lost_quotes_count": 1769,
-    "predictions_count": 134,
+    "predictions_count": 131,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -150087,7 +150087,7 @@
       "client": "Bryan Spykerman",
       "bidder": "Ben Ash",
       "category": "Removals",
-      "title": "Removals Spring 202 - Bryan Spylerman - Logan (Central)",
+      "title": "Removals Spring 202 - Bryan Spykerman - Logan (Central)",
       "quote_total": 3940.0,
       "predicted_error_pct": -0.1075,
       "predicted_actual": 3516.3,
@@ -151459,30 +151459,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7622",
-      "job_number": 7622,
-      "quote_number": "6605",
-      "jobber_uri": null,
-      "client": "Josh Wartena",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Spring/Summer 2026 - Josh Wartena - Logan (SW)",
-      "quote_total": 930.0,
-      "predicted_error_pct": -0.0288,
-      "predicted_actual": 903.25,
-      "expected_loss": 26.75,
-      "visits_planned": 1,
-      "start_at": "2026-06-22T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 76,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7692",
       "job_number": 7692,
       "quote_number": "6728",
@@ -151524,30 +151500,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 76,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6742",
-      "quote_number": "6742",
-      "client": "Adena Dundas",
-      "jobber_uri": "https://secure.getjobber.com/quotes/61114838",
-      "bidder": "David Thunell",
-      "category": "PHC / Sprays",
-      "title": "Pruning, plant health care, and removal, summer 2026 - Adena Dundas - Logan",
-      "quote_total": 2345.5,
-      "predicted_error_pct": -0.0107,
-      "predicted_actual": 2320.34,
-      "expected_loss": 25.16,
-      "visits_planned": null,
-      "sent_at": "2026-06-20T00:40:25Z",
-      "created_at": "2026-06-18T18:30:37Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 5,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -151867,30 +151819,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7689",
-      "job_number": 7689,
-      "quote_number": "6708",
-      "jobber_uri": null,
-      "client": "Dennis Odell",
-      "bidder": "No Bid",
-      "category": "Pruning",
-      "title": "Fruit tree spraying and pruning, summer 2026 - Dennis Odell - Logan",
-      "quote_total": 570.0,
-      "predicted_error_pct": -0.0286,
-      "predicted_actual": 553.7,
-      "expected_loss": 16.3,
-      "visits_planned": 1,
-      "start_at": "2026-06-22T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 141,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7623",
       "job_number": 7623,
       "quote_number": "6474",
@@ -152124,6 +152052,30 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 20,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6722",
+      "quote_number": "6722",
+      "client": "Robyn Harper",
+      "jobber_uri": "https://secure.getjobber.com/quotes/60883871",
+      "bidder": "David Thunell",
+      "category": "PHC / Sprays",
+      "title": "Pruning and plant health care, summer 2026 - Robyn Harper - Hyrum",
+      "quote_total": 370.0,
+      "predicted_error_pct": -0.0055,
+      "predicted_actual": 367.98,
+      "expected_loss": 2.02,
+      "visits_planned": null,
+      "sent_at": "2026-06-17T06:00:00Z",
+      "created_at": "2026-06-15T15:09:32Z",
+      "confidence": "medium",
+      "basis": "bidder \u00d7 category",
+      "history_n": 30,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -152946,30 +152898,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7650",
-      "job_number": 7650,
-      "quote_number": "6669",
-      "jobber_uri": null,
-      "client": "Diane Jones",
-      "bidder": "Ben Ash",
-      "category": "Removals",
-      "title": "Removal Summer 2026 - Diane Jones - Logan (central)",
-      "quote_total": 520.0,
-      "predicted_error_pct": 0.0969,
-      "predicted_actual": 570.36,
-      "expected_loss": -50.36,
-      "visits_planned": 1,
-      "start_at": "2026-06-22T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 23,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6530",
       "quote_number": "6530",
@@ -153163,9 +153091,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 134,
-    "total_quoted": 250871.4,
-    "total_predicted": 233844.81,
-    "total_expected_loss": 17026.59
+    "total_count": 131,
+    "total_quoted": 246875.9,
+    "total_predicted": 229865.14,
+    "total_expected_loss": 17010.76
   }
 }
