@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-06-28T11:21:54.069517+00:00",
+    "generated_at": "2026-06-29T13:23:21.084851+00:00",
     "jobs_pulled": 2891,
     "quote_records_count": 1883,
     "lost_quotes_count": 1769,
-    "predictions_count": 130,
+    "predictions_count": 125,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -151985,30 +151985,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7419",
-      "job_number": 7419,
-      "quote_number": "6468",
-      "jobber_uri": null,
-      "client": "Anna Trappett",
-      "bidder": "Trevor Stevens",
-      "category": "PHC / Sprays",
-      "title": "PHC- spring/summer 2026- Anna Trappett- North Logan",
-      "quote_total": 833.0,
-      "predicted_error_pct": -0.0794,
-      "predicted_actual": 766.85,
-      "expected_loss": 66.15,
-      "visits_planned": 3,
-      "start_at": "2026-05-22T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 7,
-      "risk": "low",
-      "recommendations": [
-        "3 visits planned - confirm scope has not crept"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7674",
       "job_number": 7674,
       "quote_number": "6277",
@@ -152023,30 +151999,6 @@
       "expected_loss": 65.37,
       "visits_planned": 1,
       "start_at": "2026-07-20T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7646",
-      "job_number": 7646,
-      "quote_number": "6629",
-      "jobber_uri": null,
-      "client": "Bethany Blakey",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removals, spring 2026 - Bethany Blakey - Logan (Hillcrest)",
-      "quote_total": 1272.2,
-      "predicted_error_pct": -0.0472,
-      "predicted_actual": 1212.16,
-      "expected_loss": 60.04,
-      "visits_planned": 1,
-      "start_at": "2026-06-29T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 28,
@@ -152297,30 +152249,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7677",
-      "job_number": 7677,
-      "quote_number": "6662",
-      "jobber_uri": null,
-      "client": "Rod Bowen",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Summer 2026 - Rod Bowen - Providence",
-      "quote_total": 895.0,
-      "predicted_error_pct": -0.0294,
-      "predicted_actual": 868.73,
-      "expected_loss": 26.27,
-      "visits_planned": 1,
-      "start_at": "2026-06-29T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 77,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7692",
       "job_number": 7692,
       "quote_number": "6728",
@@ -152536,30 +152464,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7617",
-      "job_number": 7617,
-      "quote_number": "6651",
-      "jobber_uri": null,
-      "client": "Maria LaBarge",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Summer 2026 - Maria LaBarge - Logan (Cliffside)",
-      "quote_total": 650.0,
-      "predicted_error_pct": -0.0294,
-      "predicted_actual": 630.92,
-      "expected_loss": 19.08,
-      "visits_planned": 1,
-      "start_at": "2026-06-29T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 77,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6542",
       "quote_number": "6542",
@@ -152753,30 +152657,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7667",
-      "job_number": 7667,
-      "quote_number": "6684",
-      "jobber_uri": null,
-      "client": "Machelle Hart",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, summer 2026 - Machelle Hart - Providence ",
-      "quote_total": 720.0,
-      "predicted_error_pct": -0.0164,
-      "predicted_actual": 708.18,
-      "expected_loss": 11.82,
-      "visits_planned": 1,
-      "start_at": "2026-06-29T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 49,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7681",
       "job_number": 7681,
       "quote_number": "6713",
@@ -152873,6 +152753,30 @@
     },
     {
       "type": "scheduled_job",
+      "reference": "Job #7466",
+      "job_number": 7466,
+      "quote_number": "6129",
+      "jobber_uri": null,
+      "client": "Joyce Caliendo",
+      "bidder": "Ben Ash",
+      "category": "Other",
+      "title": "Fruit Tree Spraying 2026 - Joyce Caliendo - Providence",
+      "quote_total": 459.0,
+      "predicted_error_pct": 0.0,
+      "predicted_actual": 459.0,
+      "expected_loss": 0.0,
+      "visits_planned": 4,
+      "start_at": "2026-04-03T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 3,
+      "risk": "low",
+      "recommendations": [
+        "4 visits planned - confirm scope has not crept"
+      ]
+    },
+    {
+      "type": "scheduled_job",
       "reference": "Job #7722",
       "job_number": 7722,
       "quote_number": "6750",
@@ -152938,30 +152842,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 4,
-      "risk": "low",
-      "recommendations": [
-        "4 visits planned - confirm scope has not crept"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7466",
-      "job_number": 7466,
-      "quote_number": "6129",
-      "jobber_uri": null,
-      "client": "Joyce Caliendo",
-      "bidder": "Ben Ash",
-      "category": "Other",
-      "title": "Fruit Tree Spraying 2026 - Joyce Caliendo - Providence",
-      "quote_total": 459.0,
-      "predicted_error_pct": 0.0,
-      "predicted_actual": 459.0,
-      "expected_loss": 0.0,
-      "visits_planned": 4,
-      "start_at": "2026-04-03T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 3,
       "risk": "low",
       "recommendations": [
         "4 visits planned - confirm scope has not crept"
@@ -153953,9 +153833,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 130,
-    "total_quoted": 241076.9,
-    "total_predicted": 224466.9,
-    "total_expected_loss": 16610.0
+    "total_count": 125,
+    "total_quoted": 236706.7,
+    "total_predicted": 220280.06,
+    "total_expected_loss": 16426.64
   }
 }
