@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-06-29T13:23:21.084851+00:00",
-    "jobs_pulled": 2891,
-    "quote_records_count": 1883,
-    "lost_quotes_count": 1769,
-    "predictions_count": 125,
+    "generated_at": "2026-06-30T11:59:13.038139+00:00",
+    "jobs_pulled": 2898,
+    "quote_records_count": 1890,
+    "lost_quotes_count": 1770,
+    "predictions_count": 133,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -33728,6 +33728,34 @@
       "job_status": "archived"
     },
     {
+      "job_num": 7617,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDU1OTQ2MTY=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/145594616",
+      "client": "Maria LaBarge",
+      "bidder": "Ben Ash",
+      "bidder_raw": "Benjamin Ash (BASH)",
+      "category": "Pruning",
+      "title": "Pruning Summer 2026 - Maria LaBarge - Logan (Cliffside)",
+      "expenses": 0.0,
+      "labour_cost": 102.42,
+      "hours": 5.11,
+      "revenue": 650.0,
+      "rate": 127.2,
+      "true_rate": 107.16,
+      "profit_amount": 547.58,
+      "profit_pct": 84.24,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026,
+      "completed_at": "2026-06-29T15:03:04Z",
+      "visit_count": 1,
+      "quote_number": "6651",
+      "quote_total": 650.0,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "job_status": "requires_invoicing"
+    },
+    {
       "job_num": 7618,
       "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDU1OTQ3MTk=",
       "jobber_uri": "https://secure.getjobber.com/work_orders/145594719",
@@ -34005,6 +34033,34 @@
       "quote_total": 520.0,
       "bid_error_dollars": 0.0,
       "bid_error_pct": 0.0,
+      "job_status": "archived"
+    },
+    {
+      "job_num": 7677,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDc2ODI1MDg=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/147682508",
+      "client": "Rod Bowen",
+      "bidder": "Ben Ash",
+      "bidder_raw": "Benjamin Ash (BASH)",
+      "category": "Pruning",
+      "title": "Pruning Summer 2026 - Rod Bowen - Providence",
+      "expenses": 0.0,
+      "labour_cost": 240.87,
+      "hours": 11.2,
+      "revenue": 1000.0,
+      "rate": 89.29,
+      "true_rate": 67.78,
+      "profit_amount": 759.13,
+      "profit_pct": 75.91,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026,
+      "completed_at": "2026-06-29T16:40:54Z",
+      "visit_count": 1,
+      "quote_number": "6662",
+      "quote_total": 895.0,
+      "bid_error_dollars": 105.0,
+      "bid_error_pct": 0.1173,
       "job_status": "archived"
     },
     {
@@ -35884,6 +35940,34 @@
       "job_status": "archived"
     },
     {
+      "job_num": 7646,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDY1ODUwMjQ=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/146585024",
+      "client": "Bethany Blakey",
+      "bidder": "David Thunell",
+      "bidder_raw": "David Thunell",
+      "category": "Removals",
+      "title": "Removals, spring 2026 - Bethany Blakey - Logan (Hillcrest)",
+      "expenses": 0.0,
+      "labour_cost": 173.11,
+      "hours": 8.4,
+      "revenue": 1272.2,
+      "rate": 151.41,
+      "true_rate": 130.8,
+      "profit_amount": 1099.09,
+      "profit_pct": 86.39,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026,
+      "completed_at": "2026-06-29T19:24:41Z",
+      "visit_count": 1,
+      "quote_number": "6629",
+      "quote_total": 1272.2,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "job_status": "archived"
+    },
+    {
       "job_num": 7648,
       "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDY3Nzc3OTY=",
       "jobber_uri": "https://secure.getjobber.com/work_orders/146777796",
@@ -35965,6 +36049,34 @@
       "quote_total": 385.0,
       "bid_error_dollars": 154.0,
       "bid_error_pct": 0.4,
+      "job_status": "archived"
+    },
+    {
+      "job_num": 7667,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDc0MTYzMDU=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/147416305",
+      "client": "Machelle Hart",
+      "bidder": "David Thunell",
+      "bidder_raw": "David Thunell",
+      "category": "Pruning",
+      "title": "Pruning, summer 2026 - Machelle Hart - Providence ",
+      "expenses": 0.0,
+      "labour_cost": 125.42,
+      "hours": 5.73,
+      "revenue": 720.0,
+      "rate": 125.56,
+      "true_rate": 103.69,
+      "profit_amount": 594.58,
+      "profit_pct": 82.58,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026,
+      "completed_at": "2026-06-29T18:18:34Z",
+      "visit_count": 1,
+      "quote_number": "6684",
+      "quote_total": 720.0,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
       "job_status": "archived"
     },
     {
@@ -36080,6 +36192,34 @@
       "job_status": "archived"
     },
     {
+      "job_num": 7696,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDg0NTEwNjQ=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/148451064",
+      "client": "Jason  Tuttle",
+      "bidder": "David Thunell",
+      "bidder_raw": "David Thunell",
+      "category": "Removals",
+      "title": "Silver birch care, fruit-tree pruning + volunteer removals, summer 2026 - Jason Tuttle - Logan",
+      "expenses": 0.0,
+      "labour_cost": 28.81,
+      "hours": 1.25,
+      "revenue": 564.5,
+      "rate": 450.6,
+      "true_rate": 427.6,
+      "profit_amount": 535.69,
+      "profit_pct": 94.9,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026,
+      "completed_at": "2026-06-29T16:56:12Z",
+      "visit_count": 1,
+      "quote_number": "6732",
+      "quote_total": 1544.5,
+      "bid_error_dollars": -980.0,
+      "bid_error_pct": -0.6345,
+      "job_status": "archived"
+    },
+    {
       "job_num": 7701,
       "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDg4MDk2Mzg=",
       "jobber_uri": "https://secure.getjobber.com/work_orders/148809638",
@@ -36134,6 +36274,34 @@
       "bid_error_dollars": null,
       "bid_error_pct": null,
       "job_status": "requires_invoicing"
+    },
+    {
+      "job_num": 7705,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDg5ODY0NTI=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/148986452",
+      "client": "Adena Dundas",
+      "bidder": "David Thunell",
+      "bidder_raw": "David Thunell",
+      "category": "PHC / Sprays",
+      "title": "plant health care, summer 2026 - Adena Dundas - Logan",
+      "expenses": 0.0,
+      "labour_cost": 27.09,
+      "hours": 1.18,
+      "revenue": 218.0,
+      "rate": 185.09,
+      "true_rate": 162.09,
+      "profit_amount": 190.91,
+      "profit_pct": 87.57,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026,
+      "completed_at": "2026-06-29T15:15:08Z",
+      "visit_count": 1,
+      "quote_number": "6742",
+      "quote_total": 2345.5,
+      "bid_error_dollars": -2127.5,
+      "bid_error_pct": -0.9071,
+      "job_status": "archived"
     },
     {
       "job_num": 7716,
@@ -43080,6 +43248,34 @@
       "job_status": "archived"
     },
     {
+      "job_num": 7684,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDgwNzA4NTE=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/148070851",
+      "client": "Stacey Andersen",
+      "bidder": "No Bid",
+      "bidder_raw": null,
+      "category": "PHC / Sprays",
+      "title": "PHC, summer 2026 - Gary and Stacey Andersen - Logan (Cliffside)",
+      "expenses": 0.0,
+      "labour_cost": 4.41,
+      "hours": 0.19,
+      "revenue": 68.5,
+      "rate": 357.39,
+      "true_rate": 334.39,
+      "profit_amount": 64.09,
+      "profit_pct": 93.56,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026,
+      "completed_at": "2026-06-30T01:25:44Z",
+      "visit_count": 1,
+      "quote_number": "6710",
+      "quote_total": 68.5,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "job_status": "archived"
+    },
+    {
       "job_num": 7689,
       "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNDgzMzUwNTg=",
       "jobber_uri": "https://secure.getjobber.com/work_orders/148335058",
@@ -48067,7 +48263,7 @@
       "job_num": 4706,
       "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi83MjQ4NzU3MA==",
       "jobber_uri": "https://secure.getjobber.com/work_orders/72487570",
-      "client": "Fredrickson, Gary",
+      "client": "Garry and Sue Fredrickson",
       "bidder": "No Bid",
       "bidder_raw": null,
       "category": "Removals",
@@ -59155,7 +59351,7 @@
       "job_num": 6903,
       "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xMjI2MTQ2NzE=",
       "jobber_uri": "https://secure.getjobber.com/work_orders/122614671",
-      "client": "Fredrickson, Gary",
+      "client": "Garry and Sue Fredrickson",
       "bidder": "Ben Ash",
       "bidder_raw": "Benjamin Ash (BASH)",
       "category": "Removals",
@@ -80994,6 +81190,58 @@
   ],
   "quote_records": [
     {
+      "quote_number": "6742",
+      "client": "Adena Dundas",
+      "bidder": "David Thunell",
+      "category": "PHC / Sprays",
+      "quote_total": 2345.5,
+      "actual_total": 218.0,
+      "bid_error_dollars": -2127.5,
+      "bid_error_pct": -0.9071,
+      "jobs_count": 2,
+      "job_numbers": [
+        7705,
+        7702
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/61114838",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/148986452",
+      "visit_count": 1,
+      "completed_at": "2026-06-29T15:15:08Z",
+      "sent_at": "2026-06-20T00:40:25Z",
+      "created_at": "2026-06-18T18:30:37Z",
+      "transitioned_at": "2026-06-23T18:00:31Z",
+      "days_to_close": 3.7,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026
+    },
+    {
+      "quote_number": "6732",
+      "client": "Jason  Tuttle",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "quote_total": 1544.5,
+      "actual_total": 564.5,
+      "bid_error_dollars": -980.0,
+      "bid_error_pct": -0.6345,
+      "jobs_count": 2,
+      "job_numbers": [
+        7696,
+        7695
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/61029304",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/148451064",
+      "visit_count": 1,
+      "completed_at": "2026-06-29T16:56:12Z",
+      "sent_at": "2026-06-18T21:15:29Z",
+      "created_at": "2026-06-17T15:22:27Z",
+      "transitioned_at": "2026-06-18T22:49:32Z",
+      "days_to_close": 0.1,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026
+    },
+    {
       "quote_number": "6708",
       "client": "Dennis Odell",
       "bidder": "No Bid",
@@ -81040,6 +81288,31 @@
       "created_at": "2026-06-03T20:09:41Z",
       "transitioned_at": "2026-06-15T22:23:36Z",
       "days_to_close": 11.0,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026
+    },
+    {
+      "quote_number": "6710",
+      "client": "Stacey Andersen",
+      "bidder": "No Bid",
+      "category": "PHC / Sprays",
+      "quote_total": 68.5,
+      "actual_total": 68.5,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "jobs_count": 1,
+      "job_numbers": [
+        7684
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/60675684",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/148070851",
+      "visit_count": 1,
+      "completed_at": "2026-06-30T01:25:44Z",
+      "sent_at": "2026-06-13T16:33:00Z",
+      "created_at": "2026-06-10T18:03:06Z",
+      "transitioned_at": "2026-06-15T22:10:43Z",
+      "days_to_close": 2.2,
       "month": "June",
       "month_num": 6,
       "year": 2026
@@ -83942,7 +84215,7 @@
     },
     {
       "quote_number": "4241",
-      "client": "Fredrickson, Gary",
+      "client": "Garry and Sue Fredrickson",
       "bidder": "No Bid",
       "category": "Removals",
       "quote_total": 702.5,
@@ -85250,6 +85523,31 @@
       "month": "September",
       "month_num": 9,
       "year": 2023
+    },
+    {
+      "quote_number": "6662",
+      "client": "Rod Bowen",
+      "bidder": "Ben Ash",
+      "category": "Pruning",
+      "quote_total": 895.0,
+      "actual_total": 1000.0,
+      "bid_error_dollars": 105.0,
+      "bid_error_pct": 0.1173,
+      "jobs_count": 1,
+      "job_numbers": [
+        7677
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/59645951",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/147682508",
+      "visit_count": 1,
+      "completed_at": "2026-06-29T16:40:54Z",
+      "sent_at": "2026-05-22T00:04:36Z",
+      "created_at": "2026-05-22T00:00:19Z",
+      "transitioned_at": "2026-06-11T15:29:19Z",
+      "days_to_close": 20.6,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026
     },
     {
       "quote_number": "4162",
@@ -87641,6 +87939,31 @@
       "year": 2023
     },
     {
+      "quote_number": "6684",
+      "client": "Machelle Hart",
+      "bidder": "David Thunell",
+      "category": "Pruning",
+      "quote_total": 720.0,
+      "actual_total": 720.0,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "jobs_count": 1,
+      "job_numbers": [
+        7667
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/60135959",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/147416305",
+      "visit_count": 1,
+      "completed_at": "2026-06-29T18:18:34Z",
+      "sent_at": "2026-06-04T19:55:23Z",
+      "created_at": "2026-06-01T20:35:41Z",
+      "transitioned_at": "2026-06-09T16:05:36Z",
+      "days_to_close": 4.8,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026
+    },
+    {
       "quote_number": "6686",
       "client": "Michael Harris",
       "bidder": "David Thunell",
@@ -87762,6 +88085,31 @@
       "created_at": "2026-04-20T16:21:33Z",
       "transitioned_at": "2026-05-07T20:14:46Z",
       "days_to_close": 0.1,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026
+    },
+    {
+      "quote_number": "6629",
+      "client": "Bethany Blakey",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "quote_total": 1272.2,
+      "actual_total": 1272.2,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "jobs_count": 1,
+      "job_numbers": [
+        7646
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/58787854",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/146585024",
+      "visit_count": 1,
+      "completed_at": "2026-06-29T19:24:41Z",
+      "sent_at": "2026-05-15T01:49:25Z",
+      "created_at": "2026-05-06T17:28:57Z",
+      "transitioned_at": "2026-06-01T22:52:37Z",
+      "days_to_close": 17.9,
       "month": "June",
       "month_num": 6,
       "year": 2026
@@ -88117,6 +88465,31 @@
       "created_at": "2026-05-15T18:27:54Z",
       "transitioned_at": "2026-05-21T21:29:31Z",
       "days_to_close": 5.9,
+      "month": "June",
+      "month_num": 6,
+      "year": 2026
+    },
+    {
+      "quote_number": "6651",
+      "client": "Maria LaBarge",
+      "bidder": "Ben Ash",
+      "category": "Pruning",
+      "quote_total": 650.0,
+      "actual_total": 650.0,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "jobs_count": 1,
+      "job_numbers": [
+        7617
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/59328426",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/145594616",
+      "visit_count": 1,
+      "completed_at": "2026-06-29T15:03:04Z",
+      "sent_at": "2026-05-15T21:32:22Z",
+      "created_at": "2026-05-15T21:29:50Z",
+      "transitioned_at": "2026-05-21T21:28:38Z",
+      "days_to_close": 6.0,
       "month": "June",
       "month_num": 6,
       "year": 2026
@@ -90781,18 +91154,18 @@
       "quote_number": "6468",
       "client": "Anna Trappett",
       "bidder": "Trevor Stevens",
-      "category": "Other",
+      "category": "PHC / Sprays",
       "quote_total": 833.0,
       "actual_total": 563.0,
       "bid_error_dollars": -270.0,
       "bid_error_pct": -0.3241,
       "jobs_count": 2,
       "job_numbers": [
-        7419,
-        7418
+        7418,
+        7419
       ],
       "jobber_uri": "https://secure.getjobber.com/quotes/55817152",
-      "first_job_uri": "https://secure.getjobber.com/work_orders/139628905",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/139628569",
       "visit_count": 6,
       "completed_at": "2026-04-20T17:54:15Z",
       "sent_at": "2026-03-16T21:28:01Z",
@@ -98784,7 +99157,7 @@
     },
     {
       "quote_number": "6052",
-      "client": "Fredrickson, Gary",
+      "client": "Garry and Sue Fredrickson",
       "bidder": "Ben Ash",
       "category": "Removals",
       "quote_total": 485.0,
@@ -128403,6 +128776,18 @@
   ],
   "lost_quotes": [
     {
+      "quote_number": "6714",
+      "client": "Lisa  Yarger",
+      "bidder": "No Bid",
+      "category": "PHC / Sprays",
+      "quote_total": 0,
+      "jobber_uri": "https://secure.getjobber.com/quotes/60759443",
+      "created_at": "2026-06-11T20:39:02Z",
+      "sent_at": "2026-06-15T16:56:49Z",
+      "transitioned_at": "2026-06-29T14:42:17Z",
+      "days_to_close": 13.9
+    },
+    {
       "quote_number": "6744",
       "client": "Pete Olvany",
       "bidder": "David Thunell",
@@ -149634,14 +150019,14 @@
   "bidder_summary": {
     "Ben Ash": {
       "overall": {
-        "jobs": 428,
-        "hours": 4046.34,
-        "revenue": 451354.98,
+        "jobs": 430,
+        "hours": 4062.65,
+        "revenue": 453004.98,
         "expenses": 7520.72,
-        "labour_cost": 92076.59,
-        "net_revenue": 443834.26,
-        "avg_rate": 109.69,
-        "true_rate": 86.93
+        "labour_cost": 92419.88,
+        "net_revenue": 445484.26,
+        "avg_rate": 109.65,
+        "true_rate": 86.9
       },
       "by_month": {
         "January": {
@@ -149695,14 +150080,14 @@
           "true_rate": 83.01
         },
         "June": {
-          "jobs": 56,
-          "hours": 605.65,
-          "revenue": 60511.45,
+          "jobs": 58,
+          "hours": 621.96,
+          "revenue": 62161.45,
           "expenses": 1816.76,
-          "labour_cost": 13659.92,
-          "net_revenue": 58694.69,
-          "avg_rate": 96.91,
-          "true_rate": 74.36
+          "labour_cost": 14003.21,
+          "net_revenue": 60344.69,
+          "avg_rate": 97.02,
+          "true_rate": 74.51
         },
         "July": {
           "jobs": 32,
@@ -149768,14 +150153,14 @@
     },
     "David Thunell": {
       "overall": {
-        "jobs": 498,
-        "hours": 7460.56,
-        "revenue": 914034.28,
+        "jobs": 502,
+        "hours": 7477.12,
+        "revenue": 916808.98,
         "expenses": 33180.1,
-        "labour_cost": 167469.47,
-        "net_revenue": 880854.18,
-        "avg_rate": 118.07,
-        "true_rate": 95.62
+        "labour_cost": 167823.9,
+        "net_revenue": 883628.88,
+        "avg_rate": 118.18,
+        "true_rate": 95.73
       },
       "by_month": {
         "January": {
@@ -149829,14 +150214,14 @@
           "true_rate": 99.08
         },
         "June": {
-          "jobs": 77,
-          "hours": 962.04,
-          "revenue": 102813.15,
+          "jobs": 81,
+          "hours": 978.6,
+          "revenue": 105587.85,
           "expenses": 2159.75,
-          "labour_cost": 21252.31,
-          "net_revenue": 100653.4,
-          "avg_rate": 104.62,
-          "true_rate": 82.53
+          "labour_cost": 21606.74,
+          "net_revenue": 103428.1,
+          "avg_rate": 105.69,
+          "true_rate": 83.61
         },
         "July": {
           "jobs": 33,
@@ -150070,13 +150455,13 @@
     },
     "No Bid": {
       "overall": {
-        "jobs": 1692,
-        "hours": 13160.26,
-        "revenue": 1423312.78,
+        "jobs": 1693,
+        "hours": 13160.45,
+        "revenue": 1423381.28,
         "expenses": 21160.51,
-        "labour_cost": 249351.38,
-        "net_revenue": 1402152.27,
-        "avg_rate": 106.54,
+        "labour_cost": 249355.79,
+        "net_revenue": 1402220.77,
+        "avg_rate": 106.55,
         "true_rate": 87.6
       },
       "by_month": {
@@ -150131,14 +150516,14 @@
           "true_rate": 93.45
         },
         "June": {
-          "jobs": 244,
-          "hours": 1592.1,
-          "revenue": 162769.31,
+          "jobs": 245,
+          "hours": 1592.29,
+          "revenue": 162837.81,
           "expenses": 340.91,
-          "labour_cost": 25385.7,
-          "net_revenue": 162428.4,
-          "avg_rate": 102.02,
-          "true_rate": 86.08
+          "labour_cost": 25390.11,
+          "net_revenue": 162496.9,
+          "avg_rate": 102.05,
+          "true_rate": 86.11
         },
         "July": {
           "jobs": 213,
@@ -150413,14 +150798,14 @@
       "true_rate": 93.61
     },
     "June": {
-      "jobs": 399,
-      "hours": 3306.61,
-      "revenue": 340740.11,
+      "jobs": 406,
+      "hours": 3339.67,
+      "revenue": 345233.31,
       "expenses": 4317.42,
-      "labour_cost": 63378.55,
-      "net_revenue": 336422.69,
-      "avg_rate": 101.74,
-      "true_rate": 82.58
+      "labour_cost": 64080.68,
+      "net_revenue": 340915.89,
+      "avg_rate": 102.08,
+      "true_rate": 82.89
     },
     "July": {
       "jobs": 303,
@@ -150485,18 +150870,18 @@
   },
   "win_loss_summary": {
     "Ben Ash": {
-      "won": 396,
+      "won": 398,
       "lost": 140,
-      "won_dollars": 487200.81,
+      "won_dollars": 488745.81,
       "lost_dollars": 264153.29,
-      "win_rate": 0.7388
+      "win_rate": 0.7398
     },
     "David Thunell": {
-      "won": 379,
+      "won": 383,
       "lost": 99,
-      "won_dollars": 961339.46,
+      "won_dollars": 967221.66,
       "lost_dollars": 257424.02,
-      "win_rate": 0.7929
+      "win_rate": 0.7946
     },
     "Gabe Dye": {
       "won": 1,
@@ -150513,11 +150898,11 @@
       "win_rate": 0.7732
     },
     "No Bid": {
-      "won": 890,
-      "lost": 1454,
-      "won_dollars": 1282339.52,
+      "won": 891,
+      "lost": 1455,
+      "won_dollars": 1282408.02,
       "lost_dollars": 3379888.9,
-      "win_rate": 0.3797
+      "win_rate": 0.3798
     },
     "Trevor Stevens": {
       "won": 142,
@@ -150562,11 +150947,11 @@
         "lost_dollars": 13294.54
       },
       "Pruning": {
-        "won": 250,
+        "won": 252,
         "lost": 55,
-        "total": 305,
-        "win_rate": 0.8197,
-        "won_dollars": 266651.75,
+        "total": 307,
+        "win_rate": 0.8208,
+        "won_dollars": 268196.75,
         "lost_dollars": 64069.0
       },
       "Removals": {
@@ -150604,11 +150989,11 @@
         "lost_dollars": 2748.8
       },
       "PHC / Sprays": {
-        "won": 32,
+        "won": 33,
         "lost": 6,
-        "total": 38,
-        "win_rate": 0.8421,
-        "won_dollars": 38653.8,
+        "total": 39,
+        "win_rate": 0.8462,
+        "won_dollars": 40999.3,
         "lost_dollars": 4739.25
       },
       "Planting": {
@@ -150620,19 +151005,19 @@
         "lost_dollars": 0
       },
       "Pruning": {
-        "won": 225,
+        "won": 226,
         "lost": 36,
-        "total": 261,
-        "win_rate": 0.8621,
-        "won_dollars": 647226.28,
+        "total": 262,
+        "win_rate": 0.8626,
+        "won_dollars": 647946.28,
         "lost_dollars": 70576.55
       },
       "Removals": {
-        "won": 95,
+        "won": 97,
         "lost": 46,
-        "total": 141,
-        "win_rate": 0.6738,
-        "won_dollars": 189778.97,
+        "total": 143,
+        "win_rate": 0.6783,
+        "won_dollars": 192595.67,
         "lost_dollars": 143284.42
       },
       "Stump grinding": {
@@ -150722,11 +151107,11 @@
         "lost_dollars": 422275.5
       },
       "PHC / Sprays": {
-        "won": 85,
-        "lost": 62,
-        "total": 147,
-        "win_rate": 0.5782,
-        "won_dollars": 109923.2,
+        "won": 86,
+        "lost": 63,
+        "total": 149,
+        "win_rate": 0.5772,
+        "won_dollars": 109991.7,
         "lost_dollars": 50802.65
       },
       "Planting": {
@@ -150772,19 +151157,19 @@
     },
     "Trevor Stevens": {
       "Other": {
-        "won": 3,
+        "won": 2,
         "lost": 0,
-        "total": 3,
+        "total": 2,
         "win_rate": 1.0,
-        "won_dollars": 1078.0,
+        "won_dollars": 245.0,
         "lost_dollars": 0
       },
       "PHC / Sprays": {
-        "won": 30,
+        "won": 31,
         "lost": 5,
-        "total": 35,
-        "win_rate": 0.8571,
-        "won_dollars": 32082.0,
+        "total": 36,
+        "win_rate": 0.8611,
+        "won_dollars": 32915.0,
         "lost_dollars": 8479.0
       },
       "Pruning": {
@@ -151041,30 +151426,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7632",
-      "job_number": 7632,
-      "quote_number": "6660",
-      "jobber_uri": null,
-      "client": "Jill Gold",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Summer 2026 - Jill Gold - Paradise",
-      "quote_total": 5850.0,
-      "predicted_error_pct": -0.0582,
-      "predicted_actual": 5509.43,
-      "expected_loss": 340.57,
-      "visits_planned": 1,
-      "start_at": "2026-06-30T06:00:00Z",
-      "confidence": "medium",
-      "basis": "bidder \u00d7 category",
-      "history_n": 250,
-      "risk": "medium",
-      "recommendations": [
-        "Schedule buffer time, likely to run long"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6612",
       "quote_number": "6612",
@@ -151087,6 +151448,54 @@
       "recommendations": [
         "Schedule buffer time, likely to run long",
         "Crane jobs run wide of bid; David should sanity-check"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7692",
+      "job_number": 7692,
+      "quote_number": "6728",
+      "jobber_uri": null,
+      "client": "Lara Cook",
+      "bidder": "David Thunell",
+      "category": "PHC / Sprays",
+      "title": "Pruning and plant health care, summer 2026 - Lara Cook - River Heights",
+      "quote_total": 2444.75,
+      "predicted_error_pct": -0.1292,
+      "predicted_actual": 2128.91,
+      "expected_loss": 315.84,
+      "visits_planned": 1,
+      "start_at": "2026-07-21T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 6,
+      "risk": "medium",
+      "recommendations": [
+        "Schedule buffer time, likely to run long"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7702",
+      "job_number": 7702,
+      "quote_number": "6742",
+      "jobber_uri": null,
+      "client": "Adena Dundas",
+      "bidder": "David Thunell",
+      "category": "PHC / Sprays",
+      "title": "Pruning, plant health care, and removal, summer 2026 - Adena Dundas - Logan",
+      "quote_total": 2345.5,
+      "predicted_error_pct": -0.1292,
+      "predicted_actual": 2042.48,
+      "expected_loss": 303.02,
+      "visits_planned": 1,
+      "start_at": "2026-07-29T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 6,
+      "risk": "medium",
+      "recommendations": [
+        "Schedule buffer time, likely to run long"
       ]
     },
     {
@@ -151432,30 +151841,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7616",
-      "job_number": 7616,
-      "quote_number": "6655",
-      "jobber_uri": null,
-      "client": "Quinn Checketts",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Limited pruning, spring/summer 2026 - Quinn Checketts - River Heights",
-      "quote_total": 1775.0,
-      "predicted_error_pct": -0.0878,
-      "predicted_actual": 1619.21,
-      "expected_loss": 155.79,
-      "visits_planned": 1,
-      "start_at": "2026-06-30T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 38,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6671",
       "quote_number": "6671",
@@ -151525,6 +151910,54 @@
       "risk": "low",
       "recommendations": [
         "On track based on history"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7710",
+      "job_number": 7710,
+      "quote_number": "6743",
+      "jobber_uri": null,
+      "client": "Cache Valley Womens Center",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Pruning, removals, summer 2026 - Cache Valley Women's Center - Logan",
+      "quote_total": 1889.5,
+      "predicted_error_pct": -0.0671,
+      "predicted_actual": 1762.74,
+      "expected_loss": 126.76,
+      "visits_planned": 1,
+      "start_at": "2026-07-29T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 30,
+      "risk": "low",
+      "recommendations": [
+        "Removals run -12% across all bidders; build buffer into schedule"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6737",
+      "quote_number": "6737",
+      "client": "Stucki Properties",
+      "jobber_uri": "https://secure.getjobber.com/quotes/61054140",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Pruning, shrub shearing + removals, summer 2026 - Stucki Properties (672 N 500 E) - Logan",
+      "quote_total": 1855.0,
+      "predicted_error_pct": -0.0671,
+      "predicted_actual": 1730.55,
+      "expected_loss": 124.45,
+      "visits_planned": null,
+      "sent_at": "2026-06-18T23:40:41Z",
+      "created_at": "2026-06-17T19:38:53Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 30,
+      "risk": "low",
+      "recommendations": [
+        "Removals run -12% across all bidders; build buffer into schedule"
       ]
     },
     {
@@ -151673,6 +152106,30 @@
     },
     {
       "type": "awaiting_response",
+      "reference": "Quote #6775",
+      "quote_number": "6775",
+      "client": "Katie Brinck",
+      "jobber_uri": "https://secure.getjobber.com/quotes/61475768",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Pruning, removal and stump grinding, summer 2026 - Katie Brinck - Hyde Park",
+      "quote_total": 1595.0,
+      "predicted_error_pct": -0.0671,
+      "predicted_actual": 1488.0,
+      "expected_loss": 107.0,
+      "visits_planned": null,
+      "sent_at": "2026-06-30T00:22:40Z",
+      "created_at": "2026-06-25T19:16:41Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 30,
+      "risk": "low",
+      "recommendations": [
+        "Removals run -12% across all bidders; build buffer into schedule"
+      ]
+    },
+    {
+      "type": "awaiting_response",
       "reference": "Quote #6549",
       "quote_number": "6549",
       "client": "Kristi Fatuesi",
@@ -151721,6 +152178,30 @@
     },
     {
       "type": "scheduled_job",
+      "reference": "Job #7695",
+      "job_number": 7695,
+      "quote_number": "6732",
+      "jobber_uri": null,
+      "client": "Jason  Tuttle",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Silver birch care, fruit-tree pruning + volunteer removals, summer 2026 - Jason Tuttle - Logan",
+      "quote_total": 1544.5,
+      "predicted_error_pct": -0.0671,
+      "predicted_actual": 1440.88,
+      "expected_loss": 103.62,
+      "visits_planned": 1,
+      "start_at": "2026-07-13T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 30,
+      "risk": "low",
+      "recommendations": [
+        "Removals run -12% across all bidders; build buffer into schedule"
+      ]
+    },
+    {
+      "type": "scheduled_job",
       "reference": "Job #7666",
       "job_number": 7666,
       "quote_number": "6668",
@@ -151744,6 +152225,30 @@
       ]
     },
     {
+      "type": "scheduled_job",
+      "reference": "Job #7649",
+      "job_number": 7649,
+      "quote_number": "6680",
+      "jobber_uri": null,
+      "client": "Sher Lisonbee",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Pruning and removals, summer 2026 - Sher Lisonbee - Mendon (Petersboro)",
+      "quote_total": 1501.5,
+      "predicted_error_pct": -0.0671,
+      "predicted_actual": 1400.77,
+      "expected_loss": 100.73,
+      "visits_planned": 1,
+      "start_at": "2026-07-07T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 30,
+      "risk": "low",
+      "recommendations": [
+        "Removals run -12% across all bidders; build buffer into schedule"
+      ]
+    },
+    {
       "type": "awaiting_response",
       "reference": "Quote #6652",
       "quote_number": "6652",
@@ -151762,6 +152267,30 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 56,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6770",
+      "quote_number": "6770",
+      "client": "Brianna Isaacson",
+      "jobber_uri": "https://secure.getjobber.com/quotes/61475513",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Removal and stump grinding, summer 2026 - Brianna Isaacson - North Logan",
+      "quote_total": 1480.0,
+      "predicted_error_pct": -0.0671,
+      "predicted_actual": 1380.71,
+      "expected_loss": 99.29,
+      "visits_planned": null,
+      "sent_at": "2026-06-29T22:59:03Z",
+      "created_at": "2026-06-25T19:13:55Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 30,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -151817,6 +152346,30 @@
     },
     {
       "type": "scheduled_job",
+      "reference": "Job #7419",
+      "job_number": 7419,
+      "quote_number": "6468",
+      "jobber_uri": null,
+      "client": "Anna Trappett",
+      "bidder": "Trevor Stevens",
+      "category": "PHC / Sprays",
+      "title": "PHC- spring/summer 2026- Anna Trappett- North Logan",
+      "quote_total": 833.0,
+      "predicted_error_pct": -0.1153,
+      "predicted_actual": 736.93,
+      "expected_loss": 96.07,
+      "visits_planned": 3,
+      "start_at": "2026-05-22T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 8,
+      "risk": "low",
+      "recommendations": [
+        "3 visits planned - confirm scope has not crept"
+      ]
+    },
+    {
+      "type": "scheduled_job",
       "reference": "Job #7700",
       "job_number": 7700,
       "quote_number": "6586",
@@ -151841,47 +152394,47 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7710",
-      "job_number": 7710,
-      "quote_number": "6743",
+      "reference": "Job #7674",
+      "job_number": 7674,
+      "quote_number": "6277",
       "jobber_uri": null,
-      "client": "Cache Valley Womens Center",
+      "client": "Louise Griffiths-Johnson",
       "bidder": "David Thunell",
       "category": "Removals",
-      "title": "Pruning, removals, summer 2026 - Cache Valley Women's Center - Logan",
-      "quote_total": 1889.5,
-      "predicted_error_pct": -0.0472,
-      "predicted_actual": 1800.32,
-      "expected_loss": 89.18,
+      "title": "Removal, fall 2025 - Louise Griffiths-Johnson - Smithfield",
+      "quote_total": 1385.0,
+      "predicted_error_pct": -0.0671,
+      "predicted_actual": 1292.08,
+      "expected_loss": 92.92,
       "visits_planned": 1,
-      "start_at": "2026-07-29T06:00:00Z",
+      "start_at": "2026-07-20T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
+      "history_n": 30,
       "risk": "low",
       "recommendations": [
         "On track based on history"
       ]
     },
     {
-      "type": "awaiting_response",
-      "reference": "Quote #6737",
-      "quote_number": "6737",
-      "client": "Stucki Properties",
-      "jobber_uri": "https://secure.getjobber.com/quotes/61054140",
+      "type": "scheduled_job",
+      "reference": "Job #7671",
+      "job_number": 7671,
+      "quote_number": "6683",
+      "jobber_uri": null,
+      "client": "Tom Jensen",
       "bidder": "David Thunell",
       "category": "Removals",
-      "title": "Pruning, shrub shearing + removals, summer 2026 - Stucki Properties (672 N 500 E) - Logan",
-      "quote_total": 1855.0,
-      "predicted_error_pct": -0.0472,
-      "predicted_actual": 1767.45,
-      "expected_loss": 87.55,
-      "visits_planned": null,
-      "sent_at": "2026-06-18T23:40:41Z",
-      "created_at": "2026-06-17T19:38:53Z",
+      "title": "Pruning and removals, summer 2026 - Tom Jensen - Logan (Thrushwood)",
+      "quote_total": 1220.0,
+      "predicted_error_pct": -0.0671,
+      "predicted_actual": 1138.15,
+      "expected_loss": 81.85,
+      "visits_planned": 1,
+      "start_at": "2026-07-13T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
+      "history_n": 30,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -151906,54 +152459,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 56,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7695",
-      "job_number": 7695,
-      "quote_number": "6732",
-      "jobber_uri": null,
-      "client": "Jason  Tuttle",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Silver birch care, fruit-tree pruning + volunteer removals, summer 2026 - Jason Tuttle - Logan",
-      "quote_total": 1544.5,
-      "predicted_error_pct": -0.0472,
-      "predicted_actual": 1471.6,
-      "expected_loss": 72.9,
-      "visits_planned": 1,
-      "start_at": "2026-07-13T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7649",
-      "job_number": 7649,
-      "quote_number": "6680",
-      "jobber_uri": null,
-      "client": "Sher Lisonbee",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Pruning and removals, summer 2026 - Sher Lisonbee - Mendon (Petersboro)",
-      "quote_total": 1501.5,
-      "predicted_error_pct": -0.0472,
-      "predicted_actual": 1430.63,
-      "expected_loss": 70.87,
-      "visits_planned": 1,
-      "start_at": "2026-07-07T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -151985,50 +152490,26 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7674",
-      "job_number": 7674,
-      "quote_number": "6277",
+      "reference": "Job #7454",
+      "job_number": 7454,
+      "quote_number": "6094",
       "jobber_uri": null,
-      "client": "Louise Griffiths-Johnson",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removal, fall 2025 - Louise Griffiths-Johnson - Smithfield",
-      "quote_total": 1385.0,
-      "predicted_error_pct": -0.0472,
-      "predicted_actual": 1319.63,
-      "expected_loss": 65.37,
-      "visits_planned": 1,
-      "start_at": "2026-07-20T06:00:00Z",
+      "client": "Danny gomez",
+      "bidder": "Trevor Stevens",
+      "category": "PHC / Sprays",
+      "title": "PHC spring 2026",
+      "quote_total": 555.0,
+      "predicted_error_pct": -0.1153,
+      "predicted_actual": 490.99,
+      "expected_loss": 64.01,
+      "visits_planned": 4,
+      "start_at": "2026-04-10T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
+      "history_n": 8,
       "risk": "low",
       "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7671",
-      "job_number": 7671,
-      "quote_number": "6683",
-      "jobber_uri": null,
-      "client": "Tom Jensen",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Pruning and removals, summer 2026 - Tom Jensen - Logan (Thrushwood)",
-      "quote_total": 1220.0,
-      "predicted_error_pct": -0.0472,
-      "predicted_actual": 1162.42,
-      "expected_loss": 57.58,
-      "visits_planned": 1,
-      "start_at": "2026-07-13T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
+        "4 visits planned - confirm scope has not crept"
       ]
     },
     {
@@ -152053,30 +152534,6 @@
       "risk": "low",
       "recommendations": [
         "6 visits planned - confirm scope has not crept"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7454",
-      "job_number": 7454,
-      "quote_number": "6094",
-      "jobber_uri": null,
-      "client": "Danny gomez",
-      "bidder": "Trevor Stevens",
-      "category": "PHC / Sprays",
-      "title": "PHC spring 2026",
-      "quote_total": 555.0,
-      "predicted_error_pct": -0.0794,
-      "predicted_actual": 510.93,
-      "expected_loss": 44.07,
-      "visits_planned": 4,
-      "start_at": "2026-04-10T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 7,
-      "risk": "low",
-      "recommendations": [
-        "4 visits planned - confirm scope has not crept"
       ]
     },
     {
@@ -152249,78 +152706,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7692",
-      "job_number": 7692,
-      "quote_number": "6728",
-      "jobber_uri": null,
-      "client": "Lara Cook",
-      "bidder": "David Thunell",
-      "category": "PHC / Sprays",
-      "title": "Pruning and plant health care, summer 2026 - Lara Cook - River Heights",
-      "quote_total": 2444.75,
-      "predicted_error_pct": -0.0107,
-      "predicted_actual": 2418.53,
-      "expected_loss": 26.22,
-      "visits_planned": 1,
-      "start_at": "2026-07-21T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 5,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7645",
-      "job_number": 7645,
-      "quote_number": "6666",
-      "jobber_uri": null,
-      "client": "Joe Thurston",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Summer 2026 - Joe Thurston - Smithfield ",
-      "quote_total": 870.0,
-      "predicted_error_pct": -0.0294,
-      "predicted_actual": 844.46,
-      "expected_loss": 25.54,
-      "visits_planned": 1,
-      "start_at": "2026-07-01T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 77,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7702",
-      "job_number": 7702,
-      "quote_number": "6742",
-      "jobber_uri": null,
-      "client": "Adena Dundas",
-      "bidder": "David Thunell",
-      "category": "PHC / Sprays",
-      "title": "Pruning, plant health care, and removal, summer 2026 - Adena Dundas - Logan",
-      "quote_total": 2345.5,
-      "predicted_error_pct": -0.0107,
-      "predicted_actual": 2320.34,
-      "expected_loss": 25.16,
-      "visits_planned": 1,
-      "start_at": "2026-07-29T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 5,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7709",
       "job_number": 7709,
       "quote_number": "6745",
@@ -152338,6 +152723,30 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 142,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7645",
+      "job_number": 7645,
+      "quote_number": "6666",
+      "jobber_uri": null,
+      "client": "Joe Thurston",
+      "bidder": "Ben Ash",
+      "category": "Pruning",
+      "title": "Pruning Summer 2026 - Joe Thurston - Smithfield ",
+      "quote_total": 870.0,
+      "predicted_error_pct": -0.0268,
+      "predicted_actual": 846.73,
+      "expected_loss": 23.27,
+      "visits_planned": 1,
+      "start_at": "2026-07-01T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 79,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -152393,23 +152802,47 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7647",
-      "job_number": 7647,
-      "quote_number": "6587",
+      "reference": "Job #7724",
+      "job_number": 7724,
+      "quote_number": "6739",
       "jobber_uri": null,
-      "client": "Chris Browning",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Spring 2026 -  Chris Browning - Smithfield",
-      "quote_total": 710.0,
-      "predicted_error_pct": -0.0294,
-      "predicted_actual": 689.16,
-      "expected_loss": 20.84,
+      "client": "Steffanie  Norton",
+      "bidder": "David Thunell",
+      "category": "PHC / Sprays",
+      "title": "Pruning, plant health care + removal, summer 2026 - Steffanie Norton - Logan",
+      "quote_total": 1885.0,
+      "predicted_error_pct": -0.0113,
+      "predicted_actual": 1863.78,
+      "expected_loss": 21.22,
       "visits_planned": 1,
-      "start_at": "2026-07-01T06:00:00Z",
+      "start_at": "2026-07-30T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 77,
+      "history_n": 11,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7720",
+      "job_number": 7720,
+      "quote_number": "6751",
+      "jobber_uri": null,
+      "client": "Flora Shrode",
+      "bidder": "No Bid",
+      "category": "Pruning",
+      "title": "Pruning, summer 2026 - Flora Shrode - North Logan",
+      "quote_total": 647.5,
+      "predicted_error_pct": -0.032,
+      "predicted_actual": 626.8,
+      "expected_loss": 20.7,
+      "visits_planned": 1,
+      "start_at": "2026-07-07T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 142,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -152440,6 +152873,30 @@
       ]
     },
     {
+      "type": "scheduled_job",
+      "reference": "Job #7647",
+      "job_number": 7647,
+      "quote_number": "6587",
+      "jobber_uri": null,
+      "client": "Chris Browning",
+      "bidder": "Ben Ash",
+      "category": "Pruning",
+      "title": "Pruning Spring 2026 -  Chris Browning - Smithfield",
+      "quote_total": 710.0,
+      "predicted_error_pct": -0.0268,
+      "predicted_actual": 691.01,
+      "expected_loss": 18.99,
+      "visits_planned": 1,
+      "start_at": "2026-07-01T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 79,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
       "type": "awaiting_response",
       "reference": "Quote #6643",
       "quote_number": "6643",
@@ -152449,63 +152906,15 @@
       "category": "Pruning",
       "title": "Pruning Summer 2026 - Kaylon Anderson - Logan (Central)",
       "quote_total": 670.0,
-      "predicted_error_pct": -0.0294,
-      "predicted_actual": 650.33,
-      "expected_loss": 19.67,
+      "predicted_error_pct": -0.0268,
+      "predicted_actual": 652.08,
+      "expected_loss": 17.92,
       "visits_planned": null,
       "sent_at": "2026-05-14T18:22:52Z",
       "created_at": "2026-05-14T18:21:03Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 77,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6542",
-      "quote_number": "6542",
-      "client": "Susan Porter",
-      "jobber_uri": "https://secure.getjobber.com/quotes/57168046",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Spring 2026 - Susan Porter - Wellsville",
-      "quote_total": 585.0,
-      "predicted_error_pct": -0.0294,
-      "predicted_actual": 567.83,
-      "expected_loss": 17.17,
-      "visits_planned": null,
-      "sent_at": "2026-04-08T14:48:11Z",
-      "created_at": "2026-04-08T14:46:29Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 77,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6476",
-      "quote_number": "6476",
-      "client": "Kylie White",
-      "jobber_uri": "https://secure.getjobber.com/quotes/56031873",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Spring 2026 - Kylie White - Nibley",
-      "quote_total": 575.0,
-      "predicted_error_pct": -0.0294,
-      "predicted_actual": 558.12,
-      "expected_loss": 16.88,
-      "visits_planned": null,
-      "sent_at": "2026-03-18T17:09:55Z",
-      "created_at": "2026-03-18T17:09:18Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 77,
+      "history_n": 79,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -152560,6 +152969,78 @@
       ]
     },
     {
+      "type": "awaiting_response",
+      "reference": "Quote #6772",
+      "quote_number": "6772",
+      "client": "Anna Trappett",
+      "jobber_uri": "https://secure.getjobber.com/quotes/61475557",
+      "bidder": "David Thunell",
+      "category": "PHC / Sprays",
+      "title": "Pruning and plant health care, summer 2026 - Anna Trappett - North Logan",
+      "quote_total": 1395.0,
+      "predicted_error_pct": -0.0113,
+      "predicted_actual": 1379.3,
+      "expected_loss": 15.7,
+      "visits_planned": null,
+      "sent_at": "2026-06-30T04:05:02Z",
+      "created_at": "2026-06-25T19:14:25Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 11,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6542",
+      "quote_number": "6542",
+      "client": "Susan Porter",
+      "jobber_uri": "https://secure.getjobber.com/quotes/57168046",
+      "bidder": "Ben Ash",
+      "category": "Pruning",
+      "title": "Pruning Spring 2026 - Susan Porter - Wellsville",
+      "quote_total": 585.0,
+      "predicted_error_pct": -0.0268,
+      "predicted_actual": 569.35,
+      "expected_loss": 15.65,
+      "visits_planned": null,
+      "sent_at": "2026-04-08T14:48:11Z",
+      "created_at": "2026-04-08T14:46:29Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 79,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6476",
+      "quote_number": "6476",
+      "client": "Kylie White",
+      "jobber_uri": "https://secure.getjobber.com/quotes/56031873",
+      "bidder": "Ben Ash",
+      "category": "Pruning",
+      "title": "Pruning Spring 2026 - Kylie White - Nibley",
+      "quote_total": 575.0,
+      "predicted_error_pct": -0.0268,
+      "predicted_actual": 559.62,
+      "expected_loss": 15.38,
+      "visits_planned": null,
+      "sent_at": "2026-03-18T17:09:55Z",
+      "created_at": "2026-03-18T17:09:18Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 79,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
       "type": "scheduled_job",
       "reference": "Job #7672",
       "job_number": 7672,
@@ -152570,38 +153051,14 @@
       "category": "Pruning",
       "title": "Pruning options, summer 2026 - Dolan Bayless - Logan (Lundstrom)",
       "quote_total": 935.0,
-      "predicted_error_pct": -0.0164,
-      "predicted_actual": 919.65,
-      "expected_loss": 15.35,
+      "predicted_error_pct": -0.0161,
+      "predicted_actual": 919.94,
+      "expected_loss": 15.06,
       "visits_planned": 1,
       "start_at": "2026-07-14T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 49,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6590",
-      "quote_number": "6590",
-      "client": "Jasmine  Chen",
-      "jobber_uri": "https://secure.getjobber.com/quotes/58073830",
-      "bidder": "Ben Ash",
-      "category": "Pruning",
-      "title": "Pruning Spring 2026 - Jasmine Chen - North Logan",
-      "quote_total": 510.0,
-      "predicted_error_pct": -0.0294,
-      "predicted_actual": 495.03,
-      "expected_loss": 14.97,
-      "visits_planned": null,
-      "sent_at": "2026-04-30T23:29:42Z",
-      "created_at": "2026-04-23T17:46:24Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 77,
+      "history_n": 50,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -152618,14 +153075,38 @@
       "category": "Pruning",
       "title": "Pruning, summer 2026 - Carol Russell - Logan (Island)",
       "quote_total": 865.0,
-      "predicted_error_pct": -0.0164,
-      "predicted_actual": 850.8,
-      "expected_loss": 14.2,
+      "predicted_error_pct": -0.0161,
+      "predicted_actual": 851.07,
+      "expected_loss": 13.93,
       "visits_planned": 1,
       "start_at": "2026-07-28T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 49,
+      "history_n": 50,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6590",
+      "quote_number": "6590",
+      "client": "Jasmine  Chen",
+      "jobber_uri": "https://secure.getjobber.com/quotes/58073830",
+      "bidder": "Ben Ash",
+      "category": "Pruning",
+      "title": "Pruning Spring 2026 - Jasmine Chen - North Logan",
+      "quote_total": 510.0,
+      "predicted_error_pct": -0.0268,
+      "predicted_actual": 496.36,
+      "expected_loss": 13.64,
+      "visits_planned": null,
+      "sent_at": "2026-04-30T23:29:42Z",
+      "created_at": "2026-04-23T17:46:24Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 79,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -152666,14 +153147,14 @@
       "category": "Pruning",
       "title": "Clearance pruning, summer 2026 - Kim Allsop - River Heights",
       "quote_total": 595.0,
-      "predicted_error_pct": -0.0164,
-      "predicted_actual": 585.23,
-      "expected_loss": 9.77,
+      "predicted_error_pct": -0.0161,
+      "predicted_actual": 585.42,
+      "expected_loss": 9.58,
       "visits_planned": 1,
       "start_at": "2026-07-14T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 49,
+      "history_n": 50,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -153184,6 +153665,54 @@
       ]
     },
     {
+      "type": "awaiting_response",
+      "reference": "Quote #6734",
+      "quote_number": "6734",
+      "client": "Taylor Fotheringham",
+      "jobber_uri": "https://secure.getjobber.com/quotes/61053097",
+      "bidder": "No Bid",
+      "category": "PHC / Sprays",
+      "title": "Stump cut-down and herbicide, summer 2026 - Taylor Fotheringham - Logan",
+      "quote_total": 150.0,
+      "predicted_error_pct": 0.0489,
+      "predicted_actual": 157.33,
+      "expected_loss": -7.33,
+      "visits_planned": null,
+      "sent_at": "2026-06-17T22:03:00Z",
+      "created_at": "2026-06-17T19:28:32Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 18,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7024",
+      "job_number": 7024,
+      "quote_number": null,
+      "jobber_uri": null,
+      "client": "Joyce Caliendo",
+      "bidder": "No Bid",
+      "category": "PHC / Sprays",
+      "title": "PHC - Joyce Caliendo",
+      "quote_total": 152.0,
+      "predicted_error_pct": 0.0489,
+      "predicted_actual": 159.43,
+      "expected_loss": -7.43,
+      "visits_planned": 2,
+      "start_at": "2026-09-25T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 18,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
       "type": "scheduled_job",
       "reference": "Job #7468",
       "job_number": 7468,
@@ -153205,54 +153734,6 @@
       "risk": "low",
       "recommendations": [
         "6 visits planned - confirm scope has not crept"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6734",
-      "quote_number": "6734",
-      "client": "Taylor Fotheringham",
-      "jobber_uri": "https://secure.getjobber.com/quotes/61053097",
-      "bidder": "No Bid",
-      "category": "PHC / Sprays",
-      "title": "Stump cut-down and herbicide, summer 2026 - Taylor Fotheringham - Logan",
-      "quote_total": 150.0,
-      "predicted_error_pct": 0.0502,
-      "predicted_actual": 157.53,
-      "expected_loss": -7.53,
-      "visits_planned": null,
-      "sent_at": "2026-06-17T22:03:00Z",
-      "created_at": "2026-06-17T19:28:32Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 17,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7024",
-      "job_number": 7024,
-      "quote_number": null,
-      "jobber_uri": null,
-      "client": "Joyce Caliendo",
-      "bidder": "No Bid",
-      "category": "PHC / Sprays",
-      "title": "PHC - Joyce Caliendo",
-      "quote_total": 152.0,
-      "predicted_error_pct": 0.0502,
-      "predicted_actual": 159.63,
-      "expected_loss": -7.63,
-      "visits_planned": 2,
-      "start_at": "2026-09-25T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 17,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
       ]
     },
     {
@@ -153534,7 +154015,7 @@
       "predicted_actual": 552.48,
       "expected_loss": -22.48,
       "visits_planned": 1,
-      "start_at": "2026-07-17T06:00:00Z",
+      "start_at": "2026-07-07T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 15,
@@ -153617,6 +154098,54 @@
     },
     {
       "type": "scheduled_job",
+      "reference": "Job #7726",
+      "job_number": 7726,
+      "quote_number": "6768",
+      "jobber_uri": null,
+      "client": "Fred Brasfield",
+      "bidder": "David Thunell",
+      "category": "Pruning",
+      "title": "Pruning and supplemental support, summer 2026 - Fred Brasfield - Wellsville",
+      "quote_total": 465.0,
+      "predicted_error_pct": 0.0622,
+      "predicted_actual": 493.93,
+      "expected_loss": -28.93,
+      "visits_planned": 1,
+      "start_at": "2026-07-13T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 44,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6771",
+      "quote_number": "6771",
+      "client": "Kathy McConkie",
+      "jobber_uri": "https://secure.getjobber.com/quotes/61475515",
+      "bidder": "David Thunell",
+      "category": "Pruning",
+      "title": "Structural pruning, summer 2026 - Kathy McConkie - Smithfield",
+      "quote_total": 190.0,
+      "predicted_error_pct": 0.1542,
+      "predicted_actual": 219.29,
+      "expected_loss": -29.29,
+      "visits_planned": null,
+      "sent_at": "2026-06-29T23:51:51Z",
+      "created_at": "2026-06-25T19:14:02Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 22,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "scheduled_job",
       "reference": "Job #7655",
       "job_number": 7655,
       "quote_number": "6630",
@@ -153631,6 +154160,30 @@
       "expected_loss": -30.43,
       "visits_planned": 1,
       "start_at": "2026-07-07T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 15,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7728",
+      "job_number": 7728,
+      "quote_number": "6766",
+      "jobber_uri": null,
+      "client": "Andrew Ruesch",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Pruning, removal and stump grinding, summer 2026 - Andrew Ruesch - River Heights",
+      "quote_total": 265.0,
+      "predicted_error_pct": 0.1186,
+      "predicted_actual": 296.44,
+      "expected_loss": -31.44,
+      "visits_planned": 1,
+      "start_at": "2026-07-13T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 15,
@@ -153727,6 +154280,30 @@
       "visits_planned": null,
       "sent_at": "2026-04-02T16:02:39Z",
       "created_at": "2026-04-02T16:02:25Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 37,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "scheduled_job",
+      "reference": "Job #7725",
+      "job_number": 7725,
+      "quote_number": "6667",
+      "jobber_uri": null,
+      "client": "Gerry Heartly",
+      "bidder": "Ben Ash",
+      "category": "Pruning",
+      "title": "Pruning Summer 2026 - Gerry Heartly - North Logan",
+      "quote_total": 130.0,
+      "predicted_error_pct": 0.4625,
+      "predicted_actual": 190.12,
+      "expected_loss": -60.12,
+      "visits_planned": 1,
+      "start_at": "2026-07-07T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 37,
@@ -153833,9 +154410,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 125,
-    "total_quoted": 236706.7,
-    "total_predicted": 220280.06,
-    "total_expected_loss": 16426.64
+    "total_count": 133,
+    "total_quoted": 237967.2,
+    "total_predicted": 221062.99,
+    "total_expected_loss": 16904.21
   }
 }
