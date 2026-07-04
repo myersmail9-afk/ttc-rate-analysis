@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-07-03T11:48:59.402849+00:00",
+    "generated_at": "2026-07-04T11:07:01.819099+00:00",
     "jobs_pulled": 2913,
     "quote_records_count": 1900,
     "lost_quotes_count": 1773,
-    "predictions_count": 137,
+    "predictions_count": 134,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -24723,11 +24723,11 @@
       "expenses": 0.0,
       "labour_cost": 103.65,
       "hours": 3.46,
-      "revenue": 220.0,
-      "rate": 63.68,
-      "true_rate": 33.68,
-      "profit_amount": 116.35,
-      "profit_pct": 52.89,
+      "revenue": 615.0,
+      "rate": 178.0,
+      "true_rate": 148.0,
+      "profit_amount": 511.35,
+      "profit_pct": 83.15,
       "month": "May",
       "month_num": 5,
       "year": 2026,
@@ -24737,7 +24737,7 @@
       "quote_total": null,
       "bid_error_dollars": null,
       "bid_error_pct": null,
-      "job_status": "requires_invoicing"
+      "job_status": "archived"
     },
     {
       "job_num": 7488,
@@ -150867,12 +150867,12 @@
       "overall": {
         "jobs": 507,
         "hours": 7481.5,
-        "revenue": 917401.98,
+        "revenue": 917796.98,
         "expenses": 33180.1,
         "labour_cost": 167913.95,
-        "net_revenue": 884221.88,
-        "avg_rate": 118.19,
-        "true_rate": 95.74
+        "net_revenue": 884616.88,
+        "avg_rate": 118.24,
+        "true_rate": 95.8
       },
       "by_month": {
         "January": {
@@ -150918,12 +150918,12 @@
         "May": {
           "jobs": 68,
           "hours": 542.76,
-          "revenue": 69370.38,
+          "revenue": 69765.38,
           "expenses": 2879.55,
           "labour_cost": 12715.79,
-          "net_revenue": 66490.83,
-          "avg_rate": 122.51,
-          "true_rate": 99.08
+          "net_revenue": 66885.83,
+          "avg_rate": 123.23,
+          "true_rate": 99.8
         },
         "June": {
           "jobs": 81,
@@ -151502,12 +151502,12 @@
     "May": {
       "jobs": 379,
       "hours": 2819.9,
-      "revenue": 313670.79,
+      "revenue": 314065.79,
       "expenses": 5251.03,
       "labour_cost": 44455.42,
-      "net_revenue": 308419.76,
-      "avg_rate": 109.37,
-      "true_rate": 93.61
+      "net_revenue": 308814.76,
+      "avg_rate": 109.51,
+      "true_rate": 93.75
     },
     "June": {
       "jobs": 408,
@@ -152106,31 +152106,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 29,
-      "risk": "medium",
-      "recommendations": [
-        "Schedule buffer time, likely to run long",
-        "Removals run -12% across all bidders; build buffer into schedule"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6800",
-      "quote_number": "6800",
-      "client": "Trisha Balls",
-      "jobber_uri": "https://secure.getjobber.com/quotes/61836490",
-      "bidder": "Trevor Stevens",
-      "category": "Removals",
-      "title": "Removal- Summer 2026- Trisha Balls- Clarkston",
-      "quote_total": 3535.0,
-      "predicted_error_pct": -0.1049,
-      "predicted_actual": 3164.25,
-      "expected_loss": 370.75,
-      "visits_planned": null,
-      "sent_at": "2026-07-02T21:04:03Z",
-      "created_at": "2026-07-02T21:02:39Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 5,
       "risk": "medium",
       "recommendations": [
         "Schedule buffer time, likely to run long",
@@ -153228,30 +153203,6 @@
     },
     {
       "type": "awaiting_response",
-      "reference": "Quote #6792",
-      "quote_number": "6792",
-      "client": "Dave and Christine Higham",
-      "jobber_uri": "https://secure.getjobber.com/quotes/61768934",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Chokecherry pruning and thinning, summer 2026 - Christine Higham - Logan",
-      "quote_total": 1015.0,
-      "predicted_error_pct": -0.0878,
-      "predicted_actual": 925.91,
-      "expected_loss": 89.09,
-      "visits_planned": null,
-      "sent_at": "2026-07-02T21:40:52Z",
-      "created_at": "2026-07-01T19:30:32Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 38,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
       "reference": "Quote #6722",
       "quote_number": "6722",
       "client": "Robyn Harper",
@@ -153966,30 +153917,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 81,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6791",
-      "quote_number": "6791",
-      "client": "Merrill Haderlie",
-      "jobber_uri": "https://secure.getjobber.com/quotes/61768875",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, summer 2026 - Merrill Haderlie - Logan",
-      "quote_total": 885.0,
-      "predicted_error_pct": -0.0161,
-      "predicted_actual": 870.75,
-      "expected_loss": 14.25,
-      "visits_planned": null,
-      "sent_at": "2026-07-02T21:02:44Z",
-      "created_at": "2026-07-01T19:29:53Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 50,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -154716,30 +154643,6 @@
       ]
     },
     {
-      "type": "awaiting_response",
-      "reference": "Quote #6797",
-      "quote_number": "6797",
-      "client": "Jason Holladay",
-      "jobber_uri": "https://secure.getjobber.com/quotes/61813557",
-      "bidder": "No Bid",
-      "category": "PHC / Sprays",
-      "title": "PHC, pruning and removals, summer 2026 - Jason Holladay - Providence",
-      "quote_total": 195.0,
-      "predicted_error_pct": 0.0489,
-      "predicted_actual": 204.53,
-      "expected_loss": -9.53,
-      "visits_planned": null,
-      "sent_at": "2026-07-03T00:26:49Z",
-      "created_at": "2026-07-02T16:29:36Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 18,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "scheduled_job",
       "reference": "Job #7504",
       "job_number": 7504,
@@ -154782,6 +154685,30 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 45,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6797",
+      "quote_number": "6797",
+      "client": "Jason Holladay",
+      "jobber_uri": "https://secure.getjobber.com/quotes/61813557",
+      "bidder": "No Bid",
+      "category": "PHC / Sprays",
+      "title": "PHC, pruning and removals, summer 2026 - Jason Holladay - Providence",
+      "quote_total": 240.0,
+      "predicted_error_pct": 0.0489,
+      "predicted_actual": 251.73,
+      "expected_loss": -11.73,
+      "visits_planned": null,
+      "sent_at": "2026-07-03T00:26:49Z",
+      "created_at": "2026-07-02T16:29:36Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 18,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -155221,9 +155148,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 137,
-    "total_quoted": 252596.65,
-    "total_predicted": 234174.39,
-    "total_expected_loss": 18422.26
+    "total_count": 134,
+    "total_quoted": 247206.65,
+    "total_predicted": 229260.68,
+    "total_expected_loss": 17945.97
   }
 }
