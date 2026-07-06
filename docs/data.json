@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-07-05T11:18:15.189148+00:00",
+    "generated_at": "2026-07-06T13:06:17.466475+00:00",
     "jobs_pulled": 2913,
     "quote_records_count": 1900,
     "lost_quotes_count": 1773,
-    "predictions_count": 134,
+    "predictions_count": 128,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -153588,30 +153588,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7709",
-      "job_number": 7709,
-      "quote_number": "6745",
-      "jobber_uri": null,
-      "client": "Marcia Baker",
-      "bidder": "No Bid",
-      "category": "Pruning",
-      "title": "Pruning, summer 2026 - Marcia Baker - River Heights",
-      "quote_total": 730.0,
-      "predicted_error_pct": -0.0336,
-      "predicted_actual": 705.44,
-      "expected_loss": 24.56,
-      "visits_planned": 1,
-      "start_at": "2026-07-06T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 143,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7661",
       "job_number": 7661,
       "quote_number": "6681",
@@ -153773,30 +153749,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 43,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7688",
-      "job_number": 7688,
-      "quote_number": "6715",
-      "jobber_uri": null,
-      "client": "Wasatch Commercial Management - Jackie Norman",
-      "bidder": "No Bid",
-      "category": "Removals",
-      "title": "Removals + stump grinding, summer 2026 \u2014 Elements/Riverwoods \u2014 Wasatch Mgmt",
-      "quote_total": 1107.8,
-      "predicted_error_pct": -0.0151,
-      "predicted_actual": 1091.09,
-      "expected_loss": 16.71,
-      "visits_planned": 2,
-      "start_at": "2026-07-06T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 100,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -154499,30 +154451,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7715",
-      "job_number": 7715,
-      "quote_number": "6711",
-      "jobber_uri": null,
-      "client": "Joyce Ringer",
-      "bidder": "No Bid",
-      "category": "Pruning",
-      "title": "Clearance pruning, summer 2026 - Joyce Ringer - Logan",
-      "quote_total": 485.0,
-      "predicted_error_pct": 0.0084,
-      "predicted_actual": 489.09,
-      "expected_loss": -4.09,
-      "visits_planned": 1,
-      "start_at": "2026-07-06T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 94,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6703",
       "quote_number": "6703",
@@ -154740,30 +154668,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7658",
-      "job_number": 7658,
-      "quote_number": "6628",
-      "jobber_uri": null,
-      "client": "Heather Larsen",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, spring 2026 - Heather Larsen - North Logan",
-      "quote_total": 350.0,
-      "predicted_error_pct": 0.0387,
-      "predicted_actual": 363.53,
-      "expected_loss": -13.53,
-      "visits_planned": 1,
-      "start_at": "2026-07-06T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 45,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7726",
       "job_number": 7726,
       "quote_number": "6768",
@@ -154853,30 +154757,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 23,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7654",
-      "job_number": 7654,
-      "quote_number": "6687",
-      "jobber_uri": null,
-      "client": "Dustin Mckay",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removal and stump grinding, spring/summer 2026 - Dustin Mckay - Smithfield ",
-      "quote_total": 652.5,
-      "predicted_error_pct": 0.0424,
-      "predicted_actual": 680.17,
-      "expected_loss": -27.67,
-      "visits_planned": 1,
-      "start_at": "2026-07-06T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 15,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -154997,30 +154877,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 8,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7668",
-      "job_number": 7668,
-      "quote_number": "6689",
-      "jobber_uri": null,
-      "client": "Kelsey Graham",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removal, spring/summer 2026 - Kelsey Graham - Smithfield",
-      "quote_total": 375.0,
-      "predicted_error_pct": 0.1186,
-      "predicted_actual": 419.49,
-      "expected_loss": -44.49,
-      "visits_planned": 1,
-      "start_at": "2026-07-06T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 15,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -155148,9 +155004,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 134,
-    "total_quoted": 247206.65,
-    "total_predicted": 229260.68,
-    "total_expected_loss": 17945.97
+    "total_count": 128,
+    "total_quoted": 243506.35,
+    "total_predicted": 225511.87,
+    "total_expected_loss": 17994.48
   }
 }
