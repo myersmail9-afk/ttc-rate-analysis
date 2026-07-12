@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-07-11T10:30:56.810295+00:00",
+    "generated_at": "2026-07-12T10:48:30.299401+00:00",
     "jobs_pulled": 2942,
     "quote_records_count": 1921,
-    "lost_quotes_count": 1774,
-    "predictions_count": 143,
+    "lost_quotes_count": 1775,
+    "predictions_count": 144,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -130792,6 +130792,18 @@
   ],
   "lost_quotes": [
     {
+      "quote_number": "6719",
+      "client": "Mary Briggs Ott",
+      "bidder": "No Bid",
+      "category": "Removals",
+      "quote_total": 15216.7,
+      "jobber_uri": "https://secure.getjobber.com/quotes/60771146",
+      "created_at": "2026-06-11T23:53:35Z",
+      "sent_at": "2026-06-15T02:37:26Z",
+      "transitioned_at": "2026-07-11T14:49:55Z",
+      "days_to_close": 26.5
+    },
+    {
       "quote_number": "6748",
       "client": "Craig Rasmuson",
       "bidder": "David Thunell",
@@ -152963,10 +152975,10 @@
     },
     "No Bid": {
       "won": 895,
-      "lost": 1456,
+      "lost": 1457,
       "won_dollars": 1284685.52,
-      "lost_dollars": 3380300.3,
-      "win_rate": 0.3807
+      "lost_dollars": 3395517.0,
+      "win_rate": 0.3805
     },
     "Trevor Stevens": {
       "won": 144,
@@ -153196,11 +153208,11 @@
       },
       "Removals": {
         "won": 288,
-        "lost": 601,
-        "total": 889,
-        "win_rate": 0.324,
+        "lost": 602,
+        "total": 890,
+        "win_rate": 0.3236,
         "won_dollars": 464348.55,
-        "lost_dollars": 1752079.85
+        "lost_dollars": 1767296.55
       },
       "Storm / Hazard": {
         "won": 0,
@@ -153282,31 +153294,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 5,
-      "risk": "high",
-      "recommendations": [
-        "Re-quote with David before sending crew",
-        "Removals run -12% across all bidders; build buffer into schedule"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6719",
-      "quote_number": "6719",
-      "client": "Mary Briggs Ott",
-      "jobber_uri": "https://secure.getjobber.com/quotes/60771146",
-      "bidder": "No Bid",
-      "category": "Removals",
-      "title": "Removals, summer 2026 - Mary Briggs Ott - Nibley",
-      "quote_total": 15216.7,
-      "predicted_error_pct": -0.1572,
-      "predicted_actual": 12824.62,
-      "expected_loss": 2392.08,
-      "visits_planned": null,
-      "sent_at": "2026-06-15T02:37:26Z",
-      "created_at": "2026-06-11T23:53:35Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 7,
       "risk": "high",
       "recommendations": [
         "Re-quote with David before sending crew",
@@ -154244,6 +154231,30 @@
     },
     {
       "type": "awaiting_response",
+      "reference": "Quote #6812",
+      "quote_number": "6812",
+      "client": "Sher Lisonbee",
+      "jobber_uri": "https://secure.getjobber.com/quotes/62107720",
+      "bidder": "David Thunell",
+      "category": "Pruning",
+      "title": "Pruning and iron treatment, summer 2026 - Sher Lisonbee - Logan",
+      "quote_total": 2570.0,
+      "predicted_error_pct": -0.045,
+      "predicted_actual": 2454.29,
+      "expected_loss": 115.71,
+      "visits_planned": null,
+      "sent_at": "2026-07-11T17:03:16Z",
+      "created_at": "2026-07-08T22:50:52Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 33,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
       "reference": "Quote #6588",
       "quote_number": "6588",
       "client": "Del  masterhan",
@@ -154522,6 +154533,30 @@
       "expected_loss": 98.69,
       "visits_planned": 1,
       "start_at": "2026-07-13T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 31,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6820",
+      "quote_number": "6820",
+      "client": "Bill Peterson",
+      "jobber_uri": "https://secure.getjobber.com/quotes/62178756",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Pruning and optional pine removal, summer 2026 - Bill Peterson - Logan",
+      "quote_total": 1205.0,
+      "predicted_error_pct": -0.0809,
+      "predicted_actual": 1107.52,
+      "expected_loss": 97.48,
+      "visits_planned": null,
+      "sent_at": "2026-07-11T14:33:43Z",
+      "created_at": "2026-07-09T23:04:03Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 31,
@@ -156717,9 +156752,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 143,
-    "total_quoted": 269486.7,
-    "total_predicted": 250235.74,
-    "total_expected_loss": 19250.96
+    "total_count": 144,
+    "total_quoted": 258045.0,
+    "total_predicted": 240972.93,
+    "total_expected_loss": 17072.07
   }
 }
