@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-07-12T10:48:30.299401+00:00",
+    "generated_at": "2026-07-13T12:25:04.862131+00:00",
     "jobs_pulled": 2942,
     "quote_records_count": 1921,
     "lost_quotes_count": 1775,
-    "predictions_count": 144,
+    "predictions_count": 135,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -154158,30 +154158,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7695",
-      "job_number": 7695,
-      "quote_number": "6732",
-      "jobber_uri": null,
-      "client": "Jason  Tuttle",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Silver birch care, fruit-tree pruning + volunteer removals, summer 2026 - Jason Tuttle - Logan",
-      "quote_total": 1544.5,
-      "predicted_error_pct": -0.0809,
-      "predicted_actual": 1419.56,
-      "expected_loss": 124.94,
-      "visits_planned": 1,
-      "start_at": "2026-07-13T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 31,
-      "risk": "low",
-      "recommendations": [
-        "Removals run -12% across all bidders; build buffer into schedule"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6770",
       "quote_number": "6770",
@@ -154224,30 +154200,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 5,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6812",
-      "quote_number": "6812",
-      "client": "Sher Lisonbee",
-      "jobber_uri": "https://secure.getjobber.com/quotes/62107720",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning and iron treatment, summer 2026 - Sher Lisonbee - Logan",
-      "quote_total": 2570.0,
-      "predicted_error_pct": -0.045,
-      "predicted_actual": 2454.29,
-      "expected_loss": 115.71,
-      "visits_planned": null,
-      "sent_at": "2026-07-11T17:03:16Z",
-      "created_at": "2026-07-08T22:50:52Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 33,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -154512,30 +154464,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 26,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7671",
-      "job_number": 7671,
-      "quote_number": "6683",
-      "jobber_uri": null,
-      "client": "Tom Jensen",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Pruning and removals, summer 2026 - Tom Jensen - Logan (Thrushwood)",
-      "quote_total": 1220.0,
-      "predicted_error_pct": -0.0809,
-      "predicted_actual": 1121.31,
-      "expected_loss": 98.69,
-      "visits_planned": 1,
-      "start_at": "2026-07-13T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 31,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -154975,30 +154903,6 @@
       ]
     },
     {
-      "type": "awaiting_response",
-      "reference": "Quote #6811",
-      "quote_number": "6811",
-      "client": "Liz Hunsaker",
-      "jobber_uri": "https://secure.getjobber.com/quotes/62107665",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Pruning and removal, summer 2026 - Liz Hunsaker - Providence",
-      "quote_total": 2865.0,
-      "predicted_error_pct": -0.0205,
-      "predicted_actual": 2806.26,
-      "expected_loss": 58.74,
-      "visits_planned": null,
-      "sent_at": "2026-07-10T21:24:36Z",
-      "created_at": "2026-07-08T22:49:54Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 26,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "scheduled_job",
       "reference": "Job #7750",
       "job_number": 7750,
@@ -155134,30 +155038,6 @@
       "expected_loss": 52.0,
       "visits_planned": 2,
       "start_at": "2026-07-10T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 26,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7661",
-      "job_number": 7661,
-      "quote_number": "6681",
-      "jobber_uri": null,
-      "client": "Jim Morgan",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removal, summer 2026 - Jim Morgan - Mendon",
-      "quote_total": 2285.0,
-      "predicted_error_pct": -0.0205,
-      "predicted_actual": 2238.15,
-      "expected_loss": 46.85,
-      "visits_planned": 1,
-      "start_at": "2026-07-13T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 26,
@@ -155888,30 +155768,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7746",
-      "job_number": 7746,
-      "quote_number": "6778",
-      "jobber_uri": null,
-      "client": "Nancy Watts",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removal, summer 2026 - Nancy Watts - Nibley",
-      "quote_total": 150.0,
-      "predicted_error_pct": 0.0,
-      "predicted_actual": 150.0,
-      "expected_loss": 0.0,
-      "visits_planned": 1,
-      "start_at": "2026-07-13T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 5,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7652",
       "job_number": 7652,
       "quote_number": "6663",
@@ -156247,54 +156103,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7741",
-      "job_number": 7741,
-      "quote_number": "6788",
-      "jobber_uri": null,
-      "client": "Bonnie  McMullin",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Tree pruning, summer 2026 - Bonnie McMullin - Hyde Park",
-      "quote_total": 385.0,
-      "predicted_error_pct": 0.0379,
-      "predicted_actual": 399.58,
-      "expected_loss": -14.58,
-      "visits_planned": 1,
-      "start_at": "2026-07-13T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 46,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7726",
-      "job_number": 7726,
-      "quote_number": "6768",
-      "jobber_uri": null,
-      "client": "Fred Brasfield",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning and supplemental support, summer 2026 - Fred Brasfield - Wellsville",
-      "quote_total": 465.0,
-      "predicted_error_pct": 0.0379,
-      "predicted_actual": 482.61,
-      "expected_loss": -17.61,
-      "visits_planned": 1,
-      "start_at": "2026-07-13T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 46,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6814",
       "quote_number": "6814",
@@ -156313,30 +156121,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 46,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7753",
-      "job_number": 7753,
-      "quote_number": "6805",
-      "jobber_uri": null,
-      "client": "Linda/Wally Smith",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Specific-branch pruning, summer 2026 - Linda/Wally Smith - Providence",
-      "quote_total": 100.0,
-      "predicted_error_pct": 0.2069,
-      "predicted_actual": 120.69,
-      "expected_loss": -20.69,
-      "visits_planned": 1,
-      "start_at": "2026-07-13T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 23,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -156752,9 +156536,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 144,
-    "total_quoted": 258045.0,
-    "total_predicted": 240972.93,
-    "total_expected_loss": 17072.07
+    "total_count": 135,
+    "total_quoted": 246460.5,
+    "total_predicted": 229780.48,
+    "total_expected_loss": 16680.02
   }
 }
