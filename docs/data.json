@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-07-19T10:48:38.866822+00:00",
+    "generated_at": "2026-07-20T12:02:27.078087+00:00",
     "jobs_pulled": 2960,
     "quote_records_count": 1934,
     "lost_quotes_count": 1774,
-    "predictions_count": 110,
+    "predictions_count": 107,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -53534,13 +53534,13 @@
       "category": "Other",
       "title": "BBT tree work - Bruce Anderson - Mendon",
       "expenses": 0.0,
-      "labour_cost": 122.36,
+      "labour_cost": 122.35,
       "hours": 6.06,
       "revenue": 580.0,
       "rate": 95.78,
-      "true_rate": 75.57,
-      "profit_amount": 457.64,
-      "profit_pct": 78.9,
+      "true_rate": 75.58,
+      "profit_amount": 457.65,
+      "profit_pct": 78.91,
       "month": "July",
       "month_num": 7,
       "year": 2026,
@@ -153354,7 +153354,7 @@
         "hours": 13229.82,
         "revenue": 1432502.93,
         "expenses": 21160.51,
-        "labour_cost": 250964.88,
+        "labour_cost": 250964.87,
         "net_revenue": 1411342.42,
         "avg_rate": 106.68,
         "true_rate": 87.71
@@ -153425,7 +153425,7 @@
           "hours": 1477.54,
           "revenue": 161766.83,
           "expenses": 1092.55,
-          "labour_cost": 30295.0,
+          "labour_cost": 30294.99,
           "net_revenue": 160674.28,
           "avg_rate": 108.74,
           "true_rate": 88.24
@@ -153731,7 +153731,7 @@
       "hours": 2862.19,
       "revenue": 308522.06,
       "expenses": 11445.53,
-      "labour_cost": 58717.57,
+      "labour_cost": 58717.56,
       "net_revenue": 297076.53,
       "avg_rate": 103.79,
       "true_rate": 83.28
@@ -154801,30 +154801,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7750",
-      "job_number": 7750,
-      "quote_number": "6773",
-      "jobber_uri": null,
-      "client": "John  Lesher",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, summer 2026 - John Lesher - Hyde Park",
-      "quote_total": 2827.25,
-      "predicted_error_pct": -0.0533,
-      "predicted_actual": 2676.67,
-      "expected_loss": 150.58,
-      "visits_planned": 1,
-      "start_at": "2026-07-20T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 34,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6671",
       "quote_number": "6671",
@@ -155251,30 +155227,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 4,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7743",
-      "job_number": 7743,
-      "quote_number": "6779",
-      "jobber_uri": null,
-      "client": "Roger Cook",
-      "bidder": "No Bid",
-      "category": "Removals",
-      "title": "Pruning and removal, summer 2026 - Roger Cook - Wellsville",
-      "quote_total": 2371.5,
-      "predicted_error_pct": -0.0347,
-      "predicted_actual": 2289.19,
-      "expected_loss": 82.31,
-      "visits_planned": 1,
-      "start_at": "2026-07-20T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 62,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -155875,30 +155827,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 81,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7739",
-      "job_number": 7739,
-      "quote_number": "6791",
-      "jobber_uri": null,
-      "client": "Merrill Haderlie",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, summer 2026 - Merrill Haderlie - Logan",
-      "quote_total": 885.0,
-      "predicted_error_pct": -0.0149,
-      "predicted_actual": 871.79,
-      "expected_loss": 13.21,
-      "visits_planned": 1,
-      "start_at": "2026-07-20T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 54,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -156794,9 +156722,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 110,
-    "total_quoted": 228736.75,
-    "total_predicted": 210975.44,
-    "total_expected_loss": 17761.31
+    "total_count": 107,
+    "total_quoted": 222653.0,
+    "total_predicted": 205137.79,
+    "total_expected_loss": 17515.21
   }
 }
