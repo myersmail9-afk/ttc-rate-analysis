@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-07-24T11:16:20.589777+00:00",
+    "generated_at": "2026-07-25T10:49:20.811325+00:00",
     "jobs_pulled": 2970,
     "quote_records_count": 1944,
     "lost_quotes_count": 1774,
-    "predictions_count": 123,
+    "predictions_count": 121,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -156320,30 +156320,6 @@
     },
     {
       "type": "awaiting_response",
-      "reference": "Quote #6872",
-      "quote_number": "6872",
-      "client": "Porter Hall",
-      "jobber_uri": "https://secure.getjobber.com/quotes/62905627",
-      "bidder": "Trevor Stevens",
-      "category": "PHC / Sprays",
-      "title": "PHC renewal 2027 - Porter Hall - Laketown",
-      "quote_total": 504.0,
-      "predicted_error_pct": -0.0794,
-      "predicted_actual": 463.98,
-      "expected_loss": 40.02,
-      "visits_planned": null,
-      "sent_at": "2026-07-23T21:54:14Z",
-      "created_at": "2026-07-23T19:08:58Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 7,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
       "reference": "Quote #6672",
       "quote_number": "6672",
       "client": "Annette Smith",
@@ -156793,30 +156769,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 16,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6852",
-      "quote_number": "6852",
-      "client": "Keith and Marilyn Sedgwick",
-      "jobber_uri": "https://secure.getjobber.com/quotes/62688613",
-      "bidder": "David Thunell",
-      "category": "PHC / Sprays",
-      "title": "Crown reduction pruning and plant health care, summer 2026 - Keith and Marilyn Sedgwick - Logan",
-      "quote_total": 740.0,
-      "predicted_error_pct": -0.0129,
-      "predicted_actual": 730.43,
-      "expected_loss": 9.57,
-      "visits_planned": null,
-      "sent_at": "2026-07-22T23:23:34Z",
-      "created_at": "2026-07-20T17:39:17Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 8,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -157640,9 +157592,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 123,
-    "total_quoted": 252747.85,
-    "total_predicted": 233117.6,
-    "total_expected_loss": 19630.25
+    "total_count": 121,
+    "total_quoted": 251503.85,
+    "total_predicted": 231923.19,
+    "total_expected_loss": 19580.66
   }
 }
