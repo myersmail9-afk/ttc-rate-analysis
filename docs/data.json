@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-08-02T10:54:30.282970+00:00",
+    "generated_at": "2026-08-03T12:44:42.929329+00:00",
     "jobs_pulled": 3010,
     "quote_records_count": 1977,
     "lost_quotes_count": 1775,
-    "predictions_count": 121,
+    "predictions_count": 117,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -156763,6 +156763,31 @@
     },
     {
       "type": "awaiting_response",
+      "reference": "Quote #6884",
+      "quote_number": "6884",
+      "client": "Scott baker",
+      "jobber_uri": "https://secure.getjobber.com/quotes/63044074",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Pruning and removal, summer 2026 - Scott Baker - Hyrum",
+      "quote_total": 13705.0,
+      "predicted_error_pct": -0.0491,
+      "predicted_actual": 13032.19,
+      "expected_loss": 672.81,
+      "visits_planned": null,
+      "sent_at": "2026-08-01T14:35:25Z",
+      "created_at": "2026-07-27T16:54:31Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 8,
+      "risk": "medium",
+      "recommendations": [
+        "Add extra crew capacity that day",
+        "Removals run -12% across all bidders; build buffer into schedule"
+      ]
+    },
+    {
+      "type": "awaiting_response",
       "reference": "Quote #6810",
       "quote_number": "6810",
       "client": "Sydney  Elwood",
@@ -157806,6 +157831,30 @@
       ]
     },
     {
+      "type": "awaiting_response",
+      "reference": "Quote #6870",
+      "quote_number": "6870",
+      "client": "Megan Steadman",
+      "jobber_uri": "https://secure.getjobber.com/quotes/62896000",
+      "bidder": "David Thunell",
+      "category": "Pruning",
+      "title": "Pruning, summer 2026 - Megan Steadman - Logan",
+      "quote_total": 1320.0,
+      "predicted_error_pct": -0.0761,
+      "predicted_actual": 1219.56,
+      "expected_loss": 100.44,
+      "visits_planned": null,
+      "sent_at": "2026-07-29T13:48:08Z",
+      "created_at": "2026-07-23T17:25:03Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 39,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
       "type": "scheduled_job",
       "reference": "Job #7829",
       "job_number": 7829,
@@ -157903,30 +157952,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7767",
-      "job_number": 7767,
-      "quote_number": "6790",
-      "jobber_uri": null,
-      "client": "Dianna  Harth",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, summer 2026 - Dianna Harth - Hyde Park",
-      "quote_total": 1260.0,
-      "predicted_error_pct": -0.0761,
-      "predicted_actual": 1164.12,
-      "expected_loss": 95.88,
-      "visits_planned": 1,
-      "start_at": "2026-08-03T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 39,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7791",
       "job_number": 7791,
       "quote_number": "6773",
@@ -157944,30 +157969,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 63,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6870",
-      "quote_number": "6870",
-      "client": "Megan Steadman",
-      "jobber_uri": "https://secure.getjobber.com/quotes/62896000",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Pruning, summer 2026 - Megan Steadman - Logan",
-      "quote_total": 1155.0,
-      "predicted_error_pct": -0.0761,
-      "predicted_actual": 1067.11,
-      "expected_loss": 87.89,
-      "visits_planned": null,
-      "sent_at": "2026-07-29T13:48:08Z",
-      "created_at": "2026-07-23T17:25:03Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 39,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -158229,30 +158230,6 @@
       "visits_planned": null,
       "sent_at": "2026-07-22T23:52:46Z",
       "created_at": "2026-07-20T19:23:18Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6858",
-      "quote_number": "6858",
-      "client": "Sherry Bullen",
-      "jobber_uri": "https://secure.getjobber.com/quotes/62819097",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Pruning and removals, summer 2026 - Sherry Bullen - North Logan",
-      "quote_total": 3635.0,
-      "predicted_error_pct": -0.0192,
-      "predicted_actual": 3565.12,
-      "expected_loss": 69.88,
-      "visits_planned": null,
-      "sent_at": "2026-07-27T23:25:50Z",
-      "created_at": "2026-07-22T15:36:31Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 28,
@@ -158862,30 +158839,6 @@
       ]
     },
     {
-      "type": "awaiting_response",
-      "reference": "Quote #6867",
-      "quote_number": "6867",
-      "client": "Jamie Grange",
-      "jobber_uri": "https://secure.getjobber.com/quotes/62884313",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Chelated iron treatment, root collar excavation, and structural pruning, summer 2026 - Jamie Grange - Hyde Park",
-      "quote_total": 703.0,
-      "predicted_error_pct": -0.0141,
-      "predicted_actual": 693.11,
-      "expected_loss": 9.89,
-      "visits_planned": null,
-      "sent_at": "2026-07-29T00:13:14Z",
-      "created_at": "2026-07-23T15:16:14Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 57,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "scheduled_job",
       "reference": "Job #7766",
       "job_number": 7766,
@@ -159318,30 +159271,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7764",
-      "job_number": 7764,
-      "quote_number": "6796",
-      "jobber_uri": null,
-      "client": "Alycia Hendrickson",
-      "bidder": "David Thunell",
-      "category": "Crane work",
-      "title": "Crane removals \u2014 4 dead black walnuts, summer 2026 - Alycia Hendrickson - Mendon",
-      "quote_total": 2460.0,
-      "predicted_error_pct": 0.0101,
-      "predicted_actual": 2484.95,
-      "expected_loss": -24.95,
-      "visits_planned": 1,
-      "start_at": "2026-08-03T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 7,
-      "risk": "low",
-      "recommendations": [
-        "Crane jobs run wide of bid; David should sanity-check"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6875",
       "quote_number": "6875",
@@ -159432,30 +159361,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 8,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7795",
-      "job_number": 7795,
-      "quote_number": "6836",
-      "jobber_uri": null,
-      "client": "Jeff Smitten",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removal and pruning, summer 2026 - Jeff Smitten - Providence",
-      "quote_total": 460.0,
-      "predicted_error_pct": 0.0957,
-      "predicted_actual": 504.03,
-      "expected_loss": -44.03,
-      "visits_planned": 1,
-      "start_at": "2026-08-03T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 19,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -159559,9 +159464,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 121,
-    "total_quoted": 257748.94,
-    "total_predicted": 237105.65,
-    "total_expected_loss": 20643.29
+    "total_count": 117,
+    "total_quoted": 263100.94,
+    "total_predicted": 241878.96,
+    "total_expected_loss": 21221.98
   }
 }
