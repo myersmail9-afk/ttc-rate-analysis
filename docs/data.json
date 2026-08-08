@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-08-07T10:15:19.889790+00:00",
-    "jobs_pulled": 3016,
-    "quote_records_count": 1981,
+    "generated_at": "2026-08-08T09:55:46.915933+00:00",
+    "jobs_pulled": 3018,
+    "quote_records_count": 1982,
     "lost_quotes_count": 1777,
     "predictions_count": 104,
     "bidders": [
@@ -61673,6 +61673,62 @@
       "job_status": "archived"
     },
     {
+      "job_num": 7809,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNTIyMDY0MzQ=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/152206434",
+      "client": "Kim Bristol",
+      "bidder": "No Bid",
+      "bidder_raw": null,
+      "category": "Stump grinding",
+      "title": "Stump grinding - 3 stumps (590 S 380 W, Providence)",
+      "expenses": 0.0,
+      "labour_cost": 44.85,
+      "hours": 2.51,
+      "revenue": 210.0,
+      "rate": 83.72,
+      "true_rate": 65.84,
+      "profit_amount": 165.15,
+      "profit_pct": 78.64,
+      "month": "August",
+      "month_num": 8,
+      "year": 2026,
+      "completed_at": "2026-08-07T17:41:49Z",
+      "visit_count": 1,
+      "quote_number": "6880",
+      "quote_total": 210.0,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "job_status": "archived"
+    },
+    {
+      "job_num": 7848,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNTI4OTIxMzc=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/152892137",
+      "client": "Mark Drown",
+      "bidder": "No Bid",
+      "bidder_raw": null,
+      "category": "Pruning",
+      "title": "Emergency pruning \u2013 Mark drown \u2013 Providence",
+      "expenses": 0.0,
+      "labour_cost": 81.35,
+      "hours": 4.26,
+      "revenue": 150.0,
+      "rate": 35.22,
+      "true_rate": 16.12,
+      "profit_amount": 68.65,
+      "profit_pct": 45.77,
+      "month": "August",
+      "month_num": 8,
+      "year": 2026,
+      "completed_at": "2026-08-07T16:47:04Z",
+      "visit_count": 1,
+      "quote_number": null,
+      "quote_total": null,
+      "bid_error_dollars": null,
+      "bid_error_pct": null,
+      "job_status": "requires_invoicing"
+    },
+    {
       "job_num": 6000,
       "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi85ODgwODU2NQ==",
       "jobber_uri": "https://secure.getjobber.com/work_orders/98808565",
@@ -84698,6 +84754,31 @@
       "days_to_close": 5.0,
       "month": "July",
       "month_num": 7,
+      "year": 2026
+    },
+    {
+      "quote_number": "6880",
+      "client": "Kim Bristol",
+      "bidder": "No Bid",
+      "category": "Stump grinding",
+      "quote_total": 210.0,
+      "actual_total": 210.0,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "jobs_count": 1,
+      "job_numbers": [
+        7809
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/62984520",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/152206434",
+      "visit_count": 1,
+      "completed_at": "2026-08-07T17:41:49Z",
+      "sent_at": "2026-07-25T01:55:45Z",
+      "created_at": "2026-07-25T01:12:27Z",
+      "transitioned_at": "2026-07-27T22:26:52Z",
+      "days_to_close": 2.9,
+      "month": "August",
+      "month_num": 8,
       "year": 2026
     },
     {
@@ -156145,14 +156226,14 @@
     },
     "No Bid": {
       "overall": {
-        "jobs": 1713,
-        "hours": 13311.57,
-        "revenue": 1442798.43,
+        "jobs": 1715,
+        "hours": 13318.34,
+        "revenue": 1443158.43,
         "expenses": 21160.51,
-        "labour_cost": 252617.21,
-        "net_revenue": 1421637.92,
-        "avg_rate": 106.8,
-        "true_rate": 87.82
+        "labour_cost": 252743.41,
+        "net_revenue": 1421997.92,
+        "avg_rate": 106.77,
+        "true_rate": 87.79
       },
       "by_month": {
         "January": {
@@ -156226,14 +156307,14 @@
           "true_rate": 89.16
         },
         "August": {
-          "jobs": 171,
-          "hours": 1698.89,
-          "revenue": 191853.25,
+          "jobs": 173,
+          "hours": 1705.66,
+          "revenue": 192213.25,
           "expenses": 1660.34,
-          "labour_cost": 35526.45,
-          "net_revenue": 190192.91,
-          "avg_rate": 111.95,
-          "true_rate": 91.04
+          "labour_cost": 35652.65,
+          "net_revenue": 190552.91,
+          "avg_rate": 111.72,
+          "true_rate": 90.82
         },
         "September": {
           "jobs": 146,
@@ -156532,14 +156613,14 @@
       "true_rate": 85.32
     },
     "August": {
-      "jobs": 235,
-      "hours": 2802.55,
-      "revenue": 321614.94,
+      "jobs": 237,
+      "hours": 2809.32,
+      "revenue": 321974.94,
       "expenses": 5157.55,
-      "labour_cost": 58673.02,
-      "net_revenue": 316457.39,
-      "avg_rate": 112.92,
-      "true_rate": 91.98
+      "labour_cost": 58799.22,
+      "net_revenue": 316817.39,
+      "avg_rate": 112.77,
+      "true_rate": 91.84
     },
     "September": {
       "jobs": 244,
@@ -156619,11 +156700,11 @@
       "win_rate": 1.0
     },
     "No Bid": {
-      "won": 899,
+      "won": 900,
       "lost": 1458,
-      "won_dollars": 1295007.84,
+      "won_dollars": 1295217.84,
       "lost_dollars": 3395517.0,
-      "win_rate": 0.3814
+      "win_rate": 0.3817
     },
     "Trevor Stevens": {
       "won": 145,
@@ -156878,11 +156959,11 @@
         "lost_dollars": 9709.0
       },
       "Stump grinding": {
-        "won": 17,
+        "won": 18,
         "lost": 55,
-        "total": 72,
-        "win_rate": 0.2361,
-        "won_dollars": 20276.8,
+        "total": 73,
+        "win_rate": 0.2466,
+        "won_dollars": 20486.8,
         "lost_dollars": 27798.2
       }
     },
