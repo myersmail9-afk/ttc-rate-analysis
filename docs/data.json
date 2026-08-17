@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-08-16T09:43:35.098411+00:00",
+    "generated_at": "2026-08-17T10:00:51.170936+00:00",
     "jobs_pulled": 3039,
     "quote_records_count": 1999,
     "lost_quotes_count": 1779,
-    "predictions_count": 134,
+    "predictions_count": 128,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -159870,30 +159870,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7799",
-      "job_number": 7799,
-      "quote_number": "6819",
-      "jobber_uri": null,
-      "client": "Susan Buffler",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removals and pruning, summer 2026 - Susan Buffler - Logan",
-      "quote_total": 4186.5,
-      "predicted_error_pct": -0.0082,
-      "predicted_actual": 4152.18,
-      "expected_loss": 34.32,
-      "visits_planned": 1,
-      "start_at": "2026-08-17T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 31,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6854",
       "quote_number": "6854",
@@ -159960,30 +159936,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 31,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7850",
-      "job_number": 7850,
-      "quote_number": "6830",
-      "jobber_uri": null,
-      "client": "Diane Weeks",
-      "bidder": "David Thunell",
-      "category": "Other",
-      "title": "Gentle crown raise \u2014 backyard green ash",
-      "quote_total": 150.0,
-      "predicted_error_pct": -0.1769,
-      "predicted_actual": 123.46,
-      "expected_loss": 26.54,
-      "visits_planned": 1,
-      "start_at": "2026-08-17T06:00:00Z",
-      "confidence": "medium",
-      "basis": "bidder \u00d7 category",
-      "history_n": 16,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -160831,30 +160783,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7805",
-      "job_number": 7805,
-      "quote_number": "6859",
-      "jobber_uri": null,
-      "client": "Lesli Bishop",
-      "bidder": "No Bid",
-      "category": "Pruning",
-      "title": "Deadwood pruning \u2014 parkway maple (east park strip)",
-      "quote_total": 150.0,
-      "predicted_error_pct": 0.1269,
-      "predicted_actual": 169.04,
-      "expected_loss": -19.04,
-      "visits_planned": 1,
-      "start_at": "2026-08-17T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 41,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7774",
       "job_number": 7774,
       "quote_number": "6822",
@@ -160872,30 +160800,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 8,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7830",
-      "job_number": 7830,
-      "quote_number": "6881",
-      "jobber_uri": null,
-      "client": "Joan  Taylor",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Deadwood pruning, summer 2026 - Joan Taylor - Providence",
-      "quote_total": 150.0,
-      "predicted_error_pct": 0.1729,
-      "predicted_actual": 175.93,
-      "expected_loss": -25.93,
-      "visits_planned": 1,
-      "start_at": "2026-08-17T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -160975,30 +160879,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7861",
-      "job_number": 7861,
-      "quote_number": "6901",
-      "jobber_uri": null,
-      "client": "Angela Wyatt",
-      "bidder": "David Thunell",
-      "category": "Pruning",
-      "title": "Prune, summer 2026 - Angela Wyatt - River Heights",
-      "quote_total": 185.0,
-      "predicted_error_pct": 0.1729,
-      "predicted_actual": 216.98,
-      "expected_loss": -31.98,
-      "visits_planned": 1,
-      "start_at": "2026-08-17T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 28,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7875",
       "job_number": 7875,
       "quote_number": "6889",
@@ -161016,30 +160896,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 22,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7857",
-      "job_number": 7857,
-      "quote_number": "6896",
-      "jobber_uri": null,
-      "client": "Steve Wassom",
-      "bidder": "David Thunell",
-      "category": "PHC / Sprays",
-      "title": "Pruning and foliar spray, summer 2026 - Steve Wassom - Smithfield",
-      "quote_total": 235.0,
-      "predicted_error_pct": 0.1473,
-      "predicted_actual": 269.61,
-      "expected_loss": -34.61,
-      "visits_planned": 1,
-      "start_at": "2026-08-17T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 8,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -161287,9 +161143,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 134,
-    "total_quoted": 264900.19,
-    "total_predicted": 243720.9,
-    "total_expected_loss": 21179.29
+    "total_count": 128,
+    "total_quoted": 259843.69,
+    "total_predicted": 238613.7,
+    "total_expected_loss": 21229.99
   }
 }
