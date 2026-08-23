@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-08-22T09:44:04.335844+00:00",
+    "generated_at": "2026-08-23T09:44:33.056434+00:00",
     "jobs_pulled": 3063,
     "quote_records_count": 2016,
     "lost_quotes_count": 1780,
-    "predictions_count": 116,
+    "predictions_count": 115,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -159928,30 +159928,6 @@
     },
     {
       "type": "awaiting_response",
-      "reference": "Quote #6902",
-      "quote_number": "6902",
-      "client": "Danny Russell",
-      "jobber_uri": "https://secure.getjobber.com/quotes/63410780",
-      "bidder": "David Thunell",
-      "category": "PHC / Sprays",
-      "title": "Pruning and plant health care, summer 2026 - Danny Russell - Logan",
-      "quote_total": 1075.0,
-      "predicted_error_pct": -0.1347,
-      "predicted_actual": 930.2,
-      "expected_loss": 144.8,
-      "visits_planned": null,
-      "sent_at": "2026-08-21T22:21:54Z",
-      "created_at": "2026-08-03T19:38:25Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 18,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
       "reference": "Quote #6647",
       "quote_number": "6647",
       "client": "Jan Jenson",
@@ -161968,9 +161944,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 116,
-    "total_quoted": 261824.59,
-    "total_predicted": 241669.14,
-    "total_expected_loss": 20155.45
+    "total_count": 115,
+    "total_quoted": 260749.59,
+    "total_predicted": 240738.94,
+    "total_expected_loss": 20010.65
   }
 }
