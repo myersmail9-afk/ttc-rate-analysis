@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-08-23T09:44:33.056434+00:00",
+    "generated_at": "2026-08-24T10:05:37.380565+00:00",
     "jobs_pulled": 3063,
     "quote_records_count": 2016,
     "lost_quotes_count": 1780,
-    "predictions_count": 115,
+    "predictions_count": 114,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -159241,30 +159241,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7808",
-      "job_number": 7808,
-      "quote_number": "6717",
-      "jobber_uri": null,
-      "client": "Community HOAM",
-      "bidder": "David Thunell",
-      "category": "Other",
-      "title": "Creekside Townhomes tree work, summer 2026 \u2014 Community HOAM \u2014 Providence",
-      "quote_total": 10473.9,
-      "predicted_error_pct": -0.1072,
-      "predicted_actual": 9350.72,
-      "expected_loss": 1123.18,
-      "visits_planned": 2,
-      "start_at": "2026-08-24T06:00:00Z",
-      "confidence": "medium",
-      "basis": "bidder \u00d7 category",
-      "history_n": 15,
-      "risk": "high",
-      "recommendations": [
-        "Re-quote with David before sending crew"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6848",
       "quote_number": "6848",
@@ -161944,9 +161920,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 115,
-    "total_quoted": 260749.59,
-    "total_predicted": 240738.94,
-    "total_expected_loss": 20010.65
+    "total_count": 114,
+    "total_quoted": 250275.69,
+    "total_predicted": 231388.22,
+    "total_expected_loss": 18887.47
   }
 }
