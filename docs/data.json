@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-08-29T14:32:15.171742+00:00",
+    "generated_at": "2026-08-30T14:32:47.085006+00:00",
     "jobs_pulled": 3073,
     "quote_records_count": 2023,
     "lost_quotes_count": 1782,
-    "predictions_count": 154,
+    "predictions_count": 153,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -159722,30 +159722,6 @@
     },
     {
       "type": "awaiting_response",
-      "reference": "Quote #6905",
-      "quote_number": "6905",
-      "client": "Darlene Hart",
-      "jobber_uri": "https://secure.getjobber.com/quotes/63667334",
-      "bidder": "Trevor Stevens",
-      "category": "PHC / Sprays",
-      "title": "Pruning and PHC-summer/fall 2026- Darlene Hart",
-      "quote_total": 2835.0,
-      "predicted_error_pct": -0.2982,
-      "predicted_actual": 1989.67,
-      "expected_loss": 845.33,
-      "visits_planned": null,
-      "sent_at": "2026-08-28T21:40:17Z",
-      "created_at": "2026-08-07T17:37:05Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 6,
-      "risk": "medium",
-      "recommendations": [
-        "Add extra crew capacity that day"
-      ]
-    },
-    {
-      "type": "awaiting_response",
       "reference": "Quote #6673",
       "quote_number": "6673",
       "client": "Travis and Jenny Clements",
@@ -163360,9 +163336,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 154,
-    "total_quoted": 287281.54,
-    "total_predicted": 267921.98,
-    "total_expected_loss": 19359.56
+    "total_count": 153,
+    "total_quoted": 284446.54,
+    "total_predicted": 265932.31,
+    "total_expected_loss": 18514.23
   }
 }
