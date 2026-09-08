@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-09-07T15:09:41.030307+00:00",
+    "generated_at": "2026-09-08T13:39:44.880756+00:00",
     "jobs_pulled": 3087,
     "quote_records_count": 2034,
     "lost_quotes_count": 1781,
-    "predictions_count": 146,
+    "predictions_count": 147,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -160528,31 +160528,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7784",
-      "job_number": 7784,
-      "quote_number": "6823",
-      "jobber_uri": null,
-      "client": "Mike and Megan Wirth",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removal and stump grinding, summer 2026 - Mike and Megan Wirth - Smithfield",
-      "quote_total": 6333.2,
-      "predicted_error_pct": -0.0892,
-      "predicted_actual": 5768.01,
-      "expected_loss": 565.19,
-      "visits_planned": 2,
-      "start_at": "2026-09-08T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 7,
-      "risk": "medium",
-      "recommendations": [
-        "Add extra crew capacity that day",
-        "Removals run -12% across all bidders; build buffer into schedule"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6878",
       "quote_number": "6878",
@@ -160946,6 +160921,30 @@
       "risk": "low",
       "recommendations": [
         "Removals run -12% across all bidders; build buffer into schedule"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6983",
+      "quote_number": "6983",
+      "client": "Kurt Sadler",
+      "jobber_uri": "https://secure.getjobber.com/quotes/65020827",
+      "bidder": "David Thunell",
+      "category": "Pruning",
+      "title": "General pruning, fall 2026 - Kurt Sadler - Hyde Park",
+      "quote_total": 3480.0,
+      "predicted_error_pct": -0.0655,
+      "predicted_actual": 3251.89,
+      "expected_loss": 228.11,
+      "visits_planned": null,
+      "sent_at": "2026-09-07T16:58:08Z",
+      "created_at": "2026-09-02T14:49:27Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 36,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
       ]
     },
     {
@@ -161375,6 +161374,30 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 57,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6985",
+      "quote_number": "6985",
+      "client": "Trapper  Nielson",
+      "jobber_uri": "https://secure.getjobber.com/quotes/65038822",
+      "bidder": "David Thunell",
+      "category": "PHC / Sprays",
+      "title": "Pruning and plant health care, fall 2026 - Trapper Nielson - Hyrum",
+      "quote_total": 2760.0,
+      "predicted_error_pct": -0.0393,
+      "predicted_actual": 2651.47,
+      "expected_loss": 108.53,
+      "visits_planned": null,
+      "sent_at": "2026-09-07T17:40:42Z",
+      "created_at": "2026-09-02T17:46:43Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 11,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -161861,6 +161884,30 @@
       ]
     },
     {
+      "type": "awaiting_response",
+      "reference": "Quote #6988",
+      "quote_number": "6988",
+      "client": "Dan Davis",
+      "jobber_uri": "https://secure.getjobber.com/quotes/65059217",
+      "bidder": "David Thunell",
+      "category": "Pruning",
+      "title": "Lightning-strike pruning, fall 2026 - Dan Davis - Nibley",
+      "quote_total": 1185.0,
+      "predicted_error_pct": -0.0663,
+      "predicted_actual": 1106.45,
+      "expected_loss": 78.55,
+      "visits_planned": null,
+      "sent_at": "2026-09-07T17:54:22Z",
+      "created_at": "2026-09-02T21:02:17Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 45,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
       "type": "scheduled_job",
       "reference": "Job #7938",
       "job_number": 7938,
@@ -161951,30 +161998,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 45,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7913",
-      "job_number": 7913,
-      "quote_number": "6941",
-      "jobber_uri": null,
-      "client": "Barbara Edwards",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removal, stump grinding and spruce beetle treatment, summer 2026 - Barbara Edwards - Smithfield",
-      "quote_total": 1993.0,
-      "predicted_error_pct": -0.0271,
-      "predicted_actual": 1939.09,
-      "expected_loss": 53.91,
-      "visits_planned": 1,
-      "start_at": "2026-09-08T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 38,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -162236,6 +162259,30 @@
       "expected_loss": 34.28,
       "visits_planned": 1,
       "start_at": "2026-09-14T06:00:00Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 36,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6984",
+      "quote_number": "6984",
+      "client": "Audra Didericksen",
+      "jobber_uri": "https://secure.getjobber.com/quotes/65032262",
+      "bidder": "David Thunell",
+      "category": "Removals",
+      "title": "Removals, fall 2026 - Audra Didericksen - Paradise",
+      "quote_total": 3895.0,
+      "predicted_error_pct": -0.0086,
+      "predicted_actual": 3861.32,
+      "expected_loss": 33.68,
+      "visits_planned": null,
+      "sent_at": "2026-09-07T17:26:35Z",
+      "created_at": "2026-09-02T16:44:22Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 36,
@@ -163589,30 +163636,6 @@
       ]
     },
     {
-      "type": "scheduled_job",
-      "reference": "Job #7912",
-      "job_number": 7912,
-      "quote_number": "6943",
-      "jobber_uri": null,
-      "client": "Tom Sunderland",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Pruning and removal, summer 2026 - Tom Sunderland - Smithfield",
-      "quote_total": 785.0,
-      "predicted_error_pct": 0.0377,
-      "predicted_actual": 814.57,
-      "expected_loss": -29.57,
-      "visits_planned": 1,
-      "start_at": "2026-09-08T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 24,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
       "type": "awaiting_response",
       "reference": "Quote #6981",
       "quote_number": "6981",
@@ -163830,9 +163853,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 146,
-    "total_quoted": 305130.39,
-    "total_predicted": 284636.31,
-    "total_expected_loss": 20494.08
+    "total_count": 147,
+    "total_quoted": 307339.19,
+    "total_predicted": 286985.77,
+    "total_expected_loss": 20353.42
   }
 }
