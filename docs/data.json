@@ -1,9 +1,9 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-09-10T13:41:37.715850+00:00",
-    "jobs_pulled": 3091,
-    "quote_records_count": 2037,
+    "generated_at": "2026-09-11T13:38:30.889558+00:00",
+    "jobs_pulled": 3092,
+    "quote_records_count": 2038,
     "lost_quotes_count": 1784,
     "predictions_count": 147,
     "bidders": [
@@ -70241,6 +70241,34 @@
       "job_status": "archived"
     },
     {
+      "job_num": 7794,
+      "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNTE2NTYzNzI=",
+      "jobber_uri": "https://secure.getjobber.com/work_orders/151656372",
+      "client": "Mary Athay",
+      "bidder": "No Bid",
+      "bidder_raw": null,
+      "category": "Pruning",
+      "title": "Pruning, summer 2026 - Mary Athay - Garden City",
+      "expenses": 0.0,
+      "labour_cost": 263.5,
+      "hours": 11.03,
+      "revenue": 1670.0,
+      "rate": 151.42,
+      "true_rate": 127.53,
+      "profit_amount": 1406.5,
+      "profit_pct": 84.22,
+      "month": "September",
+      "month_num": 9,
+      "year": 2026,
+      "completed_at": "2026-09-10T18:43:39Z",
+      "visit_count": 1,
+      "quote_number": "6843",
+      "quote_total": 1670.0,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "job_status": "archived"
+    },
+    {
       "job_num": 7889,
       "jobber_id": "Z2lkOi8vSm9iYmVyL0pvYi8xNTQ4OTI3MDE=",
       "jobber_uri": "https://secure.getjobber.com/work_orders/154892701",
@@ -88214,6 +88242,31 @@
       "days_to_close": 5.0,
       "month": "August",
       "month_num": 8,
+      "year": 2026
+    },
+    {
+      "quote_number": "6843",
+      "client": "Mary Athay",
+      "bidder": "No Bid",
+      "category": "Pruning",
+      "quote_total": 1670.0,
+      "actual_total": 1670.0,
+      "bid_error_dollars": 0.0,
+      "bid_error_pct": 0.0,
+      "jobs_count": 1,
+      "job_numbers": [
+        7794
+      ],
+      "jobber_uri": "https://secure.getjobber.com/quotes/62586199",
+      "first_job_uri": "https://secure.getjobber.com/work_orders/151656372",
+      "visit_count": 1,
+      "completed_at": "2026-09-10T18:43:39Z",
+      "sent_at": "2026-07-17T21:23:43Z",
+      "created_at": "2026-07-17T15:54:43Z",
+      "transitioned_at": "2026-07-21T22:02:51Z",
+      "days_to_close": 4.0,
+      "month": "September",
+      "month_num": 9,
       "year": 2026
     },
     {
@@ -159744,14 +159797,14 @@
     },
     "No Bid": {
       "overall": {
-        "jobs": 1724,
-        "hours": 13340.13,
-        "revenue": 1447555.13,
+        "jobs": 1725,
+        "hours": 13351.16,
+        "revenue": 1449225.13,
         "expenses": 21160.51,
-        "labour_cost": 253868.26,
-        "net_revenue": 1426394.62,
-        "avg_rate": 106.93,
-        "true_rate": 87.89
+        "labour_cost": 254131.76,
+        "net_revenue": 1428064.62,
+        "avg_rate": 106.96,
+        "true_rate": 87.93
       },
       "by_month": {
         "January": {
@@ -159835,14 +159888,14 @@
           "true_rate": 91.06
         },
         "September": {
-          "jobs": 148,
-          "hours": 1163.77,
-          "revenue": 138245.35,
+          "jobs": 149,
+          "hours": 1174.8,
+          "revenue": 139915.35,
           "expenses": 1590.0,
-          "labour_cost": 24323.27,
-          "net_revenue": 136655.35,
-          "avg_rate": 117.42,
-          "true_rate": 96.52
+          "labour_cost": 24586.77,
+          "net_revenue": 138325.35,
+          "avg_rate": 117.74,
+          "true_rate": 96.82
         },
         "October": {
           "jobs": 136,
@@ -160141,14 +160194,14 @@
       "true_rate": 89.91
     },
     "September": {
-      "jobs": 259,
-      "hours": 2371.62,
-      "revenue": 291622.22,
+      "jobs": 260,
+      "hours": 2382.65,
+      "revenue": 293292.22,
       "expenses": 14318.74,
-      "labour_cost": 51627.92,
-      "net_revenue": 277303.48,
-      "avg_rate": 116.93,
-      "true_rate": 95.16
+      "labour_cost": 51891.42,
+      "net_revenue": 278973.48,
+      "avg_rate": 117.09,
+      "true_rate": 95.31
     },
     "October": {
       "jobs": 254,
@@ -160218,11 +160271,11 @@
       "win_rate": 1.0
     },
     "No Bid": {
-      "won": 904,
+      "won": 905,
       "lost": 1459,
-      "won_dollars": 1298730.64,
+      "won_dollars": 1300400.64,
       "lost_dollars": 3397584.0,
-      "win_rate": 0.3826
+      "win_rate": 0.3828
     },
     "Trevor Stevens": {
       "won": 150,
@@ -160453,11 +160506,11 @@
         "lost_dollars": 14559.05
       },
       "Pruning": {
-        "won": 456,
+        "won": 457,
         "lost": 408,
-        "total": 864,
-        "win_rate": 0.5278,
-        "won_dollars": 590336.85,
+        "total": 865,
+        "win_rate": 0.5283,
+        "won_dollars": 592006.85,
         "lost_dollars": 557275.15
       },
       "Removals": {
@@ -160742,31 +160795,6 @@
       "visits_planned": null,
       "sent_at": "2026-05-04T22:45:34Z",
       "created_at": "2026-05-04T21:49:15Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 7,
-      "risk": "medium",
-      "recommendations": [
-        "Add extra crew capacity that day",
-        "Removals run -12% across all bidders; build buffer into schedule"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7784",
-      "job_number": 7784,
-      "quote_number": "6823",
-      "jobber_uri": null,
-      "client": "Mike and Megan Wirth",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Removal and stump grinding, summer 2026 - Mike and Megan Wirth - Smithfield",
-      "quote_total": 6333.2,
-      "predicted_error_pct": -0.0892,
-      "predicted_actual": 5768.01,
-      "expected_loss": 565.19,
-      "visits_planned": 2,
-      "start_at": "2026-09-08T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 7,
@@ -161672,6 +161700,30 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 57,
+      "risk": "low",
+      "recommendations": [
+        "On track based on history"
+      ]
+    },
+    {
+      "type": "awaiting_response",
+      "reference": "Quote #6933",
+      "quote_number": "6933",
+      "client": "The Church of Jesus Christ of Latter-Day Saints",
+      "jobber_uri": "https://secure.getjobber.com/quotes/64262117",
+      "bidder": "David Thunell",
+      "category": "Pruning",
+      "title": "Pruning, summer 2026 - Church of Jesus Christ (Buena Vista Rec) - North Logan",
+      "quote_total": 1627.5,
+      "predicted_error_pct": -0.0663,
+      "predicted_actual": 1519.62,
+      "expected_loss": 107.88,
+      "visits_planned": null,
+      "sent_at": "2026-09-10T22:17:04Z",
+      "created_at": "2026-08-19T15:17:13Z",
+      "confidence": "high",
+      "basis": "bidder \u00d7 category \u00d7 size",
+      "history_n": 45,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -164080,8 +164132,8 @@
   ],
   "predictions_summary": {
     "total_count": 147,
-    "total_quoted": 322831.99,
-    "total_predicted": 301894.64,
-    "total_expected_loss": 20937.35
+    "total_quoted": 318126.29,
+    "total_predicted": 297646.25,
+    "total_expected_loss": 20480.04
   }
 }
