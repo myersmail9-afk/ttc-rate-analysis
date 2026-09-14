@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-09-13T13:55:27.846594+00:00",
+    "generated_at": "2026-09-14T16:02:22.354863+00:00",
     "jobs_pulled": 3098,
     "quote_records_count": 2044,
     "lost_quotes_count": 1784,
-    "predictions_count": 158,
+    "predictions_count": 157,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -162937,30 +162937,6 @@
     },
     {
       "type": "scheduled_job",
-      "reference": "Job #7884",
-      "job_number": 7884,
-      "quote_number": "6858",
-      "jobber_uri": null,
-      "client": "Sherry Bullen",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Pruning and removals, summer 2026 - Sherry Bullen - North Logan",
-      "quote_total": 3965.0,
-      "predicted_error_pct": -0.0083,
-      "predicted_actual": 3932.16,
-      "expected_loss": 32.84,
-      "visits_planned": 1,
-      "start_at": "2026-09-14T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 37,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
       "reference": "Job #7729",
       "job_number": 7729,
       "quote_number": "6751",
@@ -164713,9 +164689,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 158,
-    "total_quoted": 338191.19,
-    "total_predicted": 318094.36,
-    "total_expected_loss": 20096.83
+    "total_count": 157,
+    "total_quoted": 334226.19,
+    "total_predicted": 314162.2,
+    "total_expected_loss": 20063.99
   }
 }
