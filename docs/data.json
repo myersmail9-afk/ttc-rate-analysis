@@ -1,11 +1,11 @@
 {
   "meta": {
     "source": "Jobber GraphQL API (live)",
-    "generated_at": "2026-09-17T14:26:00.486931+00:00",
+    "generated_at": "2026-09-18T13:43:19.519336+00:00",
     "jobs_pulled": 3105,
     "quote_records_count": 2051,
-    "lost_quotes_count": 1785,
-    "predictions_count": 160,
+    "lost_quotes_count": 1787,
+    "predictions_count": 156,
     "bidders": [
       "Ben Ash",
       "Cole Cook",
@@ -138641,6 +138641,30 @@
   ],
   "lost_quotes": [
     {
+      "quote_number": "6994",
+      "client": "Dennis & Annette Briscoe",
+      "bidder": "No Bid",
+      "category": "Stump grinding",
+      "quote_total": 1159.2,
+      "jobber_uri": "https://secure.getjobber.com/quotes/65368698",
+      "created_at": "2026-09-09T17:31:58Z",
+      "sent_at": "2026-09-11T23:14:47Z",
+      "transitioned_at": "2026-09-17T23:18:59Z",
+      "days_to_close": 6.0
+    },
+    {
+      "quote_number": "6978",
+      "client": "Inger and Chris Armstrong",
+      "bidder": "David Thunell",
+      "category": "Crane work",
+      "quote_total": 0,
+      "jobber_uri": "https://secure.getjobber.com/quotes/64895455",
+      "created_at": "2026-08-31T18:14:47Z",
+      "sent_at": "2026-09-02T00:07:07Z",
+      "transitioned_at": "2026-09-17T23:14:29Z",
+      "days_to_close": 16.0
+    },
+    {
       "quote_number": "6784",
       "client": "Bill  Chandler",
       "bidder": "David Thunell",
@@ -160947,10 +160971,10 @@
     },
     "David Thunell": {
       "won": 504,
-      "lost": 106,
+      "lost": 107,
       "won_dollars": 1167831.81,
       "lost_dollars": 272978.38,
-      "win_rate": 0.8262
+      "win_rate": 0.8249
     },
     "Gabe Dye": {
       "won": 1,
@@ -160975,10 +160999,10 @@
     },
     "No Bid": {
       "won": 905,
-      "lost": 1459,
+      "lost": 1460,
       "won_dollars": 1300400.64,
-      "lost_dollars": 3397584.0,
-      "win_rate": 0.3828
+      "lost_dollars": 3398743.2,
+      "win_rate": 0.3827
     },
     "Trevor Stevens": {
       "won": 153,
@@ -161050,9 +161074,9 @@
     "David Thunell": {
       "Crane work": {
         "won": 14,
-        "lost": 6,
-        "total": 20,
-        "win_rate": 0.7,
+        "lost": 7,
+        "total": 21,
+        "win_rate": 0.6667,
         "won_dollars": 74792.1,
         "lost_dollars": 36075.0
       },
@@ -161234,11 +161258,11 @@
       },
       "Stump grinding": {
         "won": 18,
-        "lost": 55,
-        "total": 73,
-        "win_rate": 0.2466,
+        "lost": 56,
+        "total": 74,
+        "win_rate": 0.2432,
         "won_dollars": 20486.8,
-        "lost_dollars": 27798.2
+        "lost_dollars": 28957.4
       }
     },
     "Trevor Stevens": {
@@ -161375,54 +161399,6 @@
       "expected_loss": 845.33,
       "visits_planned": 1,
       "start_at": "2026-10-12T06:00:00Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 6,
-      "risk": "medium",
-      "recommendations": [
-        "Add extra crew capacity that day"
-      ]
-    },
-    {
-      "type": "awaiting_response",
-      "reference": "Quote #6994",
-      "quote_number": "6994",
-      "client": "Dennis & Annette Briscoe",
-      "jobber_uri": "https://secure.getjobber.com/quotes/65368698",
-      "bidder": "No Bid",
-      "category": "Stump grinding",
-      "title": "Stump grinding, fall 2026 - Dennis & Annette Briscoe - Providence",
-      "quote_total": 1159.2,
-      "predicted_error_pct": -0.6447,
-      "predicted_actual": 411.88,
-      "expected_loss": 747.32,
-      "visits_planned": null,
-      "sent_at": "2026-09-11T23:14:47Z",
-      "created_at": "2026-09-09T17:31:58Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 4,
-      "risk": "medium",
-      "recommendations": [
-        "Add extra crew capacity that day"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7906",
-      "job_number": 7906,
-      "quote_number": "6960",
-      "jobber_uri": null,
-      "client": "Andrea Ward",
-      "bidder": "Trevor Stevens",
-      "category": "PHC / Sprays",
-      "title": "Pruning/PHC- Fall 2026/spring2027- Andrea Ward- Smithfield",
-      "quote_total": 2373.0,
-      "predicted_error_pct": -0.2982,
-      "predicted_actual": 1665.43,
-      "expected_loss": 707.57,
-      "visits_planned": 1,
-      "start_at": "2026-09-18T06:00:00Z",
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 6,
@@ -163848,30 +163824,6 @@
     },
     {
       "type": "awaiting_response",
-      "reference": "Quote #7006",
-      "quote_number": "7006",
-      "client": "David Thunell",
-      "jobber_uri": "https://secure.getjobber.com/quotes/65522455",
-      "bidder": "David Thunell",
-      "category": "Removals",
-      "title": "Test removal",
-      "quote_total": 2000.0,
-      "predicted_error_pct": -0.0075,
-      "predicted_actual": 1984.99,
-      "expected_loss": 15.01,
-      "visits_planned": null,
-      "sent_at": "2026-09-11T18:59:22Z",
-      "created_at": "2026-09-11T18:59:14Z",
-      "confidence": "high",
-      "basis": "bidder \u00d7 category \u00d7 size",
-      "history_n": 39,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "awaiting_response",
       "reference": "Quote #6590",
       "quote_number": "6590",
       "client": "Jasmine  Chen",
@@ -163985,30 +163937,6 @@
       "confidence": "high",
       "basis": "bidder \u00d7 category \u00d7 size",
       "history_n": 18,
-      "risk": "low",
-      "recommendations": [
-        "On track based on history"
-      ]
-    },
-    {
-      "type": "scheduled_job",
-      "reference": "Job #7733",
-      "job_number": 7733,
-      "quote_number": null,
-      "jobber_uri": null,
-      "client": "Zollinger Fruit & Tree Farm",
-      "bidder": "David Thunell",
-      "category": "Other",
-      "title": "Log chipping",
-      "quote_total": 105.0,
-      "predicted_error_pct": -0.0539,
-      "predicted_actual": 99.34,
-      "expected_loss": 5.66,
-      "visits_planned": 2,
-      "start_at": "2026-08-21T06:00:00Z",
-      "confidence": "medium",
-      "basis": "bidder \u00d7 category",
-      "history_n": 19,
       "risk": "low",
       "recommendations": [
         "On track based on history"
@@ -165144,9 +165072,9 @@
     }
   ],
   "predictions_summary": {
-    "total_count": 160,
-    "total_quoted": 325526.09,
-    "total_predicted": 305733.14,
-    "total_expected_loss": 19792.95
+    "total_count": 156,
+    "total_quoted": 319888.89,
+    "total_predicted": 301571.5,
+    "total_expected_loss": 18317.39
   }
 }
